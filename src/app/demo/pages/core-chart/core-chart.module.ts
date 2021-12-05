@@ -5,9 +5,6 @@ import { CoreChartRoutingModule } from './core-chart-routing.module';
 
 @NgModule({
   declarations: [],
-  imports: [
-    CommonModule,
-    CoreChartRoutingModule
-  ]
+  imports: [CommonModule, CoreChartRoutingModule],
 })
-export class CoreChartModule { }
+export class CoreChartModule {}

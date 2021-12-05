@@ -6,12 +6,13 @@ describe('CrtHighChartComponent', () => {
   let component: CrtHighChartComponent;
   let fixture: ComponentFixture<CrtHighChartComponent>;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      declarations: [ CrtHighChartComponent ]
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [CrtHighChartComponent],
+      }).compileComponents();
     })
-    .compileComponents();
-  }));
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(CrtHighChartComponent);

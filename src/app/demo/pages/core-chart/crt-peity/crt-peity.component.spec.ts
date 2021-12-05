@@ -6,12 +6,13 @@ describe('CrtPeityComponent', () => {
   let component: CrtPeityComponent;
   let fixture: ComponentFixture<CrtPeityComponent>;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      declarations: [ CrtPeityComponent ]
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [CrtPeityComponent],
+      }).compileComponents();
     })
-    .compileComponents();
-  }));
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(CrtPeityComponent);

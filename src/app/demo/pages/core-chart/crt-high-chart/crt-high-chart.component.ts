@@ -1,42 +1,35 @@
 import { Component, OnInit } from '@angular/core';
 
 import * as Highcharts from 'highcharts';
-import * as HC_more from 'highcharts/highcharts-more';
 import HC_drilldown from 'highcharts/modules/drilldown';
 HC_drilldown(Highcharts);
 
-
-import {HttpClient} from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import 'rxjs/add/operator/map';
 
 @Component({
   selector: 'app-crt-high-chart',
   templateUrl: './crt-high-chart.component.html',
-  styleUrls: ['./crt-high-chart.component.scss']
+  styleUrls: ['./crt-high-chart.component.scss'],
 })
 export class CrtHighChartComponent implements OnInit {
   public Highcharts = Highcharts;
   public barBasicChartOptions: any;
   public lineBasicChartOptions: any;
-  /*public areaZoomChartOptions: any;
-  public pieBasicChartOptions: any;
-  public pieDonutChartOptions: any;
-  public combinationsChartOptions: any;*/
 
-  constructor(public httpClient: HttpClient) {
-  }
+  constructor(public httpClient: HttpClient) {}
 
   ngOnInit() {
     this.barBasicChartOptions = {
       chart: {
-        type: 'column'
+        type: 'column',
       },
       colors: ['#2196f3', '#7759de', '#f44336', '#00ACC1'],
       title: {
-        text: 'Monthly Average Rainfall'
+        text: 'Monthly Average Rainfall',
       },
       subtitle: {
-        text: 'Source: WorldClimate.com'
+        text: 'Source: WorldClimate.com',
       },
       xAxis: {
         categories: [
@@ -51,47 +44,61 @@ export class CrtHighChartComponent implements OnInit {
           'Sep',
           'Oct',
           'Nov',
-          'Dec'
+          'Dec',
         ],
-        crosshair: true
+        crosshair: true,
       },
       yAxis: {
         min: 0,
         title: {
-          text: 'Rainfall (mm)'
-        }
+          text: 'Rainfall (mm)',
+        },
       },
       tooltip: {
         headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-        '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
+        pointFormat:
+          '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+          '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
         footerFormat: '</table>',
         shared: true,
-        useHTML: true
+        useHTML: true,
       },
       plotOptions: {
         column: {
           pointPadding: 0.2,
-          borderWidth: 0
-        }
+          borderWidth: 0,
+        },
       },
-      series: [{
-        name: 'Tokyo',
-        data: [49.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4]
-
-      }, {
-        name: 'New York',
-        data: [83.6, 78.8, 98.5, 93.4, 106.0, 84.5, 105.0, 104.3, 91.2, 83.5, 106.6, 92.3]
-
-      }, {
-        name: 'London',
-        data: [48.9, 38.8, 39.3, 41.4, 47.0, 48.3, 59.0, 59.6, 52.4, 65.2, 59.3, 51.2]
-
-      }, {
-        name: 'Berlin',
-        data: [42.4, 33.2, 34.5, 39.7, 52.6, 75.5, 57.4, 60.4, 47.6, 39.1, 46.8, 51.1]
-
-      }]
+      series: [
+        {
+          name: 'Tokyo',
+          data: [
+            49.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1,
+            95.6, 54.4,
+          ],
+        },
+        {
+          name: 'New York',
+          data: [
+            83.6, 78.8, 98.5, 93.4, 106.0, 84.5, 105.0, 104.3, 91.2, 83.5,
+            106.6, 92.3,
+          ],
+        },
+        {
+          name: 'London',
+          data: [
+            48.9, 38.8, 39.3, 41.4, 47.0, 48.3, 59.0, 59.6, 52.4, 65.2, 59.3,
+            51.2,
+          ],
+        },
+        {
+          name: 'Berlin',
+          data: [
+            42.4, 33.2, 34.5, 39.7, 52.6, 75.5, 57.4, 60.4, 47.6, 39.1, 46.8,
+            51.1,
+          ],
+        },
+      ],
     };
     this.lineBasicChartOptions = {
       chart: {
@@ -99,48 +106,54 @@ export class CrtHighChartComponent implements OnInit {
       },
       colors: ['#00ACC1', '#2196f3', '#7759de'],
       title: {
-        text: 'Solar Employment Growth by Sector, 2010-2017'
+        text: 'Solar Employment Growth by Sector, 2010-2017',
       },
       subtitle: {
-        text: 'Source: thesolarfoundation.com'
+        text: 'Source: thesolarfoundation.com',
       },
       yAxis: {
         title: {
-          text: 'Number of Employees'
-        }
+          text: 'Number of Employees',
+        },
       },
       plotOptions: {
         series: {
           label: {
-            connectorAllowed: false
+            connectorAllowed: false,
           },
-          pointStart: 2010
-        }
+          pointStart: 2010,
+        },
       },
-      series: [{
-        name: 'Installation',
-        data: [5, 25, 15, 35, 25, 35, 45, 75]
-      }, {
-        name: 'Manufacturing',
-        data: [25, 35, 45, 75, 5, 25, 15, 35, ]
-      }, {
-        name: 'Sales & Distribution',
-        data: [45, 75, 25, 5, 15, 55, 5, 25]
-      }],
+      series: [
+        {
+          name: 'Installation',
+          data: [5, 25, 15, 35, 25, 35, 45, 75],
+        },
+        {
+          name: 'Manufacturing',
+          data: [25, 35, 45, 75, 5, 25, 15, 35],
+        },
+        {
+          name: 'Sales & Distribution',
+          data: [45, 75, 25, 5, 15, 55, 5, 25],
+        },
+      ],
       responsive: {
-        rules: [{
-          condition: {
-            maxWidth: 500
+        rules: [
+          {
+            condition: {
+              maxWidth: 500,
+            },
+            chartOptions: {
+              legend: {
+                layout: 'horizontal',
+                align: 'center',
+                verticalAlign: 'bottom',
+              },
+            },
           },
-          chartOptions: {
-            legend: {
-              layout: 'horizontal',
-              align: 'center',
-              verticalAlign: 'bottom'
-            }
-          }
-        }]
-      }
+        ],
+      },
     };
 
     /*this.httpClient.get('https://cdn.rawgit.com/highcharts/highcharts/057b672172ccc6c08fe7dbb27fc17ebca3f5b770/samples/data/usdeur.json')
@@ -371,5 +384,4 @@ export class CrtHighChartComponent implements OnInit {
       }]
     };*/
   }
-
 }

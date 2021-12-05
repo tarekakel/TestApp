@@ -1,16 +1,16 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import {CrtPeityComponent} from './crt-peity.component';
+import { CrtPeityComponent } from './crt-peity.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: CrtPeityComponent
-  }
+    component: CrtPeityComponent,
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class CrtPeityRoutingModule { }
+export class CrtPeityRoutingModule {}

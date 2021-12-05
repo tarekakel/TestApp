@@ -3,14 +3,10 @@ import { CommonModule } from '@angular/common';
 
 import { CrtPeityRoutingModule } from './crt-peity-routing.module';
 import { CrtPeityComponent } from './crt-peity.component';
-import {SharedModule} from '../../../../theme/shared/shared.module';
+import { SharedModule } from '../../../../theme/shared/shared.module';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    CrtPeityRoutingModule,
-    SharedModule
-  ],
-  declarations: [CrtPeityComponent]
+  imports: [CommonModule, CrtPeityRoutingModule, SharedModule],
+  declarations: [CrtPeityComponent],
 })
-export class CrtPeityModule { }
+export class CrtPeityModule {}
