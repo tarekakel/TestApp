@@ -6,12 +6,13 @@ describe('ThemeNavFixedComponent', () => {
   let component: ThemeNavFixedComponent;
   let fixture: ComponentFixture<ThemeNavFixedComponent>;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      declarations: [ ThemeNavFixedComponent ]
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [ThemeNavFixedComponent],
+      }).compileComponents();
     })
-    .compileComponents();
-  }));
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(ThemeNavFixedComponent);

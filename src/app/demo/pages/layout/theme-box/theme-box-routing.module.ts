@@ -1,16 +1,16 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import {ThemeBoxComponent} from './theme-box.component';
+import { ThemeBoxComponent } from './theme-box.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: ThemeBoxComponent
-  }
+    component: ThemeBoxComponent,
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class ThemeBoxRoutingModule { }
+export class ThemeBoxRoutingModule {}

@@ -3,8 +3,8 @@ import { CommonModule } from '@angular/common';
 
 import { ThemeBoxRoutingModule } from './theme-box-routing.module';
 import { ThemeBoxComponent } from './theme-box.component';
-import {SharedModule} from '../../../../theme/shared/shared.module';
-import {CommonContentModule} from '../common-content/common-content.module';
+import { SharedModule } from '../../../../theme/shared/shared.module';
+import { CommonContentModule } from '../common-content/common-content.module';
 
 @NgModule({
   declarations: [ThemeBoxComponent],
@@ -12,7 +12,7 @@ import {CommonContentModule} from '../common-content/common-content.module';
     CommonModule,
     ThemeBoxRoutingModule,
     SharedModule,
-    CommonContentModule
-  ]
+    CommonContentModule,
+  ],
 })
-export class ThemeBoxModule { }
+export class ThemeBoxModule {}

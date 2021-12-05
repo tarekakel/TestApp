@@ -3,8 +3,8 @@ import { CommonModule } from '@angular/common';
 
 import { ThemeHorizontalL2RoutingModule } from './theme-horizontal-l2-routing.module';
 import { ThemeHorizontalL2Component } from './theme-horizontal-l2.component';
-import {SharedModule} from '../../../../theme/shared/shared.module';
-import {CommonContentModule} from '../common-content/common-content.module';
+import { SharedModule } from '../../../../theme/shared/shared.module';
+import { CommonContentModule } from '../common-content/common-content.module';
 
 @NgModule({
   declarations: [ThemeHorizontalL2Component],
@@ -12,7 +12,7 @@ import {CommonContentModule} from '../common-content/common-content.module';
     CommonModule,
     ThemeHorizontalL2RoutingModule,
     SharedModule,
-    CommonContentModule
-  ]
+    CommonContentModule,
+  ],
 })
-export class ThemeHorizontalL2Module { }
+export class ThemeHorizontalL2Module {}

@@ -6,12 +6,13 @@ describe('ThemeCollapseMenuComponent', () => {
   let component: ThemeCollapseMenuComponent;
   let fixture: ComponentFixture<ThemeCollapseMenuComponent>;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      declarations: [ ThemeCollapseMenuComponent ]
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [ThemeCollapseMenuComponent],
+      }).compileComponents();
     })
-    .compileComponents();
-  }));
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(ThemeCollapseMenuComponent);

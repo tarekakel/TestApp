@@ -6,12 +6,13 @@ describe('ThemeStaticComponent', () => {
   let component: ThemeStaticComponent;
   let fixture: ComponentFixture<ThemeStaticComponent>;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      declarations: [ ThemeStaticComponent ]
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [ThemeStaticComponent],
+      }).compileComponents();
     })
-    .compileComponents();
-  }));
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(ThemeStaticComponent);

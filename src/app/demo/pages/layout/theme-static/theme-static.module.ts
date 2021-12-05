@@ -3,8 +3,8 @@ import { CommonModule } from '@angular/common';
 
 import { ThemeStaticRoutingModule } from './theme-static-routing.module';
 import { ThemeStaticComponent } from './theme-static.component';
-import {CommonContentModule} from '../common-content/common-content.module';
-import {SharedModule} from '../../../../theme/shared/shared.module';
+import { CommonContentModule } from '../common-content/common-content.module';
+import { SharedModule } from '../../../../theme/shared/shared.module';
 
 @NgModule({
   declarations: [ThemeStaticComponent],
@@ -12,7 +12,7 @@ import {SharedModule} from '../../../../theme/shared/shared.module';
     CommonModule,
     ThemeStaticRoutingModule,
     SharedModule,
-    CommonContentModule
-  ]
+    CommonContentModule,
+  ],
 })
-export class ThemeStaticModule { }
+export class ThemeStaticModule {}

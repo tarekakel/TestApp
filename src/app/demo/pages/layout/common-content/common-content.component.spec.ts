@@ -6,12 +6,13 @@ describe('CommonContentComponent', () => {
   let component: CommonContentComponent;
   let fixture: ComponentFixture<CommonContentComponent>;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      declarations: [ CommonContentComponent ]
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [CommonContentComponent],
+      }).compileComponents();
     })
-    .compileComponents();
-  }));
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(CommonContentComponent);

@@ -3,8 +3,8 @@ import { CommonModule } from '@angular/common';
 
 import { ThemeRtlHRoutingModule } from './theme-rtl-h-routing.module';
 import { ThemeRtlHComponent } from './theme-rtl-h.component';
-import {SharedModule} from '../../../../theme/shared/shared.module';
-import {CommonContentModule} from '../common-content/common-content.module';
+import { SharedModule } from '../../../../theme/shared/shared.module';
+import { CommonContentModule } from '../common-content/common-content.module';
 
 @NgModule({
   declarations: [ThemeRtlHComponent],
@@ -12,7 +12,7 @@ import {CommonContentModule} from '../common-content/common-content.module';
     CommonModule,
     ThemeRtlHRoutingModule,
     SharedModule,
-    CommonContentModule
-  ]
+    CommonContentModule,
+  ],
 })
-export class ThemeRtlHModule { }
+export class ThemeRtlHModule {}

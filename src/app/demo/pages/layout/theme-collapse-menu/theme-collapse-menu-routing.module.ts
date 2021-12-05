@@ -1,16 +1,16 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import {ThemeCollapseMenuComponent} from './theme-collapse-menu.component';
+import { ThemeCollapseMenuComponent } from './theme-collapse-menu.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: ThemeCollapseMenuComponent
-  }
+    component: ThemeCollapseMenuComponent,
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class ThemeCollapseMenuRoutingModule { }
+export class ThemeCollapseMenuRoutingModule {}

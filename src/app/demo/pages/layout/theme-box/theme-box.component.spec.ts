@@ -6,12 +6,13 @@ describe('ThemeBoxComponent', () => {
   let component: ThemeBoxComponent;
   let fixture: ComponentFixture<ThemeBoxComponent>;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      declarations: [ ThemeBoxComponent ]
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [ThemeBoxComponent],
+      }).compileComponents();
     })
-    .compileComponents();
-  }));
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(ThemeBoxComponent);

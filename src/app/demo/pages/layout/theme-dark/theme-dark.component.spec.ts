@@ -6,12 +6,13 @@ describe('ThemeDarkComponent', () => {
   let component: ThemeDarkComponent;
   let fixture: ComponentFixture<ThemeDarkComponent>;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      declarations: [ ThemeDarkComponent ]
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [ThemeDarkComponent],
+      }).compileComponents();
     })
-    .compileComponents();
-  }));
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(ThemeDarkComponent);

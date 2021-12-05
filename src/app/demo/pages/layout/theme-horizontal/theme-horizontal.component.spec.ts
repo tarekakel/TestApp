@@ -6,12 +6,13 @@ describe('ThemeHorizontalComponent', () => {
   let component: ThemeHorizontalComponent;
   let fixture: ComponentFixture<ThemeHorizontalComponent>;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      declarations: [ ThemeHorizontalComponent ]
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [ThemeHorizontalComponent],
+      }).compileComponents();
     })
-    .compileComponents();
-  }));
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(ThemeHorizontalComponent);

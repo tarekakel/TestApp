@@ -3,8 +3,8 @@ import { CommonModule } from '@angular/common';
 
 import { ThemeCollapseMenuRoutingModule } from './theme-collapse-menu-routing.module';
 import { ThemeCollapseMenuComponent } from './theme-collapse-menu.component';
-import {SharedModule} from '../../../../theme/shared/shared.module';
-import {CommonContentModule} from '../common-content/common-content.module';
+import { SharedModule } from '../../../../theme/shared/shared.module';
+import { CommonContentModule } from '../common-content/common-content.module';
 
 @NgModule({
   declarations: [ThemeCollapseMenuComponent],
@@ -12,7 +12,7 @@ import {CommonContentModule} from '../common-content/common-content.module';
     CommonModule,
     ThemeCollapseMenuRoutingModule,
     SharedModule,
-    CommonContentModule
-  ]
+    CommonContentModule,
+  ],
 })
-export class ThemeCollapseMenuModule { }
+export class ThemeCollapseMenuModule {}

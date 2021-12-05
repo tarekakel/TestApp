@@ -3,8 +3,8 @@ import { CommonModule } from '@angular/common';
 
 import { ThemeDarkRoutingModule } from './theme-dark-routing.module';
 import { ThemeDarkComponent } from './theme-dark.component';
-import {SharedModule} from '../../../../theme/shared/shared.module';
-import {CommonContentModule} from '../common-content/common-content.module';
+import { SharedModule } from '../../../../theme/shared/shared.module';
+import { CommonContentModule } from '../common-content/common-content.module';
 
 @NgModule({
   declarations: [ThemeDarkComponent],
@@ -12,7 +12,7 @@ import {CommonContentModule} from '../common-content/common-content.module';
     CommonModule,
     ThemeDarkRoutingModule,
     SharedModule,
-    CommonContentModule
-  ]
+    CommonContentModule,
+  ],
 })
-export class ThemeDarkModule { }
+export class ThemeDarkModule {}
