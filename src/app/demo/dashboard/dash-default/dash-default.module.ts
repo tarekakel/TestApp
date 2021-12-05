@@ -9,8 +9,8 @@ import {
   NgbProgressbarModule,
 } from '@ng-bootstrap/ng-bootstrap';
 import { CarouselModule } from 'ngx-owl-carousel-o';
-import { NgxChartsModule } from '@swimlane/ngx-charts';
 import CountoModule from 'angular2-counto';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 @NgModule({
   declarations: [DashDefaultComponent],
