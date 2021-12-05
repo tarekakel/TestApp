@@ -4,11 +4,11 @@ export class SecEcommerceChartLine {
       type: 'area',
       height: 40,
       sparkline: {
-        enabled: true
-      }
+        enabled: true,
+      },
     },
     dataLabels: {
-      enabled: false
+      enabled: false,
     },
     colors: ['#fff'],
     fill: {
@@ -23,31 +23,36 @@ export class SecEcommerceChartLine {
       strokeWidth: 2,
       hover: {
         size: 4,
-      }
+      },
     },
     stroke: {
       curve: 'straight',
       width: 3,
     },
-    series: [{
-      name: 'series1',
-      data: [25, 44, 12, 36, 9, 54, 25, 66, 41, 89, 25, 66, 41, 89, 63, 54, 25, 66, 41, 89, 63]
-    }],
+    series: [
+      {
+        name: 'series1',
+        data: [
+          25, 44, 12, 36, 9, 54, 25, 66, 41, 89, 25, 66, 41, 89, 63, 54, 25, 66,
+          41, 89, 63,
+        ],
+      },
+    ],
     tooltip: {
       fixed: {
-        enabled: false
+        enabled: false,
       },
       x: {
-        show: false
+        show: false,
       },
       y: {
         title: {
-          formatter: (seriesName) => 'Referral :'
-        }
+          formatter: () => 'Referral :',
+        },
       },
       marker: {
-        show: false
-      }
-    }
+        show: false,
+      },
+    },
   };
 }

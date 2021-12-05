@@ -6,12 +6,13 @@ describe('DashProjectComponent', () => {
   let component: DashProjectComponent;
   let fixture: ComponentFixture<DashProjectComponent>;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      declarations: [ DashProjectComponent ]
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [DashProjectComponent],
+      }).compileComponents();
     })
-    .compileComponents();
-  }));
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(DashProjectComponent);

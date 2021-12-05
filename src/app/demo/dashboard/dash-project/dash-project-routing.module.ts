@@ -1,16 +1,16 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import {DashProjectComponent} from './dash-project.component';
+import { DashProjectComponent } from './dash-project.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: DashProjectComponent
-  }
+    component: DashProjectComponent,
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class DashProjectRoutingModule { }
+export class DashProjectRoutingModule {}

@@ -4,8 +4,7 @@ import { CommonModule } from '@angular/common';
 import { DashProjectRoutingModule } from './dash-project-routing.module';
 import { DashProjectComponent } from './dash-project.component';
 import { SharedModule } from '../../../theme/shared/shared.module';
-import {NgbProgressbarModule} from '@ng-bootstrap/ng-bootstrap';
-
+import { NgbProgressbarModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [DashProjectComponent],
@@ -13,7 +12,7 @@ import {NgbProgressbarModule} from '@ng-bootstrap/ng-bootstrap';
     CommonModule,
     DashProjectRoutingModule,
     SharedModule,
-    NgbProgressbarModule
-  ]
+    NgbProgressbarModule,
+  ],
 })
-export class DashProjectModule { }
+export class DashProjectModule {}

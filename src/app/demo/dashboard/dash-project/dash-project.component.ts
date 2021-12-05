@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import {SecEcommerceChartLine} from './chart/sec-ecommerce-chart-line';
-import {SecEcommerceChartBar} from './chart/sec-ecommerce-chart-bar';
-import {SecEcommerceChartBar1} from './chart/sec-ecommerce-chart-bar-1';
+import { SecEcommerceChartLine } from './chart/sec-ecommerce-chart-line';
+import { SecEcommerceChartBar } from './chart/sec-ecommerce-chart-bar';
+import { SecEcommerceChartBar1 } from './chart/sec-ecommerce-chart-bar-1';
 
 @Component({
   selector: 'app-dash-project',
   templateUrl: './dash-project.component.html',
-  styleUrls: ['./dash-project.component.scss']
+  styleUrls: ['./dash-project.component.scss'],
 })
 export class DashProjectComponent implements OnInit {
   public secEcommerceChartDataLine: any;
@@ -19,7 +19,5 @@ export class DashProjectComponent implements OnInit {
     this.secEcommerceChartDataBar1 = SecEcommerceChartBar1.saleChartData;
   }
 
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }
