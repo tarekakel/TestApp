@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
-import { Subject } from 'rxjs-compat';
 import { BaseComponent } from 'src/app/demo/framework/core/base-component';
 import { PagedResult } from 'src/app/demo/framework/view-models/grid/paged-result';
 import { SearchCriteria } from 'src/app/demo/framework/view-models/grid/search-criteria';
@@ -19,17 +18,16 @@ import { DeviceService } from 'src/app/demo/_services/DeviceServices';
 export class DeviceReportComponent extends BaseComponent implements OnInit {
   searchCriteria: SearchCriteria<any>;
   pagedResult: PagedResult<DeviceDto>;
-  deviceList: DeviceDto;
-  devices: DeviceModel[];
+  deviceList: DeviceDto = new DeviceDto();
+  devices: DeviceModel[] = [];
   dropdownSettings: IDropdownSettings = {};
   dtOptions: any = {};
-  button: ['copy', 'excel', 'csv', 'pdf', 'print'];
+  button = ['copy', 'excel', 'csv', 'pdf', 'print'];
   // We use this trigger because fetching the list of persons can be quite long,
   // thus we ensure the data is fetched before rendering
-  dtTrigger: Subject<any> = new Subject<any>();
   deviceCode: string[];
-  logList: DeviceLog[];
-  selectedItems: Device[];
+  logList: DeviceLog[] = [];
+  selectedItems: Device[] = [];
 
   constructor(private deviceService: DeviceService) {
     super();
@@ -47,7 +45,7 @@ export class DeviceReportComponent extends BaseComponent implements OnInit {
     this.deviceCode = new Array();
   }
 
-  ngOnInit(): void {
+  override ngOnInit(): void {
     this.deviceService.getAllDevice().subscribe((res) => {
       console.log(res);
       this.deviceList = res;
@@ -77,39 +75,16 @@ export class DeviceReportComponent extends BaseComponent implements OnInit {
       this.deviceCode.push(c.deviceId);
     });
   }
-  onDeSelect(items) {
+  onDeSelect(items: { deviceId: string }) {
     const index = this.deviceCode.indexOf(items.deviceId);
     this.deviceCode.splice(index, 1);
   }
-  onDeSelectAll(items) {
+  onDeSelectAll() {
     this.deviceCode.splice(0);
   }
   // adding multiple busses end
   searchLogs() {
     this.searchCriteria.filters.deviceNumbers = this.deviceCode;
-    this.deviceService.searchDeviceLogs(this.searchCriteria).subscribe(
-      (res) => {
-        this.logList = res;
-        console.log(res);
-        $('#report-table').DataTable().destroy();
-        this.dtTrigger.next();
-        this.dtOptions = {
-          pagingType: 'full_numbers',
-          processing: true,
-          dom: 'Bfrtip',
-          select: true,
-          colReorder: true,
-          buttons: [
-            {
-              extend: 'collection',
-              text: 'Export',
-              buttons: ['copy', 'excel', 'csv', 'pdf', 'print'],
-            },
-          ],
-        };
-      },
-      (error) => {}
-    );
   }
   play() {}
 }

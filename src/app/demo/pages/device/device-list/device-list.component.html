@@ -1,4 +1,3 @@
-
 <!-- <script>
   (function(window, videojs) {
     var player = window.player = videojs('videojs-flvjs-player', {
@@ -8,22 +7,22 @@
 </script> -->
 
 <div class="row btn-page">
-    <div class="col-sm-12">
-      <app-card cardTitle="Alarms Summary" [options]="false">
-        <div class="row">
-          <div class="col-md-2 col-xs-6 border-right">
-            <h3>{{deviceList.totalDevices}}</h3>
-            <span class="">Total Devices</span>
-          </div>
-          <div class="col-md-2 col-xs-6 border-right">
-            <h3>{{deviceList.totalOnline}}</h3>
-            <span class="text-danger">Online</span>
-          </div>
-          <div class="col-md-2 col-xs-6 border-right">
-            <h3>{{deviceList.totalOffline}}</h3>
-            <span class="text-danger">Offline</span>
-          </div>
-          <!-- <div class="col-md-2 col-xs-6 border-right">
+  <div class="col-sm-12">
+    <app-card cardTitle="Alarms Summary" [options]="false">
+      <div class="row">
+        <div class="col-md-2 col-xs-6 border-right">
+          <h3>{{ deviceList.totalDevices }}</h3>
+          <span class="">Total Devices</span>
+        </div>
+        <div class="col-md-2 col-xs-6 border-right">
+          <h3>{{ deviceList.totalOnline }}</h3>
+          <span class="text-danger">Online</span>
+        </div>
+        <div class="col-md-2 col-xs-6 border-right">
+          <h3>{{ deviceList.totalOffline }}</h3>
+          <span class="text-danger">Offline</span>
+        </div>
+        <!-- <div class="col-md-2 col-xs-6 border-right">
             <h3>{{alarmList.storage_Exception}}</h3>
             <span class="text-danger">Storage Exception</span>
           </div>
@@ -31,138 +30,185 @@
             <h3>{{alarmList.abnormal_Boot_Up}}</h3>
             <span class="text-danger">Abnormal Boot Up</span>
           </div> -->
-              
-        </div>
-      </app-card>
-    </div>
-    <div class="col-sm-12 btn-page">
-      <app-card [hidHeader]="true" cardClass="card-datatable">
-        <div class="row align-items-center m-l-0">
-          <div class="col-sm-6"></div>
-          <div class="col-sm-6 text-right">
-          
+      </div>
+    </app-card>
+  </div>
+  <div class="col-sm-12 btn-page">
+    <app-card [hidHeader]="true" cardClass="card-datatable">
+      <div class="row align-items-center m-l-0">
+        <div class="col-sm-6"></div>
+        <div class="col-sm-6 text-right"></div>
+        <app-ui-modal #modalCustomer [dialogClass]="'modal-xl'">
+          <div class="app-modal-footer">
+            <button
+              type="button"
+              class="btn btn-danger"
+              data-dismiss="modal"
+              (click)="modalCustomer.hide()"
+            >
+              Clear
+            </button>
+            <button type="button" class="btn btn-primary">Submit</button>
           </div>
-          <app-ui-modal #modalCustomer [dialogClass]="'modal-xl'">
-          
-            <div class="app-modal-footer">
-              <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="modalCustomer.hide()">Clear</button>
-              <button type="button" class="btn btn-primary">Submit</button>
-            </div>
-          </app-ui-modal>
-        </div>
-        <div class="table-responsive">
-          <table datatable id="report-table" class="table table-striped table-hover mb-0">
-            <thead>
+        </app-ui-modal>
+      </div>
+      <div class="table-responsive">
+        <table
+          datatable
+          id="report-table"
+          class="table table-striped table-hover mb-0"
+        >
+          <thead>
             <tr>
               <th>NO</th>
               <th>Device Id</th>
               <th>Car License</th>
-              <th>Online</th>        
+              <th>Online</th>
               <th>Terninal Id</th>
               <th>Register IP</th>
               <th>Register Port</th>
               <th>Transmit IP</th>
-              <th>Transmit Port</th>             
-              <th>Last Command Date</th>     
-             <th>Play</th>
-             
+              <th>Transmit Port</th>
+              <th>Last Command Date</th>
+              <th>Play</th>
             </tr>
-            </thead>
-            <tbody>
+          </thead>
+          <tbody>
             <tr *ngFor="let item of devices; let i = index">
-              <td>{{i + 1}}</td>
-              <td>{{item.deviceId}}
-                  
+              <td>{{ i + 1 }}</td>
+              <td>
+                {{ item.deviceId }}
+
                 <!-- <small class="d-block">
                   <a href="javascript:">View</a> |
                   <a href="javascript:">Contacts</a> |
                   <a href="javascript:" class="text-danger">Delete </a>
                 </small> -->
               </td>
-              <td>{{item.carLicense}}</td>
-              <td><span *ngIf="item.online == true" class="badge badge-success inline-block">Online</span>
-                <span *ngIf="item.online == false" class="badge badge-danger inline-block">offline</span></td>
-              <td>{{item.terninalId}}</td>
-              <td>{{item.registerIp}}</td>
-              <td>{{item.registerPort}}</td>
-              <td>{{item.transmitIp}}</td>
-              
-              
-              <td>{{item.transmitPort}}</td>
-              <td>{{item.lastCommandDate}}</td>
-              <td>   
-                <!-- <a [routerLink]="['/live-stream', item.terninalId]" class="btn btn-info btn-sm"><i class="feather icon-edit"></i>&nbsp;Play </a> -->
-                
-                <a (click)="modalCustomer.show()"  class="btn btn-info btn-sm"><i class="feather icon-edit"></i>&nbsp;Play </a>
+              <td>{{ item.carLicense }}</td>
+              <td>
+                <span
+                  *ngIf="item.online == true"
+                  class="badge badge-success inline-block"
+                  >Online</span
+                >
+                <span
+                  *ngIf="item.online == false"
+                  class="badge badge-danger inline-block"
+                  >offline</span
+                >
+              </td>
+              <td>{{ item.terninalId }}</td>
+              <td>{{ item.registerIp }}</td>
+              <td>{{ item.registerPort }}</td>
+              <td>{{ item.transmitIp }}</td>
 
-               
+              <td>{{ item.transmitPort }}</td>
+              <td>{{ item.lastCommandDate }}</td>
+              <td>
+                <!-- <a [routerLink]="['/live-stream', item.terninalId]" class="btn btn-info btn-sm"><i class="feather icon-edit"></i>&nbsp;Play </a> -->
+
+                <a (click)="modalCustomer.show()" class="btn btn-info btn-sm"
+                  ><i class="feather icon-edit"></i>&nbsp;Play
+                </a>
+
                 <app-ui-modal #modalCustomer [dialogClass]="'modal-xl'">
-                    <div class="app-modal-header">
-                        <h5 class="modal-title">{{item.transmitIp}}</h5>
-                        <button type="button" class="close basic-close btn-danger" style="color: red;" data-dismiss="modal" aria-label="Close" (click)="modalCustomer.hide()"><span aria-hidden="true">&times;</span></button>
-                      </div>
-                      <div class="app-modal-body">
-                        <div class="mainContainer">
-                          <video id="videoElement" class="centeredVideo" controls height="100" width="250" autoplay style="height: 150px; width: 320px;">Your browser is too old which doesn't support HTML5 video.</video>
-                         
-                         </div>
-                        <hr />
-                        <div class="clearfix"></div>
-                      
-                         
-  
-                      </div>
-                    <div class="app-modal-footer">
-                      <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="modalCustomer.hide()">Clear</button>
-                      
+                  <div class="app-modal-header">
+                    <h5 class="modal-title">{{ item.transmitIp }}</h5>
+                    <button
+                      type="button"
+                      class="close basic-close btn-danger"
+                      style="color: red"
+                      data-dismiss="modal"
+                      aria-label="Close"
+                      (click)="modalCustomer.hide()"
+                    >
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="app-modal-body">
+                    <div class="mainContainer">
+                      <video
+                        id="videoElement"
+                        class="centeredVideo"
+                        controls
+                        height="100"
+                        width="250"
+                        autoplay
+                        style="height: 150px; width: 320px"
+                      >
+                        Your browser is too old which doesn't support HTML5
+                        video.
+                      </video>
                     </div>
-                  </app-ui-modal>
-             </td>
-              
+                    <hr />
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="app-modal-footer">
+                    <button
+                      type="button"
+                      class="btn btn-danger"
+                      data-dismiss="modal"
+                      (click)="modalCustomer.hide()"
+                    >
+                      Clear
+                    </button>
+                  </div>
+                </app-ui-modal>
+              </td>
             </tr>
-         
-            </tbody>
-          </table>
-        </div>
-     
-        <!-- <video id="example_video_1" class="video-js vjs-default-skin"
+          </tbody>
+        </table>
+      </div>
+
+      <!-- <video id="example_video_1" class="video-js vjs-default-skin"
         controls preload="auto" width="640" height="480"
-        
+
         data-setup='{"example_option":true}'>
        <source src="http://www.mediacollege.com/video-gallery/testclips/20051210-w50s.flv" type="video/x-flv">
        </video> -->
-       
-      </app-card>
-      <!-- <video #target class="video-js" controls muted playsinline preload="none"></video>
-     
+    </app-card>
+    <!-- <video #target class="video-js" controls muted playsinline preload="none"></video>
+
       <video #target class="video-js vjs-default-skin"
       controls preload="auto" width="640" height="480"
-     
+
       data-setup='{"example_option":true}'>
       <source src="http://185.173.32.12:12062/live.flv?devid=0098FFFFFF&chl=15&st=0&audio=0" type="http/flv">
       </video>
-      
+
       <video
       class="video-js vjs-default-skin vjs-big-play-centered vjs-16-9"
       controls preload="auto"  width="640" height="264">
-      
+
      <source [src]='url' type="video/x-flv" />
-    
+
    </video> -->
-   <!-- <video id="video-player" preload="metadata" class="video-js vjs-default-skin"></video> -->
-   <!-- <app-live-streaming [options]="{ autoplay: true, controls:true, sources: [{ src: 'http://192.168.2.72/abudhabiMedia/13/1280.flv', type: 'video/x-flv' }]}"></app-live-streaming> -->
-   <div class="mainContainer">
-    <video id="videoElement" class="centeredVideo" controls height="100" width="250" autoplay style="height: 150px; width: 320px;">Your browser is too old which doesn't support HTML5 video.</video>
-   
-   </div>
-    <br>
-    <div class="controls">
-        <!-- <button onclick="flv_load()">Load</button> -->
-        <button onclick="flv_start()">start</button>
-        <button onclick="flv_pause()">suspend</button>
-        <button onclick="flv_destroy()">Stop it</button>
-        <input style="width:100px" type="text" name="seekpoint" />
-        <button onclick="flv_seekto()">Jump</button>
+    <!-- <video id="video-player" preload="metadata" class="video-js vjs-default-skin"></video> -->
+    <!-- <app-live-streaming [options]="{ autoplay: true, controls:true, sources: [{ src: 'http://192.168.2.72/abudhabiMedia/13/1280.flv', type: 'video/x-flv' }]}"></app-live-streaming> -->
+    <div class="mainContainer">
+      <video
+        id="videoElement"
+        class="centeredVideo"
+        controls
+        height="100"
+        width="250"
+        autoplay
+        style="height: 150px; width: 320px"
+      >
+        Your browser is too old which doesn't support HTML5 video.
+      </video>
     </div>
- 
+    <br />
+    <div class="controls">
+      <!-- <button onclick="flv_load()">Load</button> -->
+      <button onclick="flv_start()">start</button>
+      <button onclick="flv_pause()">suspend</button>
+      <button onclick="flv_destroy()">Stop it</button>
+      <input style="width: 100px" type="text" name="seekpoint" />
+      <button onclick="flv_seekto()">Jump</button>
+    </div>
+
     <!-- <app-tree></app-tree> -->
+  </div>
+</div>

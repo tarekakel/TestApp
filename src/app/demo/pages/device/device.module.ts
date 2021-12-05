@@ -5,9 +5,6 @@ import { DeviceRoutingModule } from './device-routing.module';
 
 @NgModule({
   declarations: [],
-  imports: [
-    CommonModule,
-    DeviceRoutingModule
-  ]
+  imports: [CommonModule, DeviceRoutingModule],
 })
-export class DeviceModule { }
+export class DeviceModule {}

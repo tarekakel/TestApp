@@ -2,16 +2,15 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { DeviceListComponent } from './device-list.component';
 
-
 const routes: Routes = [
   {
     path: '',
-    component: DeviceListComponent
-  }
+    component: DeviceListComponent,
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class DeviceListRoutingModule { }
+export class DeviceListRoutingModule {}
