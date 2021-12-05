@@ -1,6 +1,22 @@
-
-
-<p-calendar [(ngModel)]="value" [showButtonBar]="showButtonBar" [dateFormat]="dateformat" showIcon="true" [placeholder]="placeholder"
-            [disabled]="disabled" [readonlyInput]="readonlyInput" [showTime]="showTime" [hourFormat]="hourFormat" [selectionMode]="selectionMode"
-            [timeOnly]="timeOnly" [monthNavigator]="monthNavigator" [yearNavigator]="yearNavigator" [yearRange]="yearRange" (ngModelChange)="onChangeEvent($event)"
-            [disabledDates]="disabledDates" [disabledDays]="disabledDays" [required]="required" [minDate]="minDate" [maxDate]="maxDate"></p-calendar>
+<p-calendar
+  [(ngModel)]="value"
+  [showButtonBar]="showButtonBar"
+  [dateFormat]="dateformat"
+  showIcon="true"
+  [placeholder]="placeholder"
+  [disabled]="disabled"
+  [readonlyInput]="readonlyInput"
+  [showTime]="showTime"
+  [hourFormat]="hourFormat"
+  [selectionMode]="selectionMode"
+  [timeOnly]="timeOnly"
+  [monthNavigator]="monthNavigator"
+  [yearNavigator]="yearNavigator"
+  [yearRange]="yearRange"
+  (ngModelChange)="onChangeEvent($event)"
+  [disabledDates]="disabledDates"
+  [disabledDays]="disabledDays"
+  [required]="required"
+  [minDate]="minDate"
+  [maxDate]="maxDate"
+></p-calendar>
