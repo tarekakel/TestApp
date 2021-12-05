@@ -5,15 +5,15 @@ import { first } from 'rxjs/operators';
 
 import { AuthenticationService } from '../_services';
 import { User } from '../_models';
-import { BehaviorSubject } from 'rxjs-compat';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({ templateUrl: 'login.component.html' })
 export class LoginComponent implements OnInit {
   private currentUserSubject: BehaviorSubject<User>;
-  loginForm: FormGroup;
+  loginForm: FormGroup | undefined;
   loading = false;
   submitted = false;
-  returnUrl: string;
+  returnUrl: string | undefined;
   error = '';
 
   errorMessage: boolean = false;
@@ -25,13 +25,13 @@ export class LoginComponent implements OnInit {
   username: string = '';
   password: string = '';
   display: boolean = false;
-  email: string; //Forget Email
+  email: string | undefined; //Forget Email
   userExist: boolean = false;
-  objUser: User;
+  objUser: User | undefined;
   isEmailChecked: boolean = false;
   isLinkSent: boolean = false;
 
-  backgroundList: Array<any>;
+  backgroundList: Array<any> | undefined;
   backgroundIndex: any;
   background: any;
 
@@ -42,7 +42,7 @@ export class LoginComponent implements OnInit {
     private authenticationService: AuthenticationService
   ) {
     this.currentUserSubject = new BehaviorSubject<User>(
-      JSON.parse(localStorage.getItem('currentUser'))
+      JSON.parse(localStorage.getItem('currentUser')!)
     );
     // this.currentUser = this.currentUserSubject.asObservable();
     // redirect to home if already logged in
@@ -63,23 +63,23 @@ export class LoginComponent implements OnInit {
 
   // convenience getter for easy access to form fields
   get f() {
-    return this.loginForm.controls;
+    return this.loginForm!.controls;
   }
 
   onSubmit() {
     this.submitted = true;
 
     // stop here if form is invalid
-    if (this.loginForm.invalid) {
+    if (this.loginForm!.invalid) {
       return;
     }
 
     this.loading = true;
     this.authenticationService
-      .login(this.f.username.value, this.f.password.value)
+      .login(this.f['username'].value, this.f['password'].value)
       .pipe(first())
       .subscribe(
-        (res) => {
+        (res): false | undefined => {
           var user = JSON.parse(res.user.replace(/\\/g, ''));
           if (!user.IsActive) {
             //   this.alertService.showAlertMessage(this.translationService.translate('Messages.ErrorTitle'),
