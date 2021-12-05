@@ -8,9 +8,8 @@ describe('DownloadStreamingComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ DownloadStreamingComponent ]
-    })
-    .compileComponents();
+      declarations: [DownloadStreamingComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

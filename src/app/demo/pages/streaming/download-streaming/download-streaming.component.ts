@@ -21,16 +21,16 @@ import { VehicleService } from 'src/app/demo/_services/VehicleService';
   styleUrls: ['./download-streaming.component.scss'],
 })
 export class DownloadStreamingComponent implements OnInit {
-  searchCriteria: SearchCriteria<any>;
+  searchCriteria!: SearchCriteria<any>;
   mediaRequestData = new MediaDownloadRequestDto();
-  groupList: any[];
-  groupSeletedItems: GroupMaster[];
+  groupList!: any[];
+  groupSeletedItems!: GroupMaster[];
   dropdownGroupSettings: IDropdownSettings = {};
   dropdownSettings: IDropdownSettings = {};
-  vehiclesInfo: VehicleDto[];
+  vehiclesInfo!: VehicleDto[];
   groupCode: number[] = [];
-  tableVehiclesInfo: VehicleSummary;
-  selectedItems: VehicleDto[];
+  tableVehiclesInfo!: VehicleSummary;
+  selectedItems!: VehicleDto[];
   vehicleCode: string[] = [];
   downloadRequestList: any;
   dtOptions: any = {};
@@ -39,7 +39,7 @@ export class DownloadStreamingComponent implements OnInit {
   newMediDownloadRequest = new MediDownloadRequest();
   loading = false;
   totalRecords = 0;
-  items: MenuItem[];
+  items!: MenuItem[];
 
   ngOnInit(): void {
     this.searchCriteria = new SearchCriteria<MediaRequestDownloadFilter>();
@@ -90,7 +90,7 @@ export class DownloadStreamingComponent implements OnInit {
   onGroupSelect(item: any): void {
     this.vehicleService
       .getVehiclesByGroupId(item.groupId)
-      .subscribe((res) => (this.vehiclesInfo = res));
+      .subscribe((res: VehicleDto[]) => (this.vehiclesInfo = res));
   }
 
   constructor(
@@ -106,12 +106,12 @@ export class DownloadStreamingComponent implements OnInit {
       this.groupCode.push(c.groupId);
     });
   }
-  onGroupDeSelect(items): void {
+  onGroupDeSelect(items: { groupId: number }): void {
     this.vehiclesInfo = this.tableVehiclesInfo.vehicles;
     const index = this.groupCode.indexOf(items.groupId);
     this.groupCode.splice(index, 1);
   }
-  onGroupDeSelectAll(items): void {
+  onGroupDeSelectAll(): void {
     this.vehiclesInfo = this.tableVehiclesInfo.vehicles;
     this.groupCode.splice(0);
   }
@@ -124,11 +124,11 @@ export class DownloadStreamingComponent implements OnInit {
       this.vehicleCode.push(c.registration);
     });
   }
-  onDeSelect(items): void {
+  onDeSelect(items: { registration: string }): void {
     const index = this.vehicleCode.indexOf(items.registration);
     this.vehicleCode.splice(index, 1);
   }
-  onDeSelectAll(items): void {
+  onDeSelectAll(): void {
     this.vehicleCode.splice(0);
   }
   initAllData(): void {
@@ -145,7 +145,7 @@ export class DownloadStreamingComponent implements OnInit {
       .addNewDownloadRequest(this.newMediDownloadRequest)
       .subscribe(console.log);
   }
-  onAssetSelect(v): void {
+  onAssetSelect(v: { registration: string }): void {
     this.newMediDownloadRequest.CarLicense = v.registration;
   }
 
@@ -162,15 +162,15 @@ export class DownloadStreamingComponent implements OnInit {
   exportExcel(): void {
     this.mediaRequestDownloadService
       .exportAll(this.searchCriteria)
-      .subscribe((data) => {
+      .subscribe((data: any) => {
         this.exportService.exportExcel(data, 'Media Request Data Details');
       });
   }
   exportPdf(): void {
-    const exportData = [];
+    const exportData: any[][] = [];
     this.mediaRequestDownloadService
       .exportAll(this.searchCriteria)
-      .subscribe((data) => {
+      .subscribe((data: any[]) => {
         data.forEach((element) => {
           exportData.push(Object.values(element));
         });

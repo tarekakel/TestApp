@@ -3,14 +3,10 @@ import { CommonModule } from '@angular/common';
 
 import { SamplePageRoutingModule } from './sample-page-routing.module';
 import { SamplePageComponent } from './sample-page.component';
-import {SharedModule} from '../../../theme/shared/shared.module';
+import { SharedModule } from '../../../theme/shared/shared.module';
 
 @NgModule({
   declarations: [SamplePageComponent],
-  imports: [
-    CommonModule,
-    SamplePageRoutingModule,
-    SharedModule
-  ]
+  imports: [CommonModule, SamplePageRoutingModule, SharedModule],
 })
-export class SamplePageModule { }
+export class SamplePageModule {}

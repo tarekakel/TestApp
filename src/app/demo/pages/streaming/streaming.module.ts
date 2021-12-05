@@ -8,7 +8,6 @@ import {
   NgbTooltipModule,
   NgbCarouselModule,
 } from '@ng-bootstrap/ng-bootstrap';
-import { DataTablesModule } from 'angular-datatables';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { LightboxModule } from 'ngx-lightbox';
 import { ButtonModule } from 'primeng/button';
@@ -26,7 +25,6 @@ import { SharedModule } from 'src/app/theme/shared/shared.module';
     NgbTooltipModule,
     NgbCarouselModule,
     LightboxModule,
-    DataTablesModule,
     TreeModule,
     ButtonModule,
     ToastModule,
