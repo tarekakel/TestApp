@@ -31,6 +31,7 @@
     "esri-loader": "^3.3.0",
     "jspdf": "^2.4.0",
     "jspdf-autotable": "^3.5.23",
+    "ng-multiselect-dropdown": "^0.3.7",
     "ng2-signalr": "^10.1.0",
     "ngx-bootstrap-modal": "^2.0.1",
     "ngx-lightbox": "^2.5.2",

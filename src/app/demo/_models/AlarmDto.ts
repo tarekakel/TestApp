@@ -1,8 +1,8 @@
 import { Alarm } from './Alarm';
 
 export class AlarmDto {
-  alarmList?: Alarm[];
-  totalAlarms?: number;
+  alarmList: Alarm[] = [];
+  totalAlarms: number = 0;
   cover?: number;
   video_Loss?: number;
   motion_Detection?: number;

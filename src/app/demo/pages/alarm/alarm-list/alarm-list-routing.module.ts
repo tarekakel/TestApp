@@ -2,16 +2,15 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AlarmListComponent } from './alarm-list.component';
 
-
 const routes: Routes = [
   {
     path: '',
-    component: AlarmListComponent
-  }
+    component: AlarmListComponent,
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AlarmListRoutingModule { }
+export class AlarmListRoutingModule {}

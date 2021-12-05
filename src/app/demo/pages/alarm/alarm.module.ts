@@ -7,14 +7,12 @@ import {
   NgbTooltipModule,
   NgbCarouselModule,
 } from '@ng-bootstrap/ng-bootstrap';
-import { DataTablesModule } from 'angular-datatables';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { LightboxModule } from 'ngx-lightbox';
 import { ButtonModule } from 'primeng/button';
 import { ToastModule } from 'primeng/toast';
 import { TreeModule } from 'primeng/tree';
 import { SharedModule } from 'src/app/theme/shared/shared.module';
-import { AlarmListComponent } from './alarm-list/alarm-list.component';
 
 @NgModule({
   declarations: [],
@@ -26,7 +24,6 @@ import { AlarmListComponent } from './alarm-list/alarm-list.component';
     NgbTooltipModule,
     NgbCarouselModule,
     LightboxModule,
-    DataTablesModule,
     TreeModule,
     ButtonModule,
     ToastModule,

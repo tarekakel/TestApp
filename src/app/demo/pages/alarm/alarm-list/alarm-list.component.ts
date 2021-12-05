@@ -21,22 +21,22 @@ import { EventService } from 'src/app/demo/_services/EventService';
 export class AlarmListComponent implements OnInit, OnDestroy {
   searchCriteria: SearchCriteria<any>;
   pagedResult: PagedResult<AlarmDto>;
-  alarmList: AlarmDto;
-  alarms: Alarm[];
-  vehiclesInfo: VehicleDto[];
-  groupList: any[];
-  selectedItems: VehicleDto[];
-  groupSeletedItems: GroupMaster[];
-  eventSeletedItems: any[];
-  vehicleCode: string[];
-  groupCode: number[];
+  alarmList!: AlarmDto;
+  alarms: Alarm[] = [];
+  vehiclesInfo: VehicleDto[] = [];
+  groupList: any[] = [];
+  selectedItems: VehicleDto[] = [];
+  groupSeletedItems: GroupMaster[] = [];
+  eventSeletedItems: any[] = [];
+  vehicleCode: string[] = [];
+  groupCode: number[] = [];
   dropdownSettings: IDropdownSettings = {};
   dropdownGroupSettings: IDropdownSettings = {};
   dropdownEventTypeSettings: IDropdownSettings = {};
-  tableVehiclesInfo: VehicleSummary;
+  tableVehiclesInfo: VehicleSummary = new VehicleSummary();
   loading = false;
   totalRecords = 0;
-  items: MenuItem[];
+  items: MenuItem[] = [];
   constructor(
     private alarmService: AlarmService,
     private exportService: ExportService,
@@ -104,27 +104,29 @@ export class AlarmListComponent implements OnInit, OnDestroy {
       this.groupCode.push(c.groupId);
     });
   }
-  onGroupDeSelect(items): void {
+  onGroupDeSelect(items: { groupId: number }): void {
     this.vehiclesInfo = this.tableVehiclesInfo.vehicles;
     const index = this.groupCode.indexOf(items.groupId);
     this.groupCode.splice(index, 1);
   }
-  onGroupDeSelectAll(items): void {
+  onGroupDeSelectAll(): void {
     this.vehiclesInfo = this.tableVehiclesInfo.vehicles;
     this.groupCode.splice(0);
   }
   searchAlarms(): void {
     this.loading = true;
-    this.alarmService.getAllAlarms(this.searchCriteria).subscribe((result) => {
-      this.alarmList = result;
-      this.alarms = result.alarmList;
-      this.loading = false;
-    });
+    this.alarmService
+      .getAllAlarms(this.searchCriteria)
+      .subscribe((result: AlarmDto) => {
+        this.alarmList = result;
+        this.alarms = result.alarmList;
+        this.loading = false;
+      });
   }
   loadAlarms(event: LazyLoadEvent): void {
     this.loading = true;
     event.filters = this.searchCriteria.filters;
-    this.alarmService.getAllAlarms(event).subscribe((res) => {
+    this.alarmService.getAllAlarms(event).subscribe((res: AlarmDto) => {
       this.alarmList = res;
       this.alarms = res.alarmList;
       this.loading = false;
@@ -132,14 +134,14 @@ export class AlarmListComponent implements OnInit, OnDestroy {
     });
   }
   exportExcel(): void {
-    this.alarmService.export(this.searchCriteria).subscribe((data) => {
+    this.alarmService.export(this.searchCriteria).subscribe((data: any) => {
       console.log(data);
       this.exportService.exportExcel(data, 'Alarms Details');
     });
   }
   exportPdf(): void {
-    const exportData = [];
-    this.alarmService.export(this.searchCriteria).subscribe((data) => {
+    const exportData: any[] = [];
+    this.alarmService.export(this.searchCriteria).subscribe((data: any[]) => {
       data.forEach((element) => {
         exportData.push(Object.values(element));
       });

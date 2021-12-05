@@ -7,7 +7,6 @@ import {
   NgbTooltipModule,
 } from '@ng-bootstrap/ng-bootstrap';
 import { LightboxModule } from 'ngx-lightbox';
-import { DataTablesModule } from 'angular-datatables';
 import { AlarmListComponent } from './alarm-list.component';
 import { AlarmListRoutingModule } from './alarm-list-routing.module';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
@@ -25,7 +24,6 @@ import { TreeModule } from 'primeng/tree';
     NgbTooltipModule,
     NgbCarouselModule,
     LightboxModule,
-    DataTablesModule,
     SharedModule,
     NgbDropdownModule,
     TreeModule,

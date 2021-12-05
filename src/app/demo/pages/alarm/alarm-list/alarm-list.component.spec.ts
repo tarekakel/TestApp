@@ -8,9 +8,8 @@ describe('AlarmListComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AlarmListComponent ]
-    })
-    .compileComponents();
+      declarations: [AlarmListComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {
