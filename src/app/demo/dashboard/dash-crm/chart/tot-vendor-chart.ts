@@ -4,11 +4,11 @@ export class TotVendorChart {
       type: 'area',
       height: 150,
       sparkline: {
-        enabled: true
-      }
+        enabled: true,
+      },
     },
     dataLabels: {
-      enabled: false
+      enabled: false,
     },
     colors: ['#9ccc65'],
     fill: {
@@ -19,25 +19,27 @@ export class TotVendorChart {
       curve: 'straight',
       width: 3,
     },
-    series: [{
-      name: 'series1',
-      data: [25, 44, 12, 36, 9, 54, 25, 66, 41, 89, 25, 66, 41, 50]
-    }],
+    series: [
+      {
+        name: 'series1',
+        data: [25, 44, 12, 36, 9, 54, 25, 66, 41, 89, 25, 66, 41, 50],
+      },
+    ],
     tooltip: {
       fixed: {
-        enabled: false
+        enabled: false,
       },
       x: {
-        show: false
+        show: false,
       },
       y: {
         title: {
-          formatter: (seriesName) => 'Total Vendors :'
-        }
+          formatter: () => 'Total Vendors :',
+        },
       },
       marker: {
-        show: false
-      }
-    }
+        show: false,
+      },
+    },
   };
 }

@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import {TotLeadChart} from './chart/tot-lead-chart';
-import {TotVendorChart} from './chart/tot-vendor-chart';
-import {TotInvoiceChart} from './chart/tot-invoice-chart';
-import {MonthlyProfit3} from './chart/monthly-profit-3';
-import {ClientMap1} from './chart/client-map-1';
-import {ClientMap3} from './chart/client-map-3';
+import { TotLeadChart } from './chart/tot-lead-chart';
+import { TotVendorChart } from './chart/tot-vendor-chart';
+import { TotInvoiceChart } from './chart/tot-invoice-chart';
+import { MonthlyProfit3 } from './chart/monthly-profit-3';
+import { ClientMap1 } from './chart/client-map-1';
+import { ClientMap3 } from './chart/client-map-3';
 
 @Component({
   selector: 'app-dash-crm',
   templateUrl: './dash-crm.component.html',
-  styleUrls: ['./dash-crm.component.scss']
+  styleUrls: ['./dash-crm.component.scss'],
 })
 export class DashCrmComponent implements OnInit {
   public totLeadChartData: any;
@@ -28,7 +28,5 @@ export class DashCrmComponent implements OnInit {
     this.clientMapChartData3 = ClientMap3.crmChartData;
   }
 
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }

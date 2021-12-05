@@ -4,11 +4,11 @@ export class TotLeadChart {
       type: 'area',
       height: 150,
       sparkline: {
-        enabled: true
-      }
+        enabled: true,
+      },
     },
     dataLabels: {
-      enabled: false
+      enabled: false,
     },
     colors: ['#4680ff'],
     fill: {
@@ -19,25 +19,27 @@ export class TotLeadChart {
       curve: 'straight',
       width: 3,
     },
-    series: [{
-      name: 'series1',
-      data: [25, 66, 41, 89, 25, 44, 12, 36, 9, 54, 25, 66, 41, 89]
-    }],
+    series: [
+      {
+        name: 'series1',
+        data: [25, 66, 41, 89, 25, 44, 12, 36, 9, 54, 25, 66, 41, 89],
+      },
+    ],
     tooltip: {
       fixed: {
-        enabled: false
+        enabled: false,
       },
       x: {
-        show: false
+        show: false,
       },
       y: {
         title: {
-          formatter: (seriesName) => 'Total Leads :'
-        }
+          formatter: () => 'Total Leads :',
+        },
       },
       marker: {
-        show: false
-      }
-    }
+        show: false,
+      },
+    },
   };
 }

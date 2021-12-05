@@ -4,11 +4,11 @@ export class MonthlyProfit3 {
       type: 'area',
       height: 30,
       sparkline: {
-        enabled: true
-      }
+        enabled: true,
+      },
     },
     dataLabels: {
-      enabled: false
+      enabled: false,
     },
     colors: ['#ff5252'],
     fill: {
@@ -23,31 +23,36 @@ export class MonthlyProfit3 {
       strokeWidth: 2,
       hover: {
         size: 4,
-      }
+      },
     },
     stroke: {
       curve: 'straight',
       width: 3,
     },
-    series: [{
-      name: 'series1',
-      data: [9, 66, 41, 89, 63, 25, 44, 12, 36, 20, 54, 25, 66, 41, 89, 63, 54, 25, 66, 41, 9]
-    }],
+    series: [
+      {
+        name: 'series1',
+        data: [
+          9, 66, 41, 89, 63, 25, 44, 12, 36, 20, 54, 25, 66, 41, 89, 63, 54, 25,
+          66, 41, 9,
+        ],
+      },
+    ],
     tooltip: {
       fixed: {
-        enabled: false
+        enabled: false,
       },
       x: {
-        show: false
+        show: false,
       },
       y: {
         title: {
-          formatter: (seriesName) => 'Unique Visitors :'
-        }
+          formatter: () => 'Unique Visitors :',
+        },
       },
       marker: {
-        show: false
-      }
-    }
+        show: false,
+      },
+    },
   };
 }

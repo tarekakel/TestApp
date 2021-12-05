@@ -6,12 +6,13 @@ describe('DashCrmComponent', () => {
   let component: DashCrmComponent;
   let fixture: ComponentFixture<DashCrmComponent>;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      declarations: [ DashCrmComponent ]
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [DashCrmComponent],
+      }).compileComponents();
     })
-    .compileComponents();
-  }));
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(DashCrmComponent);

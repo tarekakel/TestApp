@@ -4,11 +4,11 @@ export class ClientMap1 {
       type: 'area',
       height: 90,
       sparkline: {
-        enabled: true
-      }
+        enabled: true,
+      },
     },
     dataLabels: {
-      enabled: false
+      enabled: false,
     },
     colors: ['#4680ff'],
     fill: {
@@ -19,10 +19,12 @@ export class ClientMap1 {
       curve: 'smooth',
       width: 3,
     },
-    series: [{
-      name: 'series1',
-      data: [20, 10, 18, 12, 25, 10, 20]
-    }],
+    series: [
+      {
+        name: 'series1',
+        data: [20, 10, 18, 12, 25, 10, 20],
+      },
+    ],
     yaxis: {
       min: 0,
       max: 30,
@@ -30,19 +32,19 @@ export class ClientMap1 {
     tooltip: {
       theme: 'dark',
       fixed: {
-        enabled: false
+        enabled: false,
       },
       x: {
         show: false,
       },
       y: {
         title: {
-          formatter: (seriesName) => 'Activity'
-        }
+          formatter: () => 'Activity',
+        },
       },
       marker: {
-        show: false
-      }
-    }
+        show: false,
+      },
+    },
   };
 }

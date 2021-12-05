@@ -3,15 +3,10 @@ import { CommonModule } from '@angular/common';
 
 import { DashCrmRoutingModule } from './dash-crm-routing.module';
 import { DashCrmComponent } from './dash-crm.component';
-import {SharedModule} from '../../../theme/shared/shared.module';
-
+import { SharedModule } from '../../../theme/shared/shared.module';
 
 @NgModule({
   declarations: [DashCrmComponent],
-  imports: [
-    CommonModule,
-    DashCrmRoutingModule,
-    SharedModule
-  ]
+  imports: [CommonModule, DashCrmRoutingModule, SharedModule],
 })
-export class DashCrmModule { }
+export class DashCrmModule {}
