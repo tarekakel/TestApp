@@ -6,12 +6,13 @@ describe('MaintenOfflineUiComponent', () => {
   let component: MaintenOfflineUiComponent;
   let fixture: ComponentFixture<MaintenOfflineUiComponent>;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      declarations: [ MaintenOfflineUiComponent ]
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [MaintenOfflineUiComponent],
+      }).compileComponents();
     })
-    .compileComponents();
-  }));
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(MaintenOfflineUiComponent);

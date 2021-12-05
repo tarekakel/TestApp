@@ -5,10 +5,7 @@ import { MaintenComingSoonRoutingModule } from './mainten-coming-soon-routing.mo
 import { MaintenComingSoonComponent } from './mainten-coming-soon.component';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    MaintenComingSoonRoutingModule
-  ],
-  declarations: [MaintenComingSoonComponent]
+  imports: [CommonModule, MaintenComingSoonRoutingModule],
+  declarations: [MaintenComingSoonComponent],
 })
-export class MaintenComingSoonModule { }
+export class MaintenComingSoonModule {}

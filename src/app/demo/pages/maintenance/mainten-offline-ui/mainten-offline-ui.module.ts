@@ -5,10 +5,7 @@ import { MaintenOfflineUiRoutingModule } from './mainten-offline-ui-routing.modu
 import { MaintenOfflineUiComponent } from './mainten-offline-ui.component';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    MaintenOfflineUiRoutingModule
-  ],
-  declarations: [MaintenOfflineUiComponent]
+  imports: [CommonModule, MaintenOfflineUiRoutingModule],
+  declarations: [MaintenOfflineUiComponent],
 })
-export class MaintenOfflineUiModule { }
+export class MaintenOfflineUiModule {}

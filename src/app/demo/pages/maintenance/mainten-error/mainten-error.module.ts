@@ -5,10 +5,7 @@ import { MaintenErrorRoutingModule } from './mainten-error-routing.module';
 import { MaintenErrorComponent } from './mainten-error.component';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    MaintenErrorRoutingModule
-  ],
-  declarations: [MaintenErrorComponent]
+  imports: [CommonModule, MaintenErrorRoutingModule],
+  declarations: [MaintenErrorComponent],
 })
-export class MaintenErrorModule { }
+export class MaintenErrorModule {}

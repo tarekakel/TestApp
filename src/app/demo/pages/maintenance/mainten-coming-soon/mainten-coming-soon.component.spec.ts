@@ -6,12 +6,13 @@ describe('MaintenComingSoonComponent', () => {
   let component: MaintenComingSoonComponent;
   let fixture: ComponentFixture<MaintenComingSoonComponent>;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      declarations: [ MaintenComingSoonComponent ]
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [MaintenComingSoonComponent],
+      }).compileComponents();
     })
-    .compileComponents();
-  }));
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(MaintenComingSoonComponent);

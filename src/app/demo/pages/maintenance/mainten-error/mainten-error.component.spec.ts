@@ -6,12 +6,13 @@ describe('MaintenErrorComponent', () => {
   let component: MaintenErrorComponent;
   let fixture: ComponentFixture<MaintenErrorComponent>;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      declarations: [ MaintenErrorComponent ]
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [MaintenErrorComponent],
+      }).compileComponents();
     })
-    .compileComponents();
-  }));
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(MaintenErrorComponent);
