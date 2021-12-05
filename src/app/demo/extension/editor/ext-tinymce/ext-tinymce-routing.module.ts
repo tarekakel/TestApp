@@ -1,16 +1,16 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import {ExtTinymceComponent} from './ext-tinymce.component';
+import { ExtTinymceComponent } from './ext-tinymce.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: ExtTinymceComponent
-  }
+    component: ExtTinymceComponent,
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class ExtTinymceRoutingModule { }
+export class ExtTinymceRoutingModule {}

@@ -7,18 +7,24 @@ const routes: Routes = [
     children: [
       {
         path: 'wysiwyg',
-        loadChildren: () => import('./pell-wysiwyg/pell-wysiwyg.module').then(module => module.PellWysiwygModule)
+        loadChildren: () =>
+          import('./pell-wysiwyg/pell-wysiwyg.module').then(
+            (module) => module.PellWysiwygModule
+          ),
       },
       {
         path: 'tinymce',
-        loadChildren: () => import('./ext-tinymce/ext-tinymce.module').then(module => module.ExtTinymceModule)
-      }
-    ]
-  }
+        loadChildren: () =>
+          import('./ext-tinymce/ext-tinymce.module').then(
+            (module) => module.ExtTinymceModule
+          ),
+      },
+    ],
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class EditorRoutingModule { }
+export class EditorRoutingModule {}

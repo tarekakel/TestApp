@@ -3,16 +3,11 @@ import { CommonModule } from '@angular/common';
 
 import { ExtTinymceRoutingModule } from './ext-tinymce-routing.module';
 import { ExtTinymceComponent } from './ext-tinymce.component';
-import {SharedModule} from '../../../../theme/shared/shared.module';
-import {TinymceModule} from 'angular2-tinymce';
+import { SharedModule } from '../../../../theme/shared/shared.module';
+import { TinymceModule } from 'angular2-tinymce';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    ExtTinymceRoutingModule,
-    SharedModule,
-    TinymceModule
-  ],
-  declarations: [ExtTinymceComponent]
+  imports: [CommonModule, ExtTinymceRoutingModule, SharedModule, TinymceModule],
+  declarations: [ExtTinymceComponent],
 })
-export class ExtTinymceModule { }
+export class ExtTinymceModule {}

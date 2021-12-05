@@ -4,15 +4,14 @@ import '../../../../../../node_modules/tinymce/tinymce.min.js';
 @Component({
   selector: 'app-ext-tinymce',
   templateUrl: './ext-tinymce.component.html',
-  styleUrls: ['./ext-tinymce.component.scss']
+  styleUrls: ['./ext-tinymce.component.scss'],
 })
 export class ExtTinymceComponent implements OnInit {
-  public basicContent: string;
+  public basicContent: string | undefined;
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit() {
     this.basicContent = '<p>Hello...</p>';
   }
-
 }

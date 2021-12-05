@@ -6,12 +6,13 @@ describe('ExtTinymceComponent', () => {
   let component: ExtTinymceComponent;
   let fixture: ComponentFixture<ExtTinymceComponent>;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      declarations: [ ExtTinymceComponent ]
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [ExtTinymceComponent],
+      }).compileComponents();
     })
-    .compileComponents();
-  }));
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(ExtTinymceComponent);

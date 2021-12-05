@@ -6,12 +6,13 @@ describe('PellWysiwygComponent', () => {
   let component: PellWysiwygComponent;
   let fixture: ComponentFixture<PellWysiwygComponent>;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      declarations: [ PellWysiwygComponent ]
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [PellWysiwygComponent],
+      }).compileComponents();
     })
-    .compileComponents();
-  }));
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(PellWysiwygComponent);
