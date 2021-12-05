@@ -3,8 +3,12 @@ import { CommonModule } from '@angular/common';
 
 import { InvoiceListRoutingModule } from './invoice-list-routing.module';
 import { InvoiceListComponent } from './invoice-list.component';
-import {SharedModule} from '../../../../theme/shared/shared.module';
-import {NgbCollapseModule, NgbDropdownModule, NgbTooltipModule} from '@ng-bootstrap/ng-bootstrap';
+import { SharedModule } from '../../../../theme/shared/shared.module';
+import {
+  NgbCollapseModule,
+  NgbDropdownModule,
+  NgbTooltipModule,
+} from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   imports: [
@@ -13,8 +17,8 @@ import {NgbCollapseModule, NgbDropdownModule, NgbTooltipModule} from '@ng-bootst
     SharedModule,
     NgbCollapseModule,
     NgbDropdownModule,
-    NgbTooltipModule
+    NgbTooltipModule,
   ],
-  declarations: [InvoiceListComponent]
+  declarations: [InvoiceListComponent],
 })
-export class InvoiceListModule { }
+export class InvoiceListModule {}

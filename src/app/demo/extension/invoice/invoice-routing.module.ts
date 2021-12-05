@@ -7,22 +7,31 @@ const routes: Routes = [
     children: [
       {
         path: 'basic',
-        loadChildren: () => import('./invoice-basic/invoice-basic.module').then(module => module.InvoiceBasicModule)
+        loadChildren: () =>
+          import('./invoice-basic/invoice-basic.module').then(
+            (module) => module.InvoiceBasicModule
+          ),
       },
       {
         path: 'summary',
-        loadChildren: () => import('./invoice-summary/invoice-summary.module').then(module => module.InvoiceSummaryModule)
+        loadChildren: () =>
+          import('./invoice-summary/invoice-summary.module').then(
+            (module) => module.InvoiceSummaryModule
+          ),
       },
       {
         path: 'list',
-        loadChildren: () => import('./invoice-list/invoice-list.module').then(module => module.InvoiceListModule)
-      }
-    ]
-  }
+        loadChildren: () =>
+          import('./invoice-list/invoice-list.module').then(
+            (module) => module.InvoiceListModule
+          ),
+      },
+    ],
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class InvoiceRoutingModule { }
+export class InvoiceRoutingModule {}

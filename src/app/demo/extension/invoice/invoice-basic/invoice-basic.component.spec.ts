@@ -6,12 +6,13 @@ describe('InvoiceBasicComponent', () => {
   let component: InvoiceBasicComponent;
   let fixture: ComponentFixture<InvoiceBasicComponent>;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      declarations: [ InvoiceBasicComponent ]
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [InvoiceBasicComponent],
+      }).compileComponents();
     })
-    .compileComponents();
-  }));
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(InvoiceBasicComponent);

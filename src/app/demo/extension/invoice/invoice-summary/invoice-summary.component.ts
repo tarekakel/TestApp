@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import {ChartDB} from './chart/chart-data';
+import { ChartDB } from './chart/chart-data';
 
 @Component({
   selector: 'app-invoice-summary',
   templateUrl: './invoice-summary.component.html',
-  styleUrls: ['./invoice-summary.component.scss']
+  styleUrls: ['./invoice-summary.component.scss'],
 })
 export class InvoiceSummaryComponent implements OnInit {
   public chartDB: any;
@@ -13,7 +13,5 @@ export class InvoiceSummaryComponent implements OnInit {
     this.chartDB = ChartDB;
   }
 
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }
