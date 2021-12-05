@@ -3,9 +3,12 @@ import { CommonModule } from '@angular/common';
 
 import { DashAnalyticsRoutingModule } from './dash-analytics-routing.module';
 import { DashAnalyticsComponent } from './dash-analytics.component';
-import {SharedModule} from '../../../theme/shared/shared.module';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {NgbPopoverModule, NgbProgressbarModule} from '@ng-bootstrap/ng-bootstrap';
+import { SharedModule } from '../../../theme/shared/shared.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {
+  NgbPopoverModule,
+  NgbProgressbarModule,
+} from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   imports: [
@@ -15,10 +18,8 @@ import {NgbPopoverModule, NgbProgressbarModule} from '@ng-bootstrap/ng-bootstrap
     FormsModule,
     ReactiveFormsModule,
     NgbProgressbarModule,
-    NgbPopoverModule
+    NgbPopoverModule,
   ],
-  declarations: [
-    DashAnalyticsComponent,
-  ]
+  declarations: [DashAnalyticsComponent],
 })
-export class DashAnalyticsModule { }
+export class DashAnalyticsModule {}

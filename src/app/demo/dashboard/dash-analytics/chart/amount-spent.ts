@@ -4,41 +4,46 @@ export class AmountSpent {
       type: 'bar',
       height: 50,
       sparkline: {
-        enabled: true
-      }
+        enabled: true,
+      },
     },
     dataLabels: {
-      enabled: false
+      enabled: false,
     },
     colors: ['#9ccc65'],
     plotOptions: {
       bar: {
-        columnWidth: '60%'
-      }
+        columnWidth: '60%',
+      },
     },
-    series: [{
-      data: [25, 66, 41, 89, 63, 25, 44, 12, 36, 9, 54, 25, 66, 41, 89, 63, 54, 25, 66, 41, 89, 63, 25, 44, 12]
-    }],
+    series: [
+      {
+        data: [
+          25, 66, 41, 89, 63, 25, 44, 12, 36, 9, 54, 25, 66, 41, 89, 63, 54, 25,
+          66, 41, 89, 63, 25, 44, 12,
+        ],
+      },
+    ],
     xaxis: {
       crosshairs: {
-        width: 1
+        width: 1,
       },
     },
     tooltip: {
       fixed: {
-        enabled: false
+        enabled: false,
       },
       x: {
-        show: false
+        show: false,
       },
       y: {
         title: {
-          formatter: (seriesName) => 'Amount Spent :'
-        }
+          formatter: () => 'Amount Spent :',
+        },
       },
       marker: {
-        show: false
-      }
-    }
+        show: false,
+      },
+    },
   };
 }
