@@ -4,10 +4,7 @@ import { CommonModule } from '@angular/common';
 import { TaskRoutingModule } from './task-routing.module';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    TaskRoutingModule
-  ],
-  declarations: []
+  imports: [CommonModule, TaskRoutingModule],
+  declarations: [],
 })
-export class TaskModule { }
+export class TaskModule {}

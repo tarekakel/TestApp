@@ -6,12 +6,13 @@ describe('TaskBoardComponent', () => {
   let component: TaskBoardComponent;
   let fixture: ComponentFixture<TaskBoardComponent>;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      declarations: [ TaskBoardComponent ]
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [TaskBoardComponent],
+      }).compileComponents();
     })
-    .compileComponents();
-  }));
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(TaskBoardComponent);

@@ -1,5 +1,5 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {Observable, Subscription} from 'rxjs';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Observable, Subscription } from 'rxjs';
 import 'rxjs/add/observable/interval';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
@@ -7,38 +7,42 @@ import 'rxjs/add/operator/catch';
 @Component({
   selector: 'app-task-detail',
   templateUrl: './task-detail.component.html',
-  styleUrls: ['./task-detail.component.scss']
+  styleUrls: ['./task-detail.component.scss'],
 })
 export class TaskDetailComponent implements OnInit, OnDestroy {
-  public future: Date;
+  public future: Date | undefined;
   public futureString = 'September 16, 2021 12:00:00';
-  public diff: number;
-  public $counter: Observable<number>;
-  public subscription: Subscription;
-  public message: string;
-  public dYears: number;
-  public dDays: number;
-  public dHours: number;
-  public dMinutes: number;
-  public dSeconds: number;
+  public diff: number | undefined;
+  public $counter: Observable<number> | undefined;
+  public subscription: Subscription | undefined;
+  public message: string | undefined;
+  public dYears: number | undefined;
+  public dDays: number | undefined;
+  public dHours: number | undefined;
+  public dMinutes: number | undefined;
+  public dSeconds: number | undefined;
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit() {
     this.future = new Date(this.futureString);
-    this.$counter = Observable.interval(1000).map((x) => {
-      this.diff = Math.floor((this.future.getTime() - new Date().getTime()) / 1000);
-      return x;
-    });
+    // this.$counter = Observable.interval(1000).map((x: any) => {
+    //   this.diff = Math.floor(
+    //     (this.future!.getTime() - new Date().getTime()) / 1000
+    //   );
+    //   return x;
+    // });
 
-    this.subscription = this.$counter.subscribe((x) => this.message = this.dhms(this.diff));
+    this.subscription = this.$counter!.subscribe(
+      (x) => (this.message = this.dhms(this.diff!))
+    );
   }
 
   ngOnDestroy(): void {
-    this.subscription.unsubscribe();
+    this.subscription!.unsubscribe();
   }
 
-  dhms(t) {
+  dhms(t: number) {
     let years = 0;
     let days = 0;
     let hours = 0;
@@ -47,7 +51,7 @@ export class TaskDetailComponent implements OnInit, OnDestroy {
     days = Math.floor(t / 86400);
     if (days > 365) {
       years = Math.floor(days / 365);
-      days = days - (years * 365);
+      days = days - years * 365;
     }
     t -= days * 86400;
     hours = Math.floor(t / 3600) % 24;
@@ -67,8 +71,7 @@ export class TaskDetailComponent implements OnInit, OnDestroy {
       days + ' days',
       hours + ' hours',
       minutes + ' min',
-      seconds + ' sec'
+      seconds + ' sec',
     ].join(' ');
   }
-
 }

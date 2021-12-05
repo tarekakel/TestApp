@@ -3,8 +3,12 @@ import { CommonModule } from '@angular/common';
 
 import { TaskBoardRoutingModule } from './task-board-routing.module';
 import { TaskBoardComponent } from './task-board.component';
-import {SharedModule} from '../../../../theme/shared/shared.module';
-import {NgbCollapseModule, NgbDropdownModule, NgbTooltipModule} from '@ng-bootstrap/ng-bootstrap';
+import { SharedModule } from '../../../../theme/shared/shared.module';
+import {
+  NgbCollapseModule,
+  NgbDropdownModule,
+  NgbTooltipModule,
+} from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   imports: [
@@ -13,8 +17,8 @@ import {NgbCollapseModule, NgbDropdownModule, NgbTooltipModule} from '@ng-bootst
     SharedModule,
     NgbCollapseModule,
     NgbDropdownModule,
-    NgbTooltipModule
+    NgbTooltipModule,
   ],
-  declarations: [TaskBoardComponent]
+  declarations: [TaskBoardComponent],
 })
-export class TaskBoardModule { }
+export class TaskBoardModule {}

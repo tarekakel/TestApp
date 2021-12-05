@@ -7,22 +7,31 @@ const routes: Routes = [
     children: [
       {
         path: 'list',
-        loadChildren: () => import('./task-list/task-list.module').then(module => module.TaskListModule)
+        loadChildren: () =>
+          import('./task-list/task-list.module').then(
+            (module) => module.TaskListModule
+          ),
       },
       {
         path: 'board',
-        loadChildren: () => import('./task-board/task-board.module').then(module => module.TaskBoardModule)
+        loadChildren: () =>
+          import('./task-board/task-board.module').then(
+            (module) => module.TaskBoardModule
+          ),
       },
       {
         path: 'detail',
-        loadChildren: () => import('./task-detail/task-detail.module').then(module => module.TaskDetailModule)
-      }
-    ]
-  }
+        loadChildren: () =>
+          import('./task-detail/task-detail.module').then(
+            (module) => module.TaskDetailModule
+          ),
+      },
+    ],
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class TaskRoutingModule { }
+export class TaskRoutingModule {}
