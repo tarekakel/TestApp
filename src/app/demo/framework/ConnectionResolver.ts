@@ -1,7 +1,6 @@
-﻿import { Resolve } from '@angular/router';
-import { SignalR, SignalRConnection } from 'ng2-signalr';
+﻿import { SignalR, SignalRConnection } from 'ng2-signalr';
 import { Injectable } from '@angular/core';
-import { LoadingService } from '../shared/service/loadingService';
+import { LoadingService } from '../shared/service/LoadingService';
 
 @Injectable()
 export class ConnectionResolver {
