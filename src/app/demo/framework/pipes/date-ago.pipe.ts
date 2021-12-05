@@ -1,73 +1,50 @@
-import {Pipe, PipeTransform} from '@angular/core';
-
-
+import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
+  name: 'dateAgo',
 
-    name: 'dateAgo',
-
-    pure: true
-
+  pure: true,
 })
-
 export class DateAgoPipe implements PipeTransform {
+  transform(value: any, args?: any): any {
+    if (value) {
+      const seconds = Math.floor((+new Date() - +new Date(value)) / 1000);
 
+      if (seconds < 29)
+        // less than 30 seconds ago will show as 'Just now'
 
+        return 'Just now';
 
-    transform(value: any, args?: any): any {
+      const intervals: any = {
+        year: 31536000,
 
-        if (value) {
+        month: 2592000,
 
-            const seconds = Math.floor((+new Date() - +new Date(value)) / 1000);
+        week: 604800,
 
-            if (seconds < 29) // less than 30 seconds ago will show as 'Just now'
+        day: 86400,
 
-                return 'Just now';
+        hour: 3600,
 
-            const intervals = {
+        minute: 60,
 
-                'year': 31536000,
+        second: 1,
+      };
 
-                'month': 2592000,
+      let counter;
 
-                'week': 604800,
+      for (const i in intervals) {
+        counter = Math.floor(seconds / intervals[i]);
 
-                'day': 86400,
-
-                'hour': 3600,
-
-                'minute': 60,
-
-                'second': 1
-
-            };
-
-            let counter;
-
-            for (const i in intervals) {
-
-                counter = Math.floor(seconds / intervals[i]);
-
-                if (counter > 0)
-
-                    if (counter === 1) {
-
-                        return counter + ' ' + i + ' ago'; // singular (1 day ago)
-
-                    } else {
-
-                        return counter + ' ' + i + 's ago'; // plural (2 days ago)
-
-                    }
-
-            }
-
-        }
-
-        return value;
-
+        if (counter > 0)
+          if (counter === 1) {
+            return counter + ' ' + i + ' ago'; // singular (1 day ago)
+          } else {
+            return counter + ' ' + i + 's ago'; // plural (2 days ago)
+          }
+      }
     }
 
-
-
+    return value;
+  }
 }

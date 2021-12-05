@@ -1,8 +1,8 @@
 export class googleMapParams {
-    static zoom = 15;
+  static zoom = 15;
 
-    static styles = [
-          /*{
+  static styles = [
+    /*{
             "elementType": "geometry",
             "stylers": [
                 {
@@ -268,9 +268,5 @@ export class googleMapParams {
             ]
         }
         */
-    ];
-
-
-
-
+  ];
 }

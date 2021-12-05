@@ -1,5 +1,4 @@
 ﻿export class PagedResult<T> {
-
-    numberOfRecords: number;
-    collection: T[];
-}  
+  numberOfRecords: number | undefined;
+  collection: T[] | undefined;
+}
