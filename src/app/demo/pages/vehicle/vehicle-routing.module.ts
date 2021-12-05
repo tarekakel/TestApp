@@ -7,22 +7,28 @@ const routes: Routes = [
     children: [
       {
         path: 'profile',
-        loadChildren: () => import('./vehicle-profile/vehicle-profile.module').then(module => module.VehicleProfileModule)
+        loadChildren: () =>
+          import('./vehicle-profile/vehicle-profile.module').then(
+            (module) => module.VehicleProfileModule
+          ),
       },
-    //   {
-    //     path: 'card',
-    //     loadChildren: () => import('./users-card/users-card.module').then(module => module.VehicleCardModule)
-    //   },
+      //   {
+      //     path: 'card',
+      //     loadChildren: () => import('./users-card/users-card.module').then(module => module.VehicleCardModule)
+      //   },
       {
         path: 'list',
-        loadChildren: () => import('./vehicle-list/vehicle-list.module').then(module => module.VehicleListModule)
-      }
-    ]
-  }
+        loadChildren: () =>
+          import('./vehicle-list/vehicle-list.module').then(
+            (module) => module.VehicleListModule
+          ),
+      },
+    ],
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class VehicleRoutingModule { }
+export class VehicleRoutingModule {}

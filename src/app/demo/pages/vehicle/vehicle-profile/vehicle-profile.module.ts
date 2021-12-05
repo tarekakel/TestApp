@@ -3,9 +3,13 @@ import { CommonModule } from '@angular/common';
 
 import { VehicleProfileRoutingModule } from './vehicle-profile-routing.module';
 import { VehicleProfileComponent } from './vehicle-profile.component';
-import {SharedModule} from '../../../../theme/shared/shared.module';
-import {NgbCarouselModule, NgbDropdownModule, NgbTooltipModule} from '@ng-bootstrap/ng-bootstrap';
-import {LightboxModule} from 'ngx-lightbox';
+import { SharedModule } from '../../../../theme/shared/shared.module';
+import {
+  NgbCarouselModule,
+  NgbDropdownModule,
+  NgbTooltipModule,
+} from '@ng-bootstrap/ng-bootstrap';
+import { LightboxModule } from 'ngx-lightbox';
 
 @NgModule({
   declarations: [VehicleProfileComponent],
@@ -16,7 +20,7 @@ import {LightboxModule} from 'ngx-lightbox';
     NgbDropdownModule,
     NgbTooltipModule,
     NgbCarouselModule,
-    LightboxModule
-  ]
+    LightboxModule,
+  ],
 })
-export class VehicleProfileModule { }
+export class VehicleProfileModule {}

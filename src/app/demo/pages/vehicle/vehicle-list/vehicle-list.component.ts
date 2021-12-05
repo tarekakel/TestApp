@@ -28,7 +28,6 @@ import { VehicleBrandMasterService } from 'src/app/demo/_services/VehicleBrandMa
 import { VehicleModelService } from 'src/app/demo/_services/VehicleModelService';
 import { VehicleService } from 'src/app/demo/_services/VehicleService';
 import { VehicleTypeService } from 'src/app/demo/_services/VehicleTypeService';
-import FlvPlayer from 'flvplayer';
 import { LazyLoadEvent, MessageService } from 'primeng/api';
 import { ExportService } from 'src/app/demo/_services/export.service';
 import { MenuItem } from 'primeng/api';
@@ -50,34 +49,34 @@ export class VehicleListComponent extends BaseComponent implements OnInit {
   model: any = {};
   newVehicle: Vehicle;
   dtOptions: any = {};
-  tableVehiclesInfo: VehicleSummary;
-  vehiclesInfo: VehicleDto[];
+  tableVehiclesInfo: VehicleSummary = new VehicleSummary();
+  vehiclesInfo: VehicleDto[] = [];
   vehiclesStatsInfo: VehicleDto;
-  manufacturerInfo: ManufacturerMaster[];
-  modelInfo: DeviceModel[];
-  brandInfo: VehicleBrandMaster[];
-  vehicleModel: VehicleModel[];
-  current_month: string;
+  manufacturerInfo: ManufacturerMaster[] = [];
+  modelInfo: DeviceModel[] = [];
+  brandInfo: VehicleBrandMaster[] = [];
+  vehicleModel: VehicleModel[] = [];
+  current_month: string | undefined;
   keys = Object.keys;
   math = Math;
   public selectedValue: any;
-  private categoryTypes;
-  month: Date;
+
+  month!: Date;
   showStatistics: boolean = false;
   showNotAvailable: boolean = false;
   pie_data: any;
-  noData: string;
+  noData!: string;
   vehicleCodes: number[];
-  vehicleTypeList: VehicleType[];
-  fuelTypeList: FuelType[];
-  entityId: string;
+  vehicleTypeList: VehicleType[] = [];
+  fuelTypeList: FuelType[] = [];
+  entityId!: string;
   displayVehicleaddForm: boolean = false;
   displayTitleFlag: boolean = false;
-  selectedItems: BrandMaster[];
-  groupSeletedItems: GroupMaster[];
-  eventSeletedItems: BusOwnerMaster[];
-  busGroup: any[];
-  busBrandList: any[];
+  selectedItems: BrandMaster[] = [];
+  groupSeletedItems: GroupMaster[] = [];
+  eventSeletedItems: BusOwnerMaster[] = [];
+  busGroup: any[] = [];
+  busBrandList: any[] = [];
   groupCode: number[];
   brandCode: number[];
   busCode: string[];
@@ -85,7 +84,7 @@ export class VehicleListComponent extends BaseComponent implements OnInit {
   shaka: any;
   loading = true;
   totalRecords = 0;
-  items: MenuItem[];
+  items: MenuItem[] = [];
 
   constructor(
     private vehicleService: VehicleService,
@@ -114,7 +113,7 @@ export class VehicleListComponent extends BaseComponent implements OnInit {
     this.busMaster = new Array();
   }
 
-  ngOnInit(): void {
+  override ngOnInit(): void {
     // this.getAllGroup();
     // this.getAllBusBrand();
     // this.searchVehicles();
@@ -202,7 +201,7 @@ export class VehicleListComponent extends BaseComponent implements OnInit {
   }
 
   showMore() {
-    this.searchCriteria.pageIndex += 1;
+    this.searchCriteria.pageIndex! += 1;
     this.search();
   }
   openAddVehicle() {
@@ -254,11 +253,11 @@ export class VehicleListComponent extends BaseComponent implements OnInit {
       this.groupCode.push(c.groupId);
     });
   }
-  onGroupDeSelect(items) {
+  onGroupDeSelect(items: { groupId: number }) {
     const index = this.groupCode.indexOf(items.groupId);
     this.groupCode.splice(index, 1);
   }
-  onGroupDeSelectAll(items) {
+  onGroupDeSelectAll() {
     this.groupCode.splice(0);
   }
 
@@ -280,19 +279,19 @@ export class VehicleListComponent extends BaseComponent implements OnInit {
   }
 
   onBrandSelect(item: BrandMaster) {
-    this.groupCode.push(item.id);
+    this.groupCode.push(item.id!);
   }
   onBrandSelectAll(items: BrandMaster[]) {
     this.groupCode.splice(0);
     items.forEach((c) => {
-      this.groupCode.push(c.id);
+      this.groupCode.push(c.id!);
     });
   }
-  onBrandDeSelect(items) {
+  onBrandDeSelect(items: { id: number }) {
     const index = this.groupCode.indexOf(items.id);
     this.groupCode.splice(index, 1);
   }
-  onBrandDeSelectAll(items) {
+  onBrandDeSelectAll() {
     this.groupCode.splice(0);
   }
 
@@ -305,11 +304,11 @@ export class VehicleListComponent extends BaseComponent implements OnInit {
       this.busCode.push(c.carLicense);
     });
   }
-  onAssetDeSelect(items) {
+  onAssetDeSelect(items: { carLicense: string }) {
     const index = this.busCode.indexOf(items.carLicense);
     this.busCode.splice(index, 1);
   }
-  onAssetDeSelectAll(items) {
+  onAssetDeSelectAll() {
     this.busCode.splice(0);
   }
   loadVehicles(event: LazyLoadEvent): void {
@@ -344,14 +343,14 @@ export class VehicleListComponent extends BaseComponent implements OnInit {
   }
 
   exportExcel(): void {
-    this.vehicleService.exportAllVehicles().subscribe((data) => {
+    this.vehicleService.exportAllVehicles().subscribe((data: any) => {
       console.log(data);
       this.exportService.exportExcel(data, 'Vehicles Details');
     });
   }
   exportPdf(): void {
-    const exportData = [];
-    this.vehicleService.exportAllVehicles().subscribe((data) => {
+    const exportData: any[][] = [];
+    this.vehicleService.exportAllVehicles().subscribe((data: any[]) => {
       data.forEach((element) => {
         exportData.push(Object.values(element));
       });
@@ -359,17 +358,20 @@ export class VehicleListComponent extends BaseComponent implements OnInit {
     });
   }
   save(): void {}
-  uploadExcel(event, form): void {
+  uploadExcel(
+    event: { files: (string | Blob)[] },
+    form: { clear: () => void }
+  ): void {
     const formData = new FormData();
     formData.append('Name', event.files[0]);
     this.vehicleService.uploadExcel(formData).subscribe(
-      (data) =>
+      (data: any) =>
         this.messageService.add({
           severity: 'success',
           summary: 'Add Done',
           detail: data,
         }),
-      (error) =>
+      (error: any) =>
         this.messageService.add({
           severity: 'error',
           summary: 'Error Inseret Data',

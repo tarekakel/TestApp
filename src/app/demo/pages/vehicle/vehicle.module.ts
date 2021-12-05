@@ -5,9 +5,6 @@ import { VehicleRoutingModule } from './vehicle-routing.module';
 
 @NgModule({
   declarations: [],
-  imports: [
-    CommonModule,
-    VehicleRoutingModule
-  ]
+  imports: [CommonModule, VehicleRoutingModule],
 })
-export class VehicleModule { }
+export class VehicleModule {}
