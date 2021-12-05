@@ -6,12 +6,13 @@ describe('FrmMaskingComponent', () => {
   let component: FrmMaskingComponent;
   let fixture: ComponentFixture<FrmMaskingComponent>;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      declarations: [ FrmMaskingComponent ]
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [FrmMaskingComponent],
+      }).compileComponents();
     })
-    .compileComponents();
-  }));
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(FrmMaskingComponent);

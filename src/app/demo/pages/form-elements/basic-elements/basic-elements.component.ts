@@ -12,8 +12,8 @@ import { AlarmService } from 'src/app/demo/_services/AlarmService';
   styleUrls: ['./basic-elements.component.scss'],
 })
 export class BasicElementsComponent implements OnInit {
-  alarmList: AlarmDto;
-  alarms: Alarm[];
+  alarmList: AlarmDto = new AlarmDto();
+  alarms: Alarm[] = [];
   searchCriteria: SearchCriteria<any>;
   pagedResult: PagedResult<AlarmDto>;
   constructor(private alarmService: AlarmService) {
@@ -24,10 +24,12 @@ export class BasicElementsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.alarmService.getAllAlarms(this.searchCriteria).subscribe((res) => {
-      console.log(res);
-      this.alarmList = res;
-      this.alarms = this.alarmList.alarmList;
-    });
+    this.alarmService
+      .getAllAlarms(this.searchCriteria)
+      .subscribe((res: AlarmDto) => {
+        console.log(res);
+        this.alarmList = res;
+        this.alarms = this.alarmList.alarmList;
+      });
   }
 }

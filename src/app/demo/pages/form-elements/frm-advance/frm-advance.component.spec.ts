@@ -6,12 +6,13 @@ describe('FrmAdvanceComponent', () => {
   let component: FrmAdvanceComponent;
   let fixture: ComponentFixture<FrmAdvanceComponent>;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      declarations: [ FrmAdvanceComponent ]
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [FrmAdvanceComponent],
+      }).compileComponents();
     })
-    .compileComponents();
-  }));
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(FrmAdvanceComponent);

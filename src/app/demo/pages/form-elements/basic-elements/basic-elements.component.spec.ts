@@ -6,12 +6,13 @@ describe('BasicElementsComponent', () => {
   let component: BasicElementsComponent;
   let fixture: ComponentFixture<BasicElementsComponent>;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      declarations: [ BasicElementsComponent ]
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [BasicElementsComponent],
+      }).compileComponents();
     })
-    .compileComponents();
-  }));
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(BasicElementsComponent);

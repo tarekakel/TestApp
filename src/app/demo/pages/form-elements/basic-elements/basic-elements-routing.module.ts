@@ -1,16 +1,16 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import {BasicElementsComponent} from './basic-elements.component';
+import { BasicElementsComponent } from './basic-elements.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: BasicElementsComponent
-  }
+    component: BasicElementsComponent,
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class BasicElementsRoutingModule { }
+export class BasicElementsRoutingModule {}
