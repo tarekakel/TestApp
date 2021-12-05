@@ -4,41 +4,43 @@ export class SeoChart2 {
       type: 'bar',
       height: 40,
       sparkline: {
-        enabled: true
-      }
+        enabled: true,
+      },
     },
     dataLabels: {
-      enabled: false
+      enabled: false,
     },
     colors: ['#9ccc65'],
     plotOptions: {
       bar: {
-        columnWidth: '60%'
-      }
+        columnWidth: '60%',
+      },
     },
-    series: [{
-      data: [25, 66, 41, 89, 63, 25, 44, 12, 36, 9, 54, 25, 66, 41, 89, 63]
-    }],
+    series: [
+      {
+        data: [25, 66, 41, 89, 63, 25, 44, 12, 36, 9, 54, 25, 66, 41, 89, 63],
+      },
+    ],
     xaxis: {
       crosshairs: {
-        width: 1
+        width: 1,
       },
     },
     tooltip: {
       fixed: {
-        enabled: false
+        enabled: false,
       },
       x: {
-        show: false
+        show: false,
       },
       y: {
         title: {
-          formatter: (seriesName) => 'Bounce Rate :'
-        }
+          formatter: () => 'Bounce Rate :',
+        },
       },
       marker: {
-        show: false
-      }
-    }
+        show: false,
+      },
+    },
   };
 }

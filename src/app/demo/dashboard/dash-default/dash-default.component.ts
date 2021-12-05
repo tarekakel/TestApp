@@ -6,8 +6,8 @@ import { SeoChart2 } from './chart/seo-chart-2';
 import { SeoChart3 } from './chart/seo-chart-3';
 import { PowerCardChart1 } from './chart/power-card-chart-1';
 import { PowerCardChart2 } from './chart/power-card-chart-2';
-import { Subscription } from 'rxjs-compat';
-import { timer } from 'rxjs';
+
+import { Subscription, timer } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { EventService } from '../../_services/EventService';
 import { DashboardService } from '../../_services/DashboardService';
@@ -23,10 +23,10 @@ import { VehicleDto } from '../../_models/VehicleDto';
 import { BaseComponent } from '../../framework/core/base-component';
 import { VehicleDriverService } from '../../_services/VehicleDriverService';
 import { Driver } from '../../_models/Driver';
-import { OwlOptions } from 'ngx-owl-carousel-o';
 import { ApexChartService } from 'src/app/theme/shared/components/chart/apex-chart/apex-chart.service';
 import { ChartDB } from '../../widget/widget-chart/chart/chart-data';
 import { LinearChart } from '../../_models/ChartsModel';
+import { OwlOptions } from 'ngx-owl-carousel-o';
 
 @Component({
   selector: 'app-dash-default',
@@ -44,30 +44,30 @@ export class DashDefaultComponent implements OnInit, OnDestroy {
   public deviceProgressBar: any;
   public vehicleProgressBar: any;
   public userProgressBar: any;
-  subscription: Subscription;
-  subscription2: Subscription;
-  subscription3: Subscription;
-  subscription4: Subscription;
-  subscription5: Subscription;
-  dashboardData: DashboardDataDto;
-  piedata: DashboardDataDto;
+  subscription: Subscription = new Subscription();
+  subscription2: Subscription = new Subscription();
+  subscription3: Subscription = new Subscription();
+  subscription4: Subscription = new Subscription();
+  subscription5: Subscription = new Subscription();
+  dashboardData: DashboardDataDto | undefined;
+  piedata: DashboardDataDto | undefined;
   allEventsData: any;
   eventsShiftData: any;
-  vehicleData: VehicleDto[];
-  idleVehicles: VehicleDto[];
-  activeVehicle: VehicleDto[];
-  geofenceViolation: VehicleDto[];
-  stoppedVehicles: VehicleDto[];
-  notReporting: VehicleDto[];
+  vehicleData: VehicleDto[] = [];
+  idleVehicles: VehicleDto[] = [];
+  activeVehicle: VehicleDto[] = [];
+  geofenceViolation: VehicleDto[] = [];
+  stoppedVehicles: VehicleDto[] = [];
+  notReporting: VehicleDto[] = [];
   currentDate: Date;
   overSpeedDuration: any = '10:41:20';
   sealBelt: any = 0;
   sealBealDuration: any = '00:00:00';
   tripsDuration: any = '2415:19:21';
-  criticalDrivers: any[];
-  criticalVehicles: any[];
-  drivers: Driver[];
-  counto = [];
+  criticalDrivers: any[] = [];
+  criticalVehicles: any[] = [];
+  drivers: Driver[] = [];
+  counto: any[] = [];
   vehiclesStats = new VehiclesStatsics();
   violationStats = new ViolationsStatsics();
   alarmsStats = new AlarmsStatsics();
@@ -337,7 +337,7 @@ export class DashDefaultComponent implements OnInit, OnDestroy {
     this.getDeviceStats();
     this.getViolationChartData();
   }
-  dailyVisitorEvent(status): void {
+  dailyVisitorEvent(status: string): void {
     this.dailyVisitorStatus = status;
     switch (status) {
       case '1m':
@@ -376,7 +376,7 @@ export class DashDefaultComponent implements OnInit, OnDestroy {
       this.apexEvent.eventChangeTimeRange();
     });
   }
-  getNewSeries(baseval, yrange): void {
+  getNewSeries(baseval: number, yrange: { max: number; min: number }): void {
     const newDate = baseval + 86400000;
     this.lastDate = newDate;
     this.data.push({
@@ -395,7 +395,11 @@ export class DashDefaultComponent implements OnInit, OnDestroy {
       clearInterval(this.intervalMain);
     }
   }
-  getDayWiseTimeSeries(baseval, count, yrange): void {
+  getDayWiseTimeSeries(
+    baseval: number,
+    count: number,
+    yrange: { min: any; max: any }
+  ): void {
     let i = 0;
     while (i < count) {
       const x = baseval;
@@ -409,7 +413,7 @@ export class DashDefaultComponent implements OnInit, OnDestroy {
     }
   }
 
-  countoChange($event, i): void {
+  countoChange($event: number, i: number): void {
     this.counto[i] = Math.round($event);
   }
   onCountoEnd(): void {}
@@ -442,7 +446,7 @@ export class DashDefaultComponent implements OnInit, OnDestroy {
       console.log(data);
     });
   }
-  multi: any[];
+  multi: any[] = [];
   view: any[] = [700, 300];
 
   // options
@@ -465,15 +469,15 @@ export class DashDefaultComponent implements OnInit, OnDestroy {
   //   Object.assign(this, { multi });
   // }
 
-  onSelect(data): void {
+  onSelect(data: any): void {
     console.log('Item clicked', JSON.parse(JSON.stringify(data)));
   }
 
-  onActivate(data): void {
+  onActivate(data: any): void {
     console.log('Activate', JSON.parse(JSON.stringify(data)));
   }
 
-  onDeactivate(data): void {
+  onDeactivate(data: any): void {
     console.log('Deactivate', JSON.parse(JSON.stringify(data)));
   }
   //    this.dashboardService.getAlarmsStatsics().subscribe(console.log);
