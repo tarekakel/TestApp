@@ -18,6 +18,8 @@
     "@angular/platform-browser": "~13.0.0",
     "@angular/platform-browser-dynamic": "~13.0.0",
     "@angular/router": "~13.0.0",
+    "@ng-bootstrap/ng-bootstrap": "^10.0.0",
+    "angular2-tinymce": "^3.3.0",
     "esri-loader": "^3.3.0",
     "jspdf": "^2.4.0",
     "jspdf-autotable": "^3.5.23",

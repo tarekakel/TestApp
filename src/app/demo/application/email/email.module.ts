@@ -5,9 +5,6 @@ import { EmailRoutingModule } from './email-routing.module';
 
 @NgModule({
   declarations: [],
-  imports: [
-    CommonModule,
-    EmailRoutingModule
-  ]
+  imports: [CommonModule, EmailRoutingModule],
 })
-export class EmailModule { }
+export class EmailModule {}

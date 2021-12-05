@@ -6,12 +6,13 @@ describe('MailReadComponent', () => {
   let component: MailReadComponent;
   let fixture: ComponentFixture<MailReadComponent>;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      declarations: [ MailReadComponent ]
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [MailReadComponent],
+      }).compileComponents();
     })
-    .compileComponents();
-  }));
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(MailReadComponent);

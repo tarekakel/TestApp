@@ -1,16 +1,16 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import {MailReadComponent} from './mail-read.component';
+import { MailReadComponent } from './mail-read.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: MailReadComponent
-  }
+    component: MailReadComponent,
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class MailReadRoutingModule { }
+export class MailReadRoutingModule {}
