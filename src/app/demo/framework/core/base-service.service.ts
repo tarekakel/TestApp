@@ -1,5 +1,4 @@
-﻿import { Injectable } from '@angular/core';
-import { ApiHelperService } from './../helpers/api-helper.service';
+﻿import { ApiHelperService } from './../helpers/api-helper.service';
 import { InjectorService } from './../helpers/injecter-service';
 
 export class BaseService {
