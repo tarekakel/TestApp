@@ -1,16 +1,16 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import {AuthPersonalInfoComponent} from './auth-personal-info.component';
+import { AuthPersonalInfoComponent } from './auth-personal-info.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: AuthPersonalInfoComponent
-  }
+    component: AuthPersonalInfoComponent,
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AuthPersonalInfoRoutingModule { }
+export class AuthPersonalInfoRoutingModule {}

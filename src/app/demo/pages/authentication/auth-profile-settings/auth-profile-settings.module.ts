@@ -5,10 +5,7 @@ import { AuthProfileSettingsRoutingModule } from './auth-profile-settings-routin
 import { AuthProfileSettingsComponent } from './auth-profile-settings.component';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    AuthProfileSettingsRoutingModule
-  ],
-  declarations: [AuthProfileSettingsComponent]
+  imports: [CommonModule, AuthProfileSettingsRoutingModule],
+  declarations: [AuthProfileSettingsComponent],
 })
-export class AuthProfileSettingsModule { }
+export class AuthProfileSettingsModule {}

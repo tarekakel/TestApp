@@ -6,9 +6,6 @@ import { AuthResetPasswordV2Component } from './auth-reset-password-v2.component
 
 @NgModule({
   declarations: [AuthResetPasswordV2Component],
-  imports: [
-    CommonModule,
-    AuthResetPasswordV2RoutingModule
-  ]
+  imports: [CommonModule, AuthResetPasswordV2RoutingModule],
 })
-export class AuthResetPasswordV2Module { }
+export class AuthResetPasswordV2Module {}

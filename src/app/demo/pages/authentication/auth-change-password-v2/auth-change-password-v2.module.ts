@@ -6,9 +6,6 @@ import { AuthChangePasswordV2Component } from './auth-change-password-v2.compone
 
 @NgModule({
   declarations: [AuthChangePasswordV2Component],
-  imports: [
-    CommonModule,
-    AuthChangePasswordV2RoutingModule
-  ]
+  imports: [CommonModule, AuthChangePasswordV2RoutingModule],
 })
-export class AuthChangePasswordV2Module { }
+export class AuthChangePasswordV2Module {}

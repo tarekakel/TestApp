@@ -6,12 +6,13 @@ describe('AuthPersonalInfoComponent', () => {
   let component: AuthPersonalInfoComponent;
   let fixture: ComponentFixture<AuthPersonalInfoComponent>;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      declarations: [ AuthPersonalInfoComponent ]
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [AuthPersonalInfoComponent],
+      }).compileComponents();
     })
-    .compileComponents();
-  }));
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(AuthPersonalInfoComponent);

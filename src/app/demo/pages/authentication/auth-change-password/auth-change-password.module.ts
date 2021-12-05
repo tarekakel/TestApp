@@ -5,10 +5,7 @@ import { AuthChangePasswordRoutingModule } from './auth-change-password-routing.
 import { AuthChangePasswordComponent } from './auth-change-password.component';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    AuthChangePasswordRoutingModule
-  ],
-  declarations: [AuthChangePasswordComponent]
+  imports: [CommonModule, AuthChangePasswordRoutingModule],
+  declarations: [AuthChangePasswordComponent],
 })
-export class AuthChangePasswordModule { }
+export class AuthChangePasswordModule {}

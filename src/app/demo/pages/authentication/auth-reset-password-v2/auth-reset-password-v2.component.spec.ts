@@ -6,12 +6,13 @@ describe('AuthResetPasswordV2Component', () => {
   let component: AuthResetPasswordV2Component;
   let fixture: ComponentFixture<AuthResetPasswordV2Component>;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      declarations: [ AuthResetPasswordV2Component ]
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [AuthResetPasswordV2Component],
+      }).compileComponents();
     })
-    .compileComponents();
-  }));
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(AuthResetPasswordV2Component);

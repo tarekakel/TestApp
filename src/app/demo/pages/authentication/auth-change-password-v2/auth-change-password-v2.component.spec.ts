@@ -6,12 +6,13 @@ describe('AuthChangePasswordV2Component', () => {
   let component: AuthChangePasswordV2Component;
   let fixture: ComponentFixture<AuthChangePasswordV2Component>;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      declarations: [ AuthChangePasswordV2Component ]
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [AuthChangePasswordV2Component],
+      }).compileComponents();
     })
-    .compileComponents();
-  }));
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(AuthChangePasswordV2Component);

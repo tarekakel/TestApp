@@ -5,10 +5,7 @@ import { AuthSignupRoutingModule } from './auth-signup-routing.module';
 import { AuthSignupComponent } from './auth-signup.component';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    AuthSignupRoutingModule
-  ],
-  declarations: [AuthSignupComponent]
+  imports: [CommonModule, AuthSignupRoutingModule],
+  declarations: [AuthSignupComponent],
 })
-export class AuthSignupModule { }
+export class AuthSignupModule {}

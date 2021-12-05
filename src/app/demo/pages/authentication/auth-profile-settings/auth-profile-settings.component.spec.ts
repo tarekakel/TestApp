@@ -6,12 +6,13 @@ describe('AuthProfileSettingsComponent', () => {
   let component: AuthProfileSettingsComponent;
   let fixture: ComponentFixture<AuthProfileSettingsComponent>;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      declarations: [ AuthProfileSettingsComponent ]
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [AuthProfileSettingsComponent],
+      }).compileComponents();
     })
-    .compileComponents();
-  }));
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(AuthProfileSettingsComponent);

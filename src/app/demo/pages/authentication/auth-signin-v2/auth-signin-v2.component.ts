@@ -12,10 +12,10 @@ import { User } from '../../../_models';
   styleUrls: ['./auth-signin-v2.component.scss'],
 })
 export class AuthSigninV2Component implements OnInit {
-  loginForm: FormGroup;
+  loginForm!: FormGroup;
   loading = false;
   submitted = false;
-  returnUrl: string;
+  returnUrl: string = '';
   error = '';
 
   errorMessage: boolean = false;
@@ -27,13 +27,13 @@ export class AuthSigninV2Component implements OnInit {
   username: string = '';
   password: string = '';
   display: boolean = false;
-  email: string; //Forget Email
+  email: string | undefined; //Forget Email
   userExist: boolean = false;
-  objUser: User;
+  objUser: User | undefined;
   isEmailChecked: boolean = false;
   isLinkSent: boolean = false;
 
-  backgroundList: Array<any>;
+  backgroundList: Array<any> | undefined;
   backgroundIndex: any;
   background: any;
 
@@ -75,7 +75,7 @@ export class AuthSigninV2Component implements OnInit {
     this.loading = true;
 
     this.authenticationService
-      .login(this.f.username.value, this.f.password.value)
+      .login(this.f['username'].value, this.f['password'].value)
       .pipe(first())
       .subscribe(
         (res) => {

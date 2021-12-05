@@ -6,9 +6,6 @@ import { AuthSigninV2Component } from './auth-signin-v2.component';
 
 @NgModule({
   declarations: [AuthSigninV2Component],
-  imports: [
-    CommonModule,
-    AuthSigninV2RoutingModule
-  ]
+  imports: [CommonModule, AuthSigninV2RoutingModule],
 })
-export class AuthSigninV2Module { }
+export class AuthSigninV2Module {}
