@@ -1,0 +1,17 @@
+﻿<div class="dropdown">
+  <span class="thumbnail-wrapper d32 circular inline sm-m-r-5">
+    <!-- <img [src]="user_thumbnail" alt="" width="32" height="32" class="profile-img"> -->
+    <i class="fas fa-user-circle" style="font-size: 32px;color:#003c72; " ></i>
+  </span>
+  <span class="v-a-middle header-profile-name">{{ fullName }}</span>
+  <div class="dropdown-content">
+    <ul>
+      <li><a routerLink="/user-info" l10nTranslate>Common.Profile</a></li>
+      <li><a routerLink="/change-password" l10nTranslate>Common.ChangePassword</a></li>
+      <li><a (click)="logout()" l10nTranslate>Common.Logout</a></li>
+    </ul>
+  </div>
+</div>
+
+
+

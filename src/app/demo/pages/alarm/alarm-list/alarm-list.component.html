@@ -1,0 +1,166 @@
+<div class="row btn-page">
+  <div class="col-sm-12">
+    <app-card cardTitle="Alarms Summary" [options]="false">
+      <div class="row">
+        <div class="col-md-2 col-xs-6 border-right">
+          <h3>{{ alarmList?.totalAlarms }}</h3>
+          <span class="">Total Alarms</span>
+        </div>
+        <div class="col-md-2 col-xs-6 border-right">
+          <h3>{{ alarmList?.cover }}</h3>
+          <span class="text-danger">Camera Cover</span>
+        </div>
+        <div class="col-md-2 col-xs-6 border-right">
+          <h3>{{ alarmList?.video_Loss }}</h3>
+          <span class="text-danger">Video Loss</span>
+        </div>
+        <div class="col-md-2 col-xs-6 border-right">
+          <h3>{{ alarmList?.storage_Exception }}</h3>
+          <span class="text-danger">Storage Exception</span>
+        </div>
+        <div class="col-md-2 col-xs-6 border-right">
+          <h3>{{ alarmList?.abnormal_Boot_Up }}</h3>
+          <span class="text-danger">Abnormal Boot Up</span>
+        </div>
+      </div>
+    </app-card>
+  </div>
+  <div class="col-sm-12 btn-page">
+    <app-card [hidHeader]="true" cardClass="card-datatable">
+      <div class="row align-items-center m-l-0">
+        <div class="col-sm-2">
+          <div class="form-group fill">
+            <input
+              type="datetime-local"
+              id="completionDate"
+              [(ngModel)]="searchCriteria.filters.startDate"
+              placeholder="yyyy-MM-ddTHH:mm:ss"
+              class="form-control"
+              required
+            />
+          </div>
+        </div>
+        <div class="col-sm-2">
+          <div class="form-group fill">
+            <input
+              type="datetime-local"
+              id="completionDate"
+              [(ngModel)]="searchCriteria.filters.endDate"
+              placeholder="yyyy-MM-ddTHH:mm:ss"
+              class="form-control"
+              required
+            />
+          </div>
+        </div>
+
+        <div class="col-sm-2">
+          <ng-multiselect-dropdown
+            [placeholder]="'Group'"
+            [data]="groupList"
+            [(ngModel)]="groupSeletedItems"
+            [settings]="dropdownGroupSettings"
+            (onSelect)="onGroupSelect($event)"
+            (onSelectAll)="onGroupSelectAll($event)"
+            (onDeSelect)="onGroupDeSelect($event)"
+            (onDeSelectAll)="onGroupDeSelectAll($event)"
+          >
+          </ng-multiselect-dropdown>
+        </div>
+
+        <div class="col-sm-2">
+          <ng-multiselect-dropdown
+            [placeholder]="'Assets'"
+            [data]="vehiclesInfo"
+            [(ngModel)]="selectedItems"
+            [settings]="dropdownSettings"
+          >
+          </ng-multiselect-dropdown>
+        </div>
+        <div class="col-sm-1">
+          <button
+            type="button"
+            (click)="searchAlarms()"
+            class="btn btn-primary btn-msg-send"
+          >
+            <i class="fas fa-search"></i>
+          </button>
+        </div>
+        <div class="col-sm-6 text-right"></div>
+      </div>
+      <div class="card">
+        <p-toolbar styleClass="p-mb-4">
+          <ng-template pTemplate="left"> </ng-template>
+          <ng-template pTemplate="right">
+            <p-splitButton
+              (onClick)="save()"
+              label="Export"
+              [model]="items"
+              styleClass="p-button-help p-mb-2"
+            ></p-splitButton>
+          </ng-template>
+        </p-toolbar>
+
+        <p-table
+          [lazy]="true"
+          (onLazyLoad)="loadAlarms($event)"
+          responsiveLayout="scroll"
+          #dt
+          [value]="alarms"
+          [rows]="10"
+          [paginator]="true"
+          [globalFilterFields]="['deviceId', 'state', 'alarmContent']"
+          responsiveLayout="scroll"
+          [(selection)]="selectedItems"
+          [rowHover]="true"
+          dataKey="id"
+          currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+          [showCurrentPageReport]="true"
+          [loading]="loading"
+          [totalRecords]="totalRecords"
+          responsiveLayout="scroll"
+        >
+          <ng-template pTemplate="header">
+            <tr>
+              <th pSortableColumn="time">
+                Date <p-sortIcon field="time"></p-sortIcon>
+              </th>
+              <th pSortableColumn="deviceId">
+                Device <p-sortIcon field="deviceId"></p-sortIcon>
+              </th>
+              <th pSortableColumn="alarmType">
+                <p-sortIcon field="alarmType"></p-sortIcon>Alarm Type
+              </th>
+              <th pSortableColumn="state">
+                <p-sortIcon field="state"></p-sortIcon>State
+              </th>
+              <th pSortableColumn="alarmContent">
+                <p-sortIcon field="alarmContent"></p-sortIcon>Alarm Content
+              </th>
+              <th pSortableColumn="speed">
+                <p-sortIcon field="speed"></p-sortIcon>Speed
+              </th>
+              <th></th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-alarm>
+            <tr>
+              <td>{{ alarm?.time }}</td>
+              <td>{{ alarm?.deviceId }}</td>
+              <td>{{ alarm?.alarmType }}</td>
+              <td>{{ alarm?.state }}</td>
+              <td>{{ alarm?.alarmContent }}</td>
+              <td>{{ alarm?.speed }}</td>
+            </tr>
+          </ng-template>
+
+          <ng-template pTemplate="summary">
+            <div class="p-d-flex p-ai-center p-jc-between">
+              In total there are
+              {{ alarms ? alarms.length : 0 }} Alarms.
+            </div>
+          </ng-template>
+        </p-table>
+      </div>
+    </app-card>
+  </div>
+</div>

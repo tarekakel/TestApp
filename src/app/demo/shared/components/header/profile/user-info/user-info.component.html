@@ -1,0 +1,44 @@
+﻿<div class="container full-width full-height p-t-20 p-b-20 p-r-30 p-l-30 ">
+  <!-- ==================== Page title ====================== -->
+  <div class="row p-t-5 p-b-10" style="padding-top:50px">
+    <div class="col-md-6 profile-title" style="padding-bottom:10px;margin-left: 0;padding-left: 0;">
+      <h1 l10nTranslate><i class="fa fa-user-circle text-custom-primary"></i> Login.UserProfile</h1>
+      
+    </div>
+    <div class="col-md-6">
+      <h2>
+        <a routerLink="/tickets" class="btn btn-custom-primary pull-right" l10nTranslate style="color:white">Common.Back</a>
+      </h2>
+    </div>
+  </div>
+    <div class="row">
+        <div class="box-div">
+            <div class="d-flex flex-column p-t-20 p-b-20">
+                <div class="row">
+                    <div class="col-lg-3 col-sm-12">
+                        <div class="user-profile-img">
+                            <i class="fas fa-user-circle"></i>
+                            <img src="./assets/images/emp.png" height="220" />
+                        </div>
+                    </div>
+                    <div class="col-lg-9 col-sm-12">
+                        <div class="row user-profile-details">
+                            <div class="form-group col-md-12">
+                                <label><b l10nTranslate>User.Name</b><b></b></label>
+                                <label>{{user.fullName}}</label>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <label><b l10nTranslate>User.Email</b><b></b></label>
+                                <label>{{user.email}}</label>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <label><b l10nTranslate>User.MobileNumber</b><b></b></label>
+                                <label>{{user.mobileNumber}}</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

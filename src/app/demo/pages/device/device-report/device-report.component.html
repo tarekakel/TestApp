@@ -1,0 +1,97 @@
+<div class="row btn-page">
+
+    <div class="col-sm-12 btn-page">
+    
+        <app-card [hidHeader]="true" cardClass="card-datatable">         
+          <div class="row align-items-center m-l-0">
+            <div class="col-sm-4"> 
+             
+              <div class="form-group fill">
+                <input
+                type="datetime-local"
+                id="completionDate"
+                [(ngModel)] = "searchCriteria.filters.startDate"
+                placeholder="yyyy-MM-ddTHH:mm:ss"
+                
+                class="form-control"
+                required
+              />
+                <!-- <input type="date" [(ngModel)]="searchCriteria.filters.startDate"  class="form-control" id="from" placeholder="from"> -->
+              </div>       
+             </div>
+             <div class="col-sm-4"> 
+              <div class="form-group fill">
+              <input
+              type="datetime-local"
+              id="completionDate"
+              [(ngModel)] = "searchCriteria.filters.endDate"
+              placeholder="yyyy-MM-ddTHH:mm:ss"
+              
+              class="form-control"
+              required
+            />
+                   </div>
+    
+             </div>
+               
+            <!-- <div class="col-sm-2">     
+             
+                <ng-multiselect-dropdown
+                [placeholder]="'Assets'"
+                [data]="logList"
+                [(ngModel)]="selectedItems"
+                [settings]="dropdownSettings"
+                (onSelect)="onItemSelect($event)"
+                (onSelectAll)="onSelectAll($event)"
+                (onDeSelect) = "onDeSelect($event)"
+                (onDeSelectAll) = "onDeSelectAll($event)"
+                >
+                </ng-multiselect-dropdown>
+              
+            </div> -->
+           
+           
+                        
+            
+            <div class="col-sm-1"> 
+              <button type="button" class="btn btn-primary btn-msg-send" (click) = "searchLogs()"><i class="fas fa-search"></i></button>
+            </div>
+            <div class="col-sm-6 text-right">
+             
+            </div>
+           
+          </div>
+          <div class="table-responsive">
+            <table datatable id="report-table" [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
+              <thead>
+              <tr>
+                <th>NO</th>
+                <th style="width:100px">Car License</th>
+                <th>Date</th>
+                <th>Device Id</th>
+                <th>Status</th>
+                
+              </tr>
+              </thead>
+              <tbody>
+               
+              <tr *ngFor="let item of logList; let i = index" >
+                <td>{{i + 1}}</td>
+                <td>{{item.carLicense}}</td>              
+                <td>{{item.logDate}}</td>
+                <td>{{item.deviceId}}</td>
+                <td><span *ngIf="item.online == true" class="badge badge-success inline-block">Online</span>
+                <span *ngIf="item.online == false" class="badge badge-danger inline-block">offline</span></td>
+               
+              </tr>
+           
+              </tbody>
+             
+            </table>
+          </div>     
+                      
+        </app-card>
+      </div>
+
+
+</div>

@@ -1,0 +1,6 @@
+
+<p-autoComplete ngDefaultControl [(ngModel)]="value" [suggestions]="items" (completeMethod)="searchItems($event)"
+                [dropdown]="true" [field]="textField" [dataKey]="valueField" [forceSelection]="forceSelection"
+                [dropdownMode]="dropdownMode" [emptyMessage]="emptyMessage"
+                [placeholder]="placeholder" [multiple]="multipleSelected"  (blur)="onBlur()"
+                (onSelect)="onSelect($event)"></p-autoComplete>

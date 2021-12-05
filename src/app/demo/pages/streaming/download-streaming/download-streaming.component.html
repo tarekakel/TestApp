@@ -1,0 +1,181 @@
+<div class="row btn-page">
+  <div class="col-sm-12">
+    <app-card cardTitle="Download  Summary" [options]="false">
+      <div class="row">
+        <div class="col-md-3 col-xs-6 border-right">
+          <h3>{{ mediaRequestData?.totalRequests }}</h3>
+          <span class="">Requests</span>
+        </div>
+        <div class="col-md-3 col-xs-6 border-right">
+          <h3>{{ mediaRequestData?.totalFailed }}</h3>
+          <span class="text-danger"> Failed </span>
+        </div>
+        <div class="col-md-3 col-xs-6 border-right">
+          <h3>{{ mediaRequestData?.totalSuccess }}</h3>
+          <span class="text-success">Completed</span>
+        </div>
+        <div class="col-md-3 col-xs-6 border-right">
+          <h3>{{ mediaRequestData?.totalWaiting }}</h3>
+          <span class="text-success">Wainting</span>
+        </div>
+      </div>
+    </app-card>
+  </div>
+  <div class="col-sm-12 btn-page">
+    <app-card [hidHeader]="false" cardClass="card-datatable">
+      <div class="row align-items-center m-l-0">
+        <div class="col-sm-2">
+          <div class="form-group fill">
+            <input
+              type="datetime-local"
+              id="completionDate"
+              placeholder="yyyy-MM-ddTHH:mm:ss"
+              [(ngModel)]="searchCriteria.filters.startDate"
+              class="form-control"
+              required
+            />
+          </div>
+        </div>
+        <div class="col-sm-2">
+          <div class="form-group fill">
+            <input
+              type="datetime-local"
+              id="completionDate"
+              [(ngModel)]="searchCriteria.filters.endDate"
+              placeholder="yyyy-MM-ddTHH:mm:ss"
+              class="form-control"
+              required
+            />
+          </div>
+        </div>
+        <div class="col-sm-2">
+          <ng-multiselect-dropdown
+            [placeholder]="'Group'"
+            [data]="groupList"
+            [(ngModel)]="groupSeletedItems"
+            [settings]="dropdownGroupSettings"
+            (onSelect)="onGroupSelect($event)"
+            (onSelectAll)="onGroupSelectAll($event)"
+            (onDeSelect)="onGroupDeSelect($event)"
+            (onDeSelectAll)="onGroupDeSelectAll($event)"
+          >
+          </ng-multiselect-dropdown>
+        </div>
+
+        <div class="col-sm-2">
+          <ng-multiselect-dropdown
+            [placeholder]="'Assets'"
+            [data]="vehiclesInfo"
+            [(ngModel)]="selectedItems"
+            [settings]="dropdownSettings"
+            (onSelect)="onItemSelect($event)"
+            (onSelectAll)="onSelectAll($event)"
+            (onDeSelect)="onDeSelect($event)"
+            (onDeSelectAll)="onDeSelectAll($event)"
+          >
+          </ng-multiselect-dropdown>
+        </div>
+        <div class="col-sm-3">
+          <button
+            type="button"
+            (click)="AddToDownloadList()"
+            class="btn btn-primary btn-msg-send"
+          >
+            add To downlaods
+          </button>
+        </div>
+        <div class="col-sm-6 text-right"></div>
+      </div>
+      <div class="card">
+        <p-toolbar styleClass="p-mb-4">
+          <ng-template pTemplate="left"> </ng-template>
+          <ng-template pTemplate="right">
+            <p-splitButton
+              (onClick)="save()"
+              label="Export"
+              [model]="items"
+              styleClass="p-button-help p-mb-2"
+            ></p-splitButton>
+          </ng-template>
+        </p-toolbar>
+        <p-table
+          [lazy]="true"
+          (onLazyLoad)="loadDownloadRequestList($event)"
+          responsiveLayout="scroll"
+          #dt
+          [value]="downloadRequestList"
+          [rows]="10"
+          [paginator]="true"
+          [globalFilterFields]="['deviceId', 'state', 'alarmContent']"
+          responsiveLayout="scroll"
+          [(selection)]="selectedItems"
+          [rowHover]="true"
+          dataKey="id"
+          currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+          [showCurrentPageReport]="true"
+          [loading]="loading"
+          [totalRecords]="totalRecords"
+          responsiveLayout="scroll"
+        >
+          <ng-template pTemplate="header">
+            <tr>
+              <th pSortableColumn="taskId">
+                TaskId <p-sortIcon field="taskId"></p-sortIcon>
+              </th>
+              <th pSortableColumn="carLicense">
+                Car License <p-sortIcon field="carLicense"></p-sortIcon>
+              </th>
+              <th pSortableColumn="startTime">
+                <p-sortIcon field="startTime"></p-sortIcon>From Date
+              </th>
+              <th pSortableColumn="endTime">
+                <p-sortIcon field="endTime"></p-sortIcon>To Date
+              </th>
+              <th pSortableColumn="requestDate">
+                <p-sortIcon field="requestDate"></p-sortIcon>Request Date
+              </th>
+              <th pSortableColumn="status">
+                <p-sortIcon field="status"></p-sortIcon>status
+              </th>
+              <th>Options</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-item>
+            <tr>
+              <td>{{ item?.taskId }}</td>
+              <td>{{ item?.carLicense }}</td>
+              <td>{{ item?.startTime }}</td>
+              <td>{{ item?.endTime }}</td>
+              <td>{{ item?.requestDate }}</td>
+
+              <td>
+                <span *ngIf="!item.status"></span>
+                <span *ngIf="item.status">
+                  {{ downloadRequestStatus[item.status] }}</span
+                >
+              </td>
+              <td>
+                <button
+                  type="button"
+                  [disabled]="item.status != 3"
+                  class="btn btn-danger"
+                  data-dismiss="modal"
+                >
+                  <i class="fa fa-download" aria-hidden="true"></i>
+                </button>
+              </td>
+            </tr>
+          </ng-template>
+
+          <ng-template pTemplate="summary">
+            <div class="p-d-flex p-ai-center p-jc-between">
+              In total there are
+              {{ downloadRequestList ? downloadRequestList.length : 0 }}
+              Download Requests.
+            </div>
+          </ng-template>
+        </p-table>
+      </div>
+    </app-card>
+  </div>
+</div>

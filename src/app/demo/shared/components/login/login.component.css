@@ -1,0 +1,42 @@
+.login-div{
+  min-height:100vh;
+}
+  .login-div .logo {
+    display: block;
+    padding: 15px;
+    color: #991c1c;
+    font-size: 38px;
+    text-align: center;
+    font-weight: bold;
+  }
+    .login-div .logo a {
+      color: #e00 !important;
+    }
+  .login-div .copyright {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    color: #ffffff;
+    text-shadow: 1px 1px #000;
+    font-weight: bold;
+    font-size: 17px;
+    background: rgba(0, 0, 0, 0.28);
+  }
+
+form.login-form button[type=submit] {
+  background-color: #e00;
+  border-color: #c22525;
+}
+.login-container form.login-form input {
+  border-color: #8e8e8e;
+  color:#6c6c6c;
+}
+.flx-8{
+  flex:8;
+  position:relative;
+}
+.flx-4{
+  flex:4;
+  position:relative;
+}

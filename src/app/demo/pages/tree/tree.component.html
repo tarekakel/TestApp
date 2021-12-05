@@ -1,0 +1,438 @@
+<div class="row">
+  <div class="col-md-3">
+    <p-tree
+      [value]="files3"
+      selectionMode="checkbox"
+      (onNodeSelect)="nodeSelect($event)"
+      (onNodeUnselect)="nodeUnselect($event)"
+      [(selection)]="selectedFiles2"
+      [filter]="true"
+      scrollHeight="600px"
+    ></p-tree>
+
+    <p-toast></p-toast>
+  </div>
+  <div class="col-md-8" style="border: 0.3rem outset lightcyan">
+    <div class="row">
+      <h3>Live Streaming</h3>
+    </div>
+
+    <div class="row">
+      <div class="col-md-4 nopadding">
+        <div class="embed-responsive embed-responsive-16by9">
+          <video
+            id="videoElement"
+            class="centeredVideo"
+            controls
+            height="100"
+            width="250"
+            autoplay
+          >
+            Your browser is too old which doesn't support HTML5 video.
+          </video>
+        </div>
+        &nbsp;&nbsp;&nbsp;
+        <button
+          type="button"
+          class="btn btn-secondary"
+          (click)="playFront('videoElement')"
+        >
+          Front</button
+        >&nbsp;
+        <button
+          type="button"
+          class="btn btn-secondary"
+          (click)="playBack('videoElement')"
+        >
+          Back</button
+        >&nbsp;
+        <button
+          type="button"
+          class="btn btn-secondary"
+          (click)="playSide('videoElement')"
+        >
+          Side</button
+        >&nbsp;
+        <button
+          type="button"
+          class="btn btn-secondary"
+          (click)="playRear('videoElement')"
+        >
+          Rear
+        </button>
+      </div>
+      <div class="col-md-4 nopadding">
+        <div class="embed-responsive embed-responsive-16by9">
+          <video
+            id="videoElement2"
+            class="centeredVideo"
+            controls
+            height="100"
+            width="250"
+            autoplay
+          >
+            Your browser is too old which doesn't support HTML5 video.
+          </video>
+        </div>
+        &nbsp;&nbsp;&nbsp;
+        <button
+          type="button"
+          class="btn btn-secondary"
+          (click)="playFront('videoElement')"
+        >
+          Front</button
+        >&nbsp;
+        <button
+          type="button"
+          class="btn btn-secondary"
+          (click)="playBack('videoElement')"
+        >
+          Back</button
+        >&nbsp;
+        <button
+          type="button"
+          class="btn btn-secondary"
+          (click)="playSide('videoElement')"
+        >
+          Side</button
+        >&nbsp;
+        <button
+          type="button"
+          class="btn btn-secondary"
+          (click)="playRear('videoElement')"
+        >
+          Rear
+        </button>
+      </div>
+
+      <div class="col-md-4 nopadding">
+        <div class="embed-responsive embed-responsive-16by9">
+          <video
+            id="videoElement3"
+            class="centeredVideo"
+            controls
+            height="100"
+            width="250"
+            autoplay
+          >
+            Your browser is too old which doesn't support HTML5 video.
+          </video>
+        </div>
+        &nbsp;&nbsp;&nbsp;
+        <button
+          type="button"
+          class="btn btn-secondary"
+          (click)="playFront('videoElement')"
+        >
+          Front</button
+        >&nbsp;
+        <button
+          type="button"
+          class="btn btn-secondary"
+          (click)="playBack('videoElement')"
+        >
+          Back</button
+        >&nbsp;
+        <button
+          type="button"
+          class="btn btn-secondary"
+          (click)="playSide('videoElement')"
+        >
+          Side</button
+        >&nbsp;
+        <button
+          type="button"
+          class="btn btn-secondary"
+          (click)="playRear('videoElement')"
+        >
+          Rear
+        </button>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-4 nopadding">
+        <div class="embed-responsive embed-responsive-16by9">
+          <video
+            id="videoElement4"
+            class="centeredVideo"
+            controls
+            height="100"
+            width="250"
+            autoplay
+          >
+            Your browser is too old which doesn't support HTML5 video.
+          </video>
+        </div>
+        &nbsp;&nbsp;&nbsp;
+        <button
+          type="button"
+          class="btn btn-secondary"
+          (click)="playFront('videoElement')"
+        >
+          Front</button
+        >&nbsp;
+        <button
+          type="button"
+          class="btn btn-secondary"
+          (click)="playBack('videoElement')"
+        >
+          Back</button
+        >&nbsp;
+        <button
+          type="button"
+          class="btn btn-secondary"
+          (click)="playSide('videoElement')"
+        >
+          Side</button
+        >&nbsp;
+        <button
+          type="button"
+          class="btn btn-secondary"
+          (click)="playRear('videoElement')"
+        >
+          Rear
+        </button>
+      </div>
+
+      <div class="col-md-4 nopadding">
+        <div class="embed-responsive embed-responsive-16by9">
+          <video
+            id="videoElement5"
+            class="centeredVideo"
+            controls
+            height="100"
+            width="250"
+            autoplay
+          >
+            Your browser is too old which doesn't support HTML5 video.
+          </video>
+        </div>
+        &nbsp;&nbsp;&nbsp;
+        <button
+          type="button"
+          class="btn btn-secondary"
+          (click)="playFront('videoElement')"
+        >
+          Front</button
+        >&nbsp;
+        <button
+          type="button"
+          class="btn btn-secondary"
+          (click)="playBack('videoElement')"
+        >
+          Back</button
+        >&nbsp;
+        <button
+          type="button"
+          class="btn btn-secondary"
+          (click)="playSide('videoElement')"
+        >
+          Side</button
+        >&nbsp;
+        <button
+          type="button"
+          class="btn btn-secondary"
+          (click)="playRear('videoElement')"
+        >
+          Rear
+        </button>
+      </div>
+      <div class="col-md-4 nopadding">
+        <div class="embed-responsive embed-responsive-16by9">
+          <video
+            id="videoElement6"
+            class="centeredVideo"
+            controls
+            height="100"
+            width="250"
+            autoplay
+          >
+            Your browser is too old which doesn't support HTML5 video.
+          </video>
+        </div>
+        &nbsp;&nbsp;&nbsp;
+        <button
+          type="button"
+          class="btn btn-secondary"
+          (click)="playFront('videoElement')"
+        >
+          Front</button
+        >&nbsp;
+        <button
+          type="button"
+          class="btn btn-secondary"
+          (click)="playBack('videoElement')"
+        >
+          Back</button
+        >&nbsp;
+        <button
+          type="button"
+          class="btn btn-secondary"
+          (click)="playSide('videoElement')"
+        >
+          Side</button
+        >&nbsp;
+        <button
+          type="button"
+          class="btn btn-secondary"
+          (click)="playRear('videoElement')"
+        >
+          Rear
+        </button>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-4 nopadding">
+        <div class="embed-responsive embed-responsive-16by9">
+          <video
+            id="videoElement7"
+            class="centeredVideo"
+            controls
+            height="100"
+            width="250"
+            autoplay
+          >
+            Your browser is too old which doesn't support HTML5 video.
+          </video>
+        </div>
+        &nbsp;&nbsp;&nbsp;
+        <button
+          type="button"
+          class="btn btn-secondary"
+          (click)="playFront('videoElement')"
+        >
+          Front</button
+        >&nbsp;
+        <button
+          type="button"
+          class="btn btn-secondary"
+          (click)="playBack('videoElement')"
+        >
+          Back</button
+        >&nbsp;
+        <button
+          type="button"
+          class="btn btn-secondary"
+          (click)="playSide('videoElement')"
+        >
+          Side</button
+        >&nbsp;
+        <button
+          type="button"
+          class="btn btn-secondary"
+          (click)="playRear('videoElement')"
+        >
+          Rear
+        </button>
+      </div>
+      <div class="col-md-4 nopadding">
+        <div class="embed-responsive embed-responsive-16by9">
+          <video
+            id="videoElement8"
+            class="centeredVideo"
+            controls
+            height="100"
+            width="250"
+            autoplay
+          >
+            Your browser is too old which doesn't support HTML5 video.
+          </video>
+        </div>
+        &nbsp;&nbsp;&nbsp;
+        <button
+          type="button"
+          class="btn btn-secondary"
+          (click)="playFront('videoElement')"
+        >
+          Front</button
+        >&nbsp;
+        <button
+          type="button"
+          class="btn btn-secondary"
+          (click)="playBack('videoElement')"
+        >
+          Back</button
+        >&nbsp;
+        <button
+          type="button"
+          class="btn btn-secondary"
+          (click)="playSide('videoElement')"
+        >
+          Side</button
+        >&nbsp;
+        <button
+          type="button"
+          class="btn btn-secondary"
+          (click)="playRear('videoElement')"
+        >
+          Rear
+        </button>
+      </div>
+
+      <div class="col-md-4 nopadding">
+        <div class="embed-responsive embed-responsive-16by9">
+          <video
+            id="videoElement9"
+            class="centeredVideo"
+            controls
+            height="100"
+            width="250"
+            autoplay
+          >
+            Your browser is too old which doesn't support HTML5 video.
+          </video>
+        </div>
+        &nbsp;&nbsp;&nbsp;
+        <button
+          type="button"
+          class="btn btn-secondary"
+          (click)="playFront('videoElement')"
+        >
+          Front</button
+        >&nbsp;
+        <button
+          type="button"
+          class="btn btn-secondary"
+          (click)="playBack('videoElement')"
+        >
+          Back</button
+        >&nbsp;
+        <button
+          type="button"
+          class="btn btn-secondary"
+          (click)="playSide('videoElement')"
+        >
+          Side</button
+        >&nbsp;
+        <button
+          type="button"
+          class="btn btn-secondary"
+          (click)="playRear('videoElement')"
+        >
+          Rear
+        </button>
+      </div>
+    </div>
+
+    <!-- <div class="mainContainer">
+			<video id="videoElement" class="centeredVideo" controls height="100" width="250" autoplay >Your browser is too old which doesn't support HTML5 video.</video>
+			<video id="videoElement2" class="centeredVideo" controls height="100" width="250" autoplay style="height: 200px; width: 320px; margin: 20px; ">Your browser is too old which doesn't support HTML5 video.</video>
+			<video id="videoElement3" class="centeredVideo" controls height="100" width="250" autoplay >Your browser is too old which doesn't support HTML5 video.</video>
+			<video id="videoElement4" class="centeredVideo" controls height="100" width="250" autoplay style="height: 200px; width: 320px; margin: 20px; ">Your browser is too old which doesn't support HTML5 video.</video>
+			<video id="videoElement5" class="centeredVideo" controls height="100" width="250" autoplay >Your browser is too old which doesn't support HTML5 video.</video>
+			<video id="videoElement6" class="centeredVideo" controls height="100" width="250" autoplay style="height: 200px; width: 320px; margin: 20px; ">Your browser is too old which doesn't support HTML5 video.</video>
+		   </div> -->
+  </div>
+</div>
+
+<br />
+<!-- <div class="controls">
+        <button onclick="flv_load()">Load</button>
+        <button onclick="flv_start()">start</button>
+        <button onclick="flv_pause()">suspend</button>
+        <button onclick="flv_destroy()">Stop it</button>
+        <input style="width:100px" type="text" name="seekpoint" />
+        <button onclick="flv_seekto()">Jump</button>
+    </div> -->

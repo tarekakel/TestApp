@@ -1,0 +1,788 @@
+<div class="row" style="margin-top: 50px">
+  <div class="col-sm-6 col-md-3">
+    <app-card
+      [hidHeader]="true"
+      cardClass="support-bar overflow-hidden"
+      blockClass="p-0"
+      [isCardFooter]="true"
+      footerClass="bg-primary text-white"
+    >
+      <div class="p-20 pb-0">
+        <h2 class="m-0">
+          <i class="pi pi-car" style="font-size: 2rem"></i>
+          &nbsp;&nbsp;
+          <span
+            counto
+            [step]="300"
+            [countTo]="vehiclesStats?.total"
+            [countFrom]="0"
+            [duration]="1"
+            (countoChange)="countoChange($event, 0)"
+            (countoEnd)="onCountoEnd()"
+            >{{ counto[0] | number }}</span
+          >
+        </h2>
+        <span class="text-c-blue">Vehicles</span>
+        <p class="mb-3 mt-3">Total number of vehicles.</p>
+      </div>
+      <div class="app-card-footer">
+        <div class="row text-center">
+          <div class="col">
+            <h4 class="m-0 text-white">
+              <span
+                counto
+                [step]="300"
+                [countTo]="vehiclesStats?.moving"
+                [countFrom]="0"
+                [duration]="1"
+                (countoChange)="countoChange($event, 1)"
+                (countoEnd)="onCountoEnd()"
+                >{{ counto[1] | number }}</span
+              >
+            </h4>
+            <span>Moving</span>
+          </div>
+          <div class="col">
+            <h4 class="m-0 text-white">
+              <span
+                counto
+                [step]="300"
+                [countTo]="vehiclesStats?.idle"
+                [countFrom]="0"
+                [duration]="1"
+                (countoChange)="countoChange($event, 2)"
+                (countoEnd)="onCountoEnd()"
+                >{{ counto[2] | number }}</span
+              >
+            </h4>
+            <span>Idle</span>
+          </div>
+          <div class="col">
+            <h4 class="m-0 text-white">
+              <span
+                counto
+                [step]="300"
+                [countTo]="vehiclesStats?.stopped"
+                [countFrom]="0"
+                [duration]="1"
+                (countoChange)="countoChange($event, 3)"
+                (countoEnd)="onCountoEnd()"
+                >{{ counto[3] | number }}</span
+              >
+            </h4>
+            <span>Stopped</span>
+          </div>
+          <div class="col">
+            <h4 class="text-danger">
+              <span
+                counto
+                [step]="300"
+                [countTo]="vehiclesStats?.notReporting"
+                [countFrom]="0"
+                [duration]="1"
+                (countoChange)="countoChange($event, 4)"
+                (countoEnd)="onCountoEnd()"
+                >{{ counto[4] | number }}</span
+              >
+            </h4>
+            <span>Not Reporting</span>
+          </div>
+        </div>
+      </div>
+    </app-card>
+  </div>
+  <div class="col-sm-6 col-md-3">
+    <app-card
+      [hidHeader]="true"
+      cardClass="support-bar overflow-hidden"
+      blockClass="p-0"
+      [isCardFooter]="true"
+      footerClass="bg-primary text-white"
+    >
+      <div class="p-20 pb-0">
+        <h2 class="m-0">
+          <i class="pi pi-car" style="font-size: 2rem"></i>
+          &nbsp;&nbsp;
+          <span
+            counto
+            [step]="300"
+            [countTo]="violationStats?.total"
+            [countFrom]="0"
+            [duration]="1"
+            (countoChange)="countoChange($event, 5)"
+            (countoEnd)="onCountoEnd()"
+            >{{ counto[5] | number }}</span
+          >
+        </h2>
+        <span class="text-c-blue">Violations</span>
+        <p class="mb-3 mt-3">Total number of Violations.</p>
+      </div>
+      <div class="app-card-footer">
+        <div class="row text-center">
+          <div class="col">
+            <h4 class="m-0 text-white">
+              <span
+                counto
+                [step]="300"
+                [countTo]="violationStats?.totalProcessed"
+                [countFrom]="0"
+                [duration]="1"
+                (countoChange)="countoChange($event, 6)"
+                (countoEnd)="onCountoEnd()"
+                >{{ counto[6] | number }}</span
+              >
+            </h4>
+            <span>Total Processed</span>
+          </div>
+          <div class="col">
+            <h4 class="m-0 text-white">
+              <span
+                counto
+                [step]="300"
+                [countTo]="violationStats?.totalValidate"
+                [countFrom]="0"
+                [duration]="1"
+                (countoChange)="countoChange($event, 7)"
+                (countoEnd)="onCountoEnd()"
+                >{{ counto[7] | number }}</span
+              >
+            </h4>
+            <span>Total Validate</span>
+          </div>
+          <div class="col">
+            <h4 class="m-0 text-white">
+              <span
+                counto
+                [step]="300"
+                [countTo]="violationStats?.stopArm"
+                [countFrom]="0"
+                [duration]="1"
+                (countoChange)="countoChange($event, 8)"
+                (countoEnd)="onCountoEnd()"
+                >{{ counto[8] | number }}</span
+              >
+            </h4>
+            <span>Stop Arm</span>
+          </div>
+          <div class="col">
+            <h4 class="text-danger">
+              <span
+                counto
+                [step]="300"
+                [countTo]="violationStats?.safeZone"
+                [countFrom]="0"
+                [duration]="1"
+                (countoChange)="countoChange($event, 9)"
+                (countoEnd)="onCountoEnd()"
+                >{{ counto[9] | number }}</span
+              >
+            </h4>
+            <span>Safe Zone</span>
+          </div>
+        </div>
+      </div>
+    </app-card>
+  </div>
+  <div class="col-sm-6 col-md-3">
+    <app-card
+      [hidHeader]="true"
+      cardClass="support-bar overflow-hidden"
+      blockClass="p-0"
+      [isCardFooter]="true"
+      footerClass="bg-primary text-white"
+    >
+      <div class="p-20 pb-0">
+        <h2 class="m-0">
+          <i class="pi pi-car" style="font-size: 2rem"></i>
+          &nbsp;&nbsp;
+          <span
+            counto
+            [step]="300"
+            [countTo]="alarmsStats?.total"
+            [countFrom]="0"
+            [duration]="1"
+            (countoChange)="countoChange($event, 10)"
+            (countoEnd)="onCountoEnd()"
+            >{{ counto[10] | number }}</span
+          >
+        </h2>
+        <span class="text-c-blue">Alrams</span>
+        <p class="mb-3 mt-3">Total number of Alrams.</p>
+      </div>
+      <div class="app-card-footer">
+        <div class="row text-center">
+          <div class="col">
+            <h4 class="m-0 text-white">
+              <span
+                counto
+                [step]="300"
+                [countTo]="alarmsStats?.cameraCover"
+                [countFrom]="0"
+                [duration]="1"
+                (countoChange)="countoChange($event, 11)"
+                (countoEnd)="onCountoEnd()"
+                >{{ counto[11] | number }}</span
+              >
+            </h4>
+            <span>Camera Cover</span>
+          </div>
+          <div class="col">
+            <h4 class="m-0 text-white">
+              <span
+                counto
+                [step]="300"
+                [countTo]="alarmsStats?.videoLoss"
+                [countFrom]="0"
+                [duration]="1"
+                (countoChange)="countoChange($event, 12)"
+                (countoEnd)="onCountoEnd()"
+                >{{ counto[12] | number }}</span
+              >
+            </h4>
+            <span>Video Loss</span>
+          </div>
+          <div class="col">
+            <h4 class="m-0 text-white">
+              <span
+                counto
+                [step]="300"
+                [countTo]="alarmsStats?.storageException"
+                [countFrom]="0"
+                [duration]="1"
+                (countoChange)="countoChange($event, 13)"
+                (countoEnd)="onCountoEnd()"
+                >{{ counto[13] | number }}</span
+              >
+            </h4>
+            <span>Storage Exception</span>
+          </div>
+          <div class="col">
+            <h4 class="text-danger">
+              <span
+                counto
+                [step]="300"
+                [countTo]="alarmsStats?.abnormalBootUp"
+                [countFrom]="0"
+                [duration]="1"
+                (countoChange)="countoChange($event, 14)"
+                (countoEnd)="onCountoEnd()"
+                >{{ counto[14] | number }}</span
+              >
+            </h4>
+            <span>Abnormal BootUp</span>
+          </div>
+        </div>
+      </div>
+    </app-card>
+  </div>
+  <div class="col-sm-6 col-md-3">
+    <app-card
+      [hidHeader]="true"
+      cardClass="support-bar overflow-hidden"
+      blockClass="p-0"
+      [isCardFooter]="true"
+      footerClass="bg-primary text-white"
+    >
+      <div class="p-20 pb-0">
+        <h2 class="m-0">
+          <i class="pi pi-car" style="font-size: 2rem"></i>
+          &nbsp;&nbsp;
+          <span
+            counto
+            [step]="300"
+            [countTo]="deviceStats?.total"
+            [countFrom]="0"
+            [duration]="1"
+            (countoChange)="countoChange($event, 15)"
+            (countoEnd)="onCountoEnd()"
+            >{{ counto[15] | number }}</span
+          >
+        </h2>
+        <span class="text-c-blue">Devices</span>
+        <p class="mb-3 mt-3">Total number of Devices.</p>
+      </div>
+      <div class="app-card-footer">
+        <div class="row text-center">
+          <div class="col">
+            <h4 class="m-0 text-white">
+              <span
+                counto
+                [step]="300"
+                [countTo]="deviceStats?.totalOnline"
+                [countFrom]="0"
+                [duration]="1"
+                (countoChange)="countoChange($event, 16)"
+                (countoEnd)="onCountoEnd()"
+                >{{ counto[16] | number }}</span
+              >
+            </h4>
+            <span>Online</span>
+          </div>
+          <div class="col">
+            <h4 class="m-0 text-white">
+              <span
+                counto
+                [step]="300"
+                [countTo]="deviceStats?.totalOffline"
+                [countFrom]="0"
+                [duration]="1"
+                (countoChange)="countoChange($event, 17)"
+                (countoEnd)="onCountoEnd()"
+                >{{ counto[17] | number }}</span
+              >
+            </h4>
+            <span>Offline</span>
+          </div>
+        </div>
+      </div>
+    </app-card>
+  </div>
+</div>
+<div>
+  <!-- [view]="view"
+  [scheme]="colorScheme"
+  [legend]="legend"
+  [showXAxisLabel]="showXAxisLabel"
+  [showYAxisLabel]="showYAxisLabel"
+  [xAxis]="xAxis"
+  [yAxis]="yAxis"
+  [xAxisLabel]="xAxisLabel"
+  [yAxisLabel]="yAxisLabel"
+  [timeline]="timeline"
+  [results]="multi"
+  (select)="onSelect($event)"
+  (activate)="onActivate($event)"
+  (deactivate)="onDeactivate($event)" -->
+</div>
+
+<!-- <div class="col-sm-6 col-md-3">
+        <app-card [hidHeader]="true">
+          <div class="row">
+            <div class="col-auto">
+              <h6>Devices</h6>
+            </div>
+            <div class="col text-right">
+              <h2 class="mb-0">{{ piedata?.totalDeviceCount }}</h2>
+            </div>
+          </div>
+          <div class="row mt-4">
+            <div class="col">
+              <h3 class="m-0">
+                <i class="fas fa-circle text-success f-10 m-r-5"></i
+                >{{ piedata?.onlineDeviceCount }}
+              </h3>
+              <span class="ml-3">Online<br /></span>
+            </div>
+            <div class="col">
+              <h3 class="m-0">
+                <i class="fas fa-circle text-primary f-10 m-r-5"></i
+                >{{ piedata?.offlineDeviceCount }}
+              </h3>
+              <span class="ml-3">Offline<br /></span>
+            </div>
+            <div class="col">
+              <h3 class="m-0">
+                <i class="fas fa-circle text-danger f-10 m-r-5"></i
+                >{{ piedata?.offlineDeviceCount }}
+              </h3>
+              <span class="ml-3">Not Reporting<br /></span>
+            </div>
+          </div>
+          <div class="progressbar-stack mt-4">
+            <div
+              *ngFor="let bar of deviceProgressBar"
+              [ngStyle]="{ width: bar.value + '%' }"
+              class="float-left"
+            >
+              <ngb-progressbar
+                [type]="bar.type"
+                height="8px"
+                [value]="100"
+              ></ngb-progressbar>
+            </div>
+          </div>
+        </app-card>
+      </div> -->
+
+<!-- <div class="col-sm-6 col-md-3">
+        <app-card
+          [hidHeader]="true"
+          cardClass="support-bar overflow-hidden"
+          blockClass="p-0"
+          [isCardFooter]="true"
+          footerClass="bg-success text-white"
+        >
+          <div class="p-20 pb-0">
+            <h2 class="m-0">{{ piedata?.violationCount }}</h2>
+            <span class="text-c-green">Violations</span>
+            <p class="mb-3 mt-3">Total number of violations.</p>
+          </div>
+          <div class="app-card-footer">
+            <div class="row text-center">
+              <div class="col">
+                <h4 class="m-0 text-white">
+                  {{ piedata?.processedViolationCount }}
+                </h4>
+                <span>Processed</span>
+              </div>
+              <div class="col">
+                <h4 class="m-0 text-white">
+                  {{ piedata?.unProcessedViolationCount }}
+                </h4>
+                <span>Unprocessed</span>
+              </div>
+              <div class="col">
+                <h4 class="m-0 text-white">
+                  {{ piedata?.validatedViolationCount }}
+                </h4>
+                <span>Validated</span>
+              </div>
+            </div>
+          </div>
+        </app-card>
+        <app-card [hidHeader]="true">
+          <div class="row">
+            <div class="col-auto">
+              <h6>Users</h6>
+            </div>
+            <div class="col text-right">
+              <h2 class="mb-0">1042</h2>
+            </div>
+          </div>
+          <div class="row mt-4">
+            <div class="col">
+              <h3 class="m-0">
+                <i class="fas fa-circle text-success f-10 m-r-5"></i>66%
+              </h3>
+              <span class="ml-3">Active</span>
+            </div>
+            <div class="col">
+              <h3 class="m-0">
+                <i class="fas fa-circle text-primary f-10 m-r-5"></i>26%
+              </h3>
+              <span class="ml-3">Online</span>
+            </div>
+            <div class="col">
+              <h3 class="m-0">
+                <i class="fas fa-circle text-danger f-10 m-r-5"></i>8%
+              </h3>
+              <span class="ml-3">Inactive</span>
+            </div>
+          </div>
+          <div class="progressbar-stack mt-4">
+            <div
+              *ngFor="let bar of userProgressBar"
+              [ngStyle]="{ width: bar.value + '%' }"
+              class="float-left"
+            >
+              <ngb-progressbar
+                [type]="bar.type"
+                height="8px"
+                [value]="100"
+              ></ngb-progressbar>
+            </div>
+          </div>
+        </app-card>
+      </div>
+      <div class="col-sm-6 col-md-3">
+        <app-card
+          [hidHeader]="true"
+          cardClass="support-bar overflow-hidden"
+          blockClass="p-0"
+          [isCardFooter]="true"
+          footerClass="bg-success text-white"
+        >
+          <div class="p-20 pb-0">
+            <h2 class="m-0">{{ piedata?.alarms[0] }}</h2>
+            <span class="text-c-green">Alarms</span>
+            <p class="mb-3 mt-3">Total number of alarms.</p>
+          </div>
+          <div class="app-card-footer">
+            <div class="row text-center">
+              <div class="col">
+                <h4 class="m-0 text-white">{{ piedata?.alarms[1] }}</h4>
+                <span>Video Loss</span>
+              </div>
+              <div class="col">
+                <h4 class="m-0 text-white">{{ piedata?.alarms[2] }}</h4>
+                <span>Camera Covered</span>
+              </div>
+              <div class="col">
+                <h4 class="m-0 text-white">{{ piedata?.alarms[3] }}</h4>
+                <span>Storage Exception</span>
+              </div>
+              <div class="col">
+                <h4 class="m-0 text-white">{{ piedata?.alarms[4] }}</h4>
+                <span>Abnormal Boot Up</span>
+              </div>
+            </div>
+          </div>
+        </app-card>
+      </div>
+      <div class="col-sm-6 col-md-3">
+        <app-card [hidHeader]="true">
+          <div class="row">
+            <div class="col-auto">
+              <h6>Users</h6>
+            </div>
+            <div class="col text-right">
+              <h2 class="mb-0">1042</h2>
+            </div>
+          </div>
+          <div class="row mt-4">
+            <div class="col">
+              <h3 class="m-0">
+                <i class="fas fa-circle text-success f-10 m-r-5"></i>66%
+              </h3>
+              <span class="ml-3">Active</span>
+            </div>
+            <div class="col">
+              <h3 class="m-0">
+                <i class="fas fa-circle text-primary f-10 m-r-5"></i>26%
+              </h3>
+              <span class="ml-3">Online</span>
+            </div>
+            <div class="col">
+              <h3 class="m-0">
+                <i class="fas fa-circle text-danger f-10 m-r-5"></i>8%
+              </h3>
+              <span class="ml-3">Inactive</span>
+            </div>
+          </div>
+          <div class="progressbar-stack mt-4">
+            <div
+              *ngFor="let bar of userProgressBar"
+              [ngStyle]="{ width: bar.value + '%' }"
+              class="float-left"
+            >
+              <ngb-progressbar
+                [type]="bar.type"
+                height="8px"
+                [value]="100"
+              ></ngb-progressbar>
+            </div>
+          </div>
+        </app-card>
+      </div>
+    </div>
+  </div> -->
+
+<!-- <div class="col-xl-5 col-sm-12">
+    <div class="row">
+      <div class="col-md-6">
+        <app-card
+          [hidHeader]="true"
+          [isCardFooter]="true"
+          footerClass="bg-c-yellow"
+        >
+          <div class="row align-items-center">
+            <div class="col-8">
+              <h4 class="text-c-yellow">30200</h4>
+              <h6 class="text-muted m-b-0">Total Trips</h6>
+            </div>
+            <div class="col-4 text-right">
+              <i class="feather icon-bar-chart-2 f-28"></i>
+            </div>
+          </div>
+          <div class="app-card-footer">
+            <div class="row align-items-center">
+              <div class="col-9">
+                <p class="text-white m-b-0">% change</p>
+              </div>
+              <div class="col-3 text-right">
+                <i class="feather icon-trending-up text-white f-16"></i>
+              </div>
+            </div>
+          </div>
+        </app-card>
+      </div>
+      <div class="col-md-6">
+        <app-card
+          [hidHeader]="true"
+          [isCardFooter]="true"
+          footerClass="bg-c-green"
+        >
+          <div class="row align-items-center">
+            <div class="col-8">
+              <h4 class="text-c-green">290+</h4>
+              <h6 class="text-muted m-b-0">Total Violations</h6>
+            </div>
+            <div class="col-4 text-right">
+              <i class="feather icon-file-text f-28"></i>
+            </div>
+          </div>
+          <div class="app-card-footer">
+            <div class="row align-items-center">
+              <div class="col-9">
+                <p class="text-white m-b-0">% change</p>
+              </div>
+              <div class="col-3 text-right">
+                <i class="feather icon-trending-up text-white f-16"></i>
+              </div>
+            </div>
+          </div>
+        </app-card>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <app-card
+          [hidHeader]="true"
+          [isCardFooter]="true"
+          footerClass="bg-c-red"
+        >
+          <div class="row align-items-center">
+            <div class="col-8">
+              <h4 class="text-c-red">5</h4>
+              <h6 class="text-muted m-b-0">Critical Drivers</h6>
+            </div>
+            <div class="col-4 text-right">
+              <i class="feather icon-calendar f-28"></i>
+            </div>
+          </div>
+          <div class="app-card-footer">
+            <div class="row align-items-center">
+              <div class="col-9">
+                <p class="text-white m-b-0">% change</p>
+              </div>
+              <div class="col-3 text-right">
+                <i class="feather icon-trending-down text-white f-16"></i>
+              </div>
+            </div>
+          </div>
+        </app-card>
+      </div>
+      <div class="col-md-6">
+        <app-card
+          [hidHeader]="true"
+          [isCardFooter]="true"
+          footerClass="bg-c-blue"
+        >
+          <div class="row align-items-center">
+            <div class="col-8">
+              <h4 class="text-c-blue">10</h4>
+              <h6 class="text-muted m-b-0">Critical Vehicles</h6>
+            </div>
+            <div class="col-4 text-right">
+              <i class="feather icon-thumbs-down f-28"></i>
+            </div>
+          </div>
+          <div class="app-card-footer">
+            <div class="row align-items-center">
+              <div class="col-9">
+                <p class="text-white m-b-0">% change</p>
+              </div>
+              <div class="col-3 text-right">
+                <i class="feather icon-trending-down text-white f-16"></i>
+              </div>
+            </div>
+          </div>
+        </app-card>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <app-card
+          [hidHeader]="true"
+          [isCardFooter]="true"
+          footerClass="bg-c-red"
+        >
+          <div class="row align-items-center">
+            <div class="col-8">
+              <h4 class="text-c-red">5</h4>
+              <h6 class="text-muted m-b-0">Out of Geofence</h6>
+            </div>
+            <div class="col-4 text-right">
+              <i class="feather icon-calendar f-28"></i>
+            </div>
+          </div>
+          <div class="app-card-footer">
+            <div class="row align-items-center">
+              <div class="col-9">
+                <p class="text-white m-b-0">% change</p>
+              </div>
+              <div class="col-3 text-right">
+                <i class="feather icon-trending-down text-white f-16"></i>
+              </div>
+            </div>
+          </div>
+        </app-card>
+      </div>
+      <div class="col-md-6">
+        <app-card
+          [hidHeader]="true"
+          [isCardFooter]="true"
+          footerClass="bg-c-blue"
+        >
+          <div class="row align-items-center">
+            <div class="col-8">
+              <h4 class="text-c-blue">10</h4>
+              <h6 class="text-muted m-b-0">Unknown Drivers</h6>
+            </div>
+            <div class="col-4 text-right">
+              <i class="feather icon-thumbs-down f-28"></i>
+            </div>
+          </div>
+          <div class="app-card-footer">
+            <div class="row align-items-center">
+              <div class="col-9">
+                <p class="text-white m-b-0">% change</p>
+              </div>
+              <div class="col-3 text-right">
+                <i class="feather icon-trending-down text-white f-16"></i>
+              </div>
+            </div>
+          </div>
+        </app-card>
+      </div>
+    </div>
+  </div> -->
+<!-- site Analytics card end -->
+<!-- <div class="col-sm-12">
+    <owl-carousel-o [options]="customOptions">
+      <ng-template carouselSlide>
+        <app-card [hidHeader]="true" cardClass="bg-dark rounded-0 shadow-none" blockClass="d-flex justify-content-between align-items-center">
+          <span class="text-white d-flex justify-content-center align-items-center"><i class="fab fa-ethereum text-c-red f-22 m-r-5"></i>Fatigue</span>
+          <h6 class="badge badge-light-danger float-right d-inline-block m-0">10</h6>
+        </app-card>
+      </ng-template>
+      <ng-template carouselSlide>
+        <app-card [hidHeader]="true" cardClass="bg-dark rounded-0 shadow-none" blockClass="d-flex justify-content-between align-items-center">
+          <span class="text-white d-flex justify-content-center align-items-center"><i class="fab fa-bitcoin text-c-yellow f-22 m-r-5"></i>Distraction</span>
+          <h6 class="badge badge-light-warning float-right d-inline-block m-0">23</h6>
+        </app-card>
+      </ng-template>
+      <ng-template carouselSlide>
+        <app-card [hidHeader]="true" cardClass="bg-dark rounded-0 shadow-none" blockClass="d-flex justify-content-between align-items-center">
+          <span class="text-white d-flex justify-content-center align-items-center"><i class="fab fa-cloudsmith text-c-blue f-22 m-r-5"></i>Harsh Brake</span>
+          <h6 class="badge badge-light-primary float-rightd-inline-block m-0">5</h6>
+        </app-card>
+      </ng-template>
+      <ng-template carouselSlide>
+        <app-card [hidHeader]="true" cardClass="bg-dark rounded-0 shadow-none" blockClass="d-flex justify-content-between align-items-center">
+          <span class="text-white d-flex justify-content-center align-items-center"><i class="fab fa-asymmetrik text-c-yellow f-22 m-r-5"></i>Harsh Acceleration</span>
+          <h6 class="badge badge-light-warning float-right d-inline-block m-0">2</h6>
+        </app-card>
+      </ng-template>
+      <ng-template carouselSlide>
+        <app-card [hidHeader]="true" cardClass="bg-dark rounded-0 shadow-none" blockClass="d-flex justify-content-between align-items-center">
+          <span class="text-white d-flex justify-content-center align-items-center"><i class="fab fa-ethereum text-c-red f-22 m-r-5"></i>Smoking</span>
+          <h6 class="badge badge-light-danger float-right d-inline-block m-0">15</h6>
+        </app-card>
+      </ng-template>
+      <ng-template carouselSlide>
+        <app-card [hidHeader]="true" cardClass="bg-dark rounded-0 shadow-none" blockClass="d-flex justify-content-between align-items-center">
+          <span class="text-white d-flex justify-content-center align-items-center"><i class="fab fa-bitcoin text-c-yellow f-22 m-r-5"></i>Seat Belt</span>
+          <h6 class="badge badge-light-warning float-right d-inline-block m-0">2</h6>
+        </app-card>
+      </ng-template>
+      <ng-template carouselSlide>
+        <app-card [hidHeader]="true" cardClass="bg-dark rounded-0 shadow-none" blockClass="d-flex justify-content-between align-items-center">
+          <span class="text-white d-flex justify-content-center align-items-center"><i class="fab fa-cloudsmith text-c-blue f-22 m-r-5"></i>Pnone Use</span>
+          <h6 class="badge badge-light-primary float-right d-inline-block m-0">12</h6>
+        </app-card>
+      </ng-template>
+
+    </owl-carousel-o>
+  </div> -->
+<!-- project and team member start -->

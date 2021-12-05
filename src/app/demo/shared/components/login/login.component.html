@@ -1,0 +1,119 @@
+<div class="bg-white login-div">
+
+  <div class="login-container">
+    <div class="login-container-child">
+      <div class="row">
+        <div class="flx-4">
+          <nav role="navigation" class="navbar-collapse">
+            <div class="logo text-center">
+              <a routerLink="/login">
+                <img src="./assets/images/login/adp_logo_en.png" style="margin:0px;margin-left: 20px;">
+                </a>
+            </div>
+          </nav>
+          <form name="form" (ngSubmit)="f.form.valid && login(f)" #f="ngForm" class="login-form" novalidate>
+            <div class="form-group form-group-default">
+              <label for="username" l10nTranslate>Login.UserName</label>
+              <input type="text" class="form-control" name="usernameLogin" [(ngModel)]="username" #usernameLogin="ngModel" required />
+            </div>
+            <div *ngIf="!username && f.submitted && !usernameLogin.valid" class="alert alert-danger help-block" l10nTranslate>Login.UserNameIsRequired</div>
+            <div *ngIf="!usernameLogin.valid && usernameLogin.errors.pattern" class="alert alert-danger help-block" l10nTranslate>Login.UserNameInvalid</div>
+            <div class="form-group form-group-default">
+              <label l10nTranslate>Login.Password</label>
+              <input type="password" class="form-control" name="password" [(ngModel)]="password" #passwordLogin="ngModel" required />
+            </div>
+            <div *ngIf="f.submitted && !passwordLogin.valid" class="alert alert-danger help-block" l10nTranslate>Login.PasswordIsRequired</div>
+            <div class="form-group">
+              <button class="btn btn-primary m-t-10 pull-right" type="submit" l10nTranslate>Login.LoginUser</button>
+              <a  (click)="showDialog()" class="btn btn-link btn_forget" l10nTranslate>Common.ForgetPassword</a>
+
+              <div class="clearfix"></div>
+            </div>
+          </form>
+
+        </div>
+        <div class="flx-8 loginRightBlock" [ngStyle]="{'background': background}">
+
+
+
+
+          <p class="small no-margin sm-pull-reset text-center copyright" >
+            <span class="hint-text">Copyright &copy; {{ year | l10nDate:defaultLocale:options }}  </span>
+            <!-- <span class="font-montserrat" l10nTranslate>Footer.TahalufUAE</span>. -->
+            <span class="hint-text">All rights reseved</span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<p-dialog [(visible)]="display" [modal]="true" [responsive]="true" [height]="500" [width]="500" [minWidth]="200" [minY]="70">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <div class="text-center">
+              <h3><i class="fa fa-lock fa-4x"></i></h3>
+              <h2 class="text-center" l10nTranslate>ForgetPassword.ForgetPassword</h2>
+              <p l10nTranslate>ForgetPassword.PopupMsg</p>
+              <div class="panel-body">
+                <form class="form">
+                  <fieldset>
+                    <div class="form-group">
+                      <div class="input-group forgot-password-form">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-envelope color-blue"></i></span>
+                        <input type="text" class="form-control"
+                               [(ngModel)]="objUser.email"
+                               name="Email"
+                               placeholder="{{'ForgetPassword.EmailAddress' | translate:lang}}"
+                               #Email="ngModel"
+                               (blur)="checkUserExist(!(Email.errors && Email.errors.pattern)?true:false)"
+                               required
+                               pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$">
+                        <div *ngIf="Email.errors && Email.errors.pattern" class="text-danger field-error-msg">
+                          <small l10nTranslate>ForgetPassword.EmailInvalid</small>
+                        </div>
+                        <div *ngIf="!userExist && isEmailChecked && !(Email.errors && Email.errors.pattern)" class="text-danger field-error-msg">
+                          <small l10nTranslate>ForgetPassword.EmailNotFound</small>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <input [disabled]="!userExist || (Email.errors && Email.errors.pattern)" class="btn btn-lg btn-primary btn-block"
+                             (click)="sendConfirmationEmail()"
+                             value="{{'ForgetPassword.SendLink' | translate:lang}}" type="button">
+                    </div>
+                  </fieldset>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</p-dialog>
+
+<p-dialog [(visible)]="isLinkSent" (onHide)="closeDialog()" [modal]="true" [responsive]="true" [height]="350" [width]="800" [minWidth]="200" [minY]="70">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <div class="text-center">
+              <h3><i style="color:#51c639" class="fa fa-check fa-4x"></i></h3>
+              <div class="panel-body">
+                <div class="linkInfo-forget-password">
+                  <strong class="lbl-InfoLink-forget-password" l10nTranslate>
+                    ForgetPassword.linkIsSentSuccessfully
+                  </strong>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</p-dialog>

@@ -3,7 +3,11 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  apiUrl: 'http://localhost/Raqeeb.Apis/api',
+  serverUrl: 'http://localhost/Raqeeb.Apis/api',
+  // apiUrl: 'http://dispatch.rtaraqeeb.com/Raqeeb.Apis/api',
+  // serverUrl:'http://dispatch.rtaraqeeb.com/Raqeeb.Apis/api'
 };
 
 /*

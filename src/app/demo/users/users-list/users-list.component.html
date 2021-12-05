@@ -1,0 +1,351 @@
+<div class="row btn-page">
+  <div class="col-sm-12">
+    <app-card cardTitle="Users Summary" [options]="false">
+      <div class="row">
+        <div class="col-md-2 col-xs-6 border-right">
+          <h3>{{ userList?.length }}</h3>
+          <span class="">Total Users</span>
+        </div>
+        <div class="col-md-2 col-xs-6 border-right">
+          <h3>{{ usersInfo?.activeUsers }}</h3>
+          <span class="text-success">Active Users</span>
+        </div>
+        <!-- <div class="col-md-2 col-xs-6 border-right">
+          <h3>{{ usersInfo?.inactiveUsers }}</h3>
+          <span class="text-danger">Inactive Users</span>
+        </div>
+        <div class="col-md-2 col-xs-6 border-right">
+          <h3>12</h3>
+          <span class="text-info">Active Contacts</span>
+        </div>
+        <div class="col-md-2 col-xs-6 border-right">
+          <h3>{{ usersInfo.activeContacts }}</h3>
+          <span class="text-danger">Inactive Contacts</span>
+        </div>
+        <div class="col-md-2 col-xs-6">
+          <h3>{{ usersInfo.contactsLoggedInToday }}</h3>
+          <span class="text-primary">Contacts Logged In Today</span>
+        </div> -->
+      </div>
+    </app-card>
+  </div>
+  <div class="col-sm-12 btn-page">
+    <app-card [hidHeader]="true" cardClass="card-datatable">
+      <app-ui-modal #modalCustomer [dialogClass]="'modal-xl'">
+        <div class="app-modal-header">
+          <h5 class="modal-title">New USER</h5>
+          <button
+            type="button"
+            #closeAddUserModal
+            class="close basic-close"
+            data-dismiss="modal"
+            aria-label="Close"
+            (click)="modalCustomer.hide()"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="app-modal-body">
+          <app-card cardTitle="USER REGISTRATION" [options]="false">
+            <aw-wizard #wizard class="arc-wizard" navBarLocation="left">
+              <aw-wizard-step stepTitle="Profile">
+                <div class="row">
+                  <div class="col-sm-12">
+                    <h5>
+                      User Info<small class="text-danger"
+                        >(* All fields are mandatory)</small
+                      >
+                    </h5>
+                    <hr />
+                    <div class="row">
+                      <div class="col-sm-6">
+                        <div class="form-group">
+                          <input
+                            type="text"
+                            class="form-control"
+                            [(ngModel)]="newUser.userName"
+                            #license="ngModel"
+                            id="Name"
+                            placeholder="Name"
+                          />
+                        </div>
+                      </div>
+                      <div class="col-sm-6">
+                        <div class="form-group fill">
+                          <input
+                            type="email"
+                            pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+                            [(ngModel)]="newUser.email"
+                            #email="ngModel"
+                            class="form-control"
+                            id="Email"
+                            placeholder="Email"
+                          />
+                        </div>
+                      </div>
+                      <div class="col-sm-6">
+                        <div class="form-group">
+                          <input
+                            type="text"
+                            class="form-control"
+                            [(ngModel)]="newUser.mobileNumber"
+                            #license="ngModel"
+                            id="Phone"
+                            placeholder="Phone"
+                          />
+                        </div>
+                      </div>
+
+                      <div class="col-sm-6">
+                        <div class="form-group">
+                          <select
+                            class="form-control"
+                            [(ngModel)]="newUser.groupId"
+                          >
+                            <option
+                              [ngValue]="k.groupId"
+                              *ngFor="let k of groupList"
+                            >
+                              {{ k.groupName }}
+                            </option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="col-sm-6">
+                        <div class="form-group">
+                          <select
+                            class="form-control"
+                            [(ngModel)]="newUser.roleId"
+                          >
+                            <option
+                              [ngValue]="k.id"
+                              *ngFor="let k of rolesType"
+                            >
+                              {{ k.role }}
+                            </option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-12 centered-content">
+                    <div class="btn-group mt-10">
+                      <button
+                        type="button"
+                        class="btn btn-primary btn-sm"
+                        awNextStep
+                      >
+                        Continue
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </aw-wizard-step>
+
+              <aw-wizard-step stepTitle="Finished">
+                <h5>User Access</h5>
+                <hr />
+
+                <div class="container">
+                  <div class="row">
+                    <div class="col">
+                      <div
+                        col-sm-4
+                        *ngFor="let panel of panels; let i = index"
+                        class="form-check"
+                      >
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          [id]="panel.Id"
+                          (change)="PanelChanged(i, $event)"
+                          [(ngModel)]="panel.checked"
+                        /><label [for]="panel.Id"
+                          ><strong style="margin: 20px">{{
+                            panel.Name
+                          }}</strong></label
+                        >
+                        <div *ngFor="let test of panel.Tests" class="tests">
+                          <input
+                            type="checkbox"
+                            [id]="test.Id"
+                            [(ngModel)]="test.checked"
+                          /><label [for]="test.Id">{{ test.Name }}</label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col">
+                      <div
+                        col-sm-4
+                        *ngFor="let spanel of secondpanels; let i = index"
+                      >
+                        <input
+                          type="checkbox"
+                          [id]="spanel.Id"
+                          (change)="SecondaryPanelChanged(i, $event)"
+                          [(ngModel)]="spanel.checked"
+                        /><label [for]="spanel.Id"
+                          ><strong style="margin: 20px">{{
+                            spanel.Name
+                          }}</strong></label
+                        >
+                        <div *ngFor="let stest of spanel.Tests" class="tests">
+                          <input
+                            type="checkbox"
+                            [id]="stest.Id"
+                            [(ngModel)]="stest.checked"
+                          /><label [for]="stest.Id">{{ stest.Name }}</label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-sm-12 centered-content">
+                  <div class="btn-group mt-10">
+                    <button
+                      type="button"
+                      class="btn btn-secondary btn-sm"
+                      awPreviousStep
+                    >
+                      Back
+                    </button>
+                    <button
+                      type="button"
+                      class="btn btn-success btn-sm"
+                      (click)="onSubmit()"
+                      awResetWizard
+                    >
+                      Finished
+                    </button>
+                  </div>
+                </div>
+              </aw-wizard-step>
+            </aw-wizard>
+          </app-card>
+        </div>
+      </app-ui-modal>
+
+      <div class="card">
+        <p-toolbar styleClass="p-mb-4">
+          <ng-template pTemplate="left">
+            <button
+              pButton
+              pRipple
+              label="New"
+              icon="pi pi-plus"
+              class="p-button-success p-mr-2"
+              (click)="modalCustomer.show()"
+            ></button>
+          </ng-template>
+          <ng-template pTemplate="right">
+            <p-splitButton
+              (onClick)="save()"
+              label="Export"
+              [model]="items"
+              styleClass="p-button-help p-mb-2"
+            ></p-splitButton>
+          </ng-template>
+        </p-toolbar>
+        <p-table
+          responsiveLayout="scroll"
+          #dt
+          [value]="userList"
+          [rows]="10"
+          [paginator]="true"
+          editMode="row"
+          [globalFilterFields]="[
+            'arabicName',
+            'email',
+            'englishName',
+            'mobileNumber',
+            'roleName',
+            'userName',
+            'groupName'
+          ]"
+          responsiveLayout="scroll"
+          [rowHover]="true"
+          dataKey="id"
+          currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+          [showCurrentPageReport]="true"
+          [loading]="loading"
+          [totalRecords]="userList?.length"
+          responsiveLayout="scroll"
+        >
+          <ng-template pTemplate="caption">
+            <div class="p-d-flex p-ai-center p-jc-between">
+              <h5 class="p-m-0">Manage Users</h5>
+              <span class="p-input-icon-left">
+                <i class="pi pi-search"></i>
+                <input
+                  pInputText
+                  type="text"
+                  (input)="dt.filterGlobal($event.target.value, 'contains')"
+                  placeholder="Search..."
+                />
+              </span>
+            </div>
+          </ng-template>
+          <ng-template pTemplate="header">
+            <tr>
+              <th pSortableColumn="englishName">
+                Name <p-sortIcon field="englishName"></p-sortIcon>
+              </th>
+              <th pSortableColumn="mobileNumber">
+                Contact <p-sortIcon field="mobileNumber"></p-sortIcon>
+              </th>
+              <th pSortableColumn="email">
+                <p-sortIcon field="email"></p-sortIcon>Email
+              </th>
+              <th pSortableColumn="roleName">
+                <p-sortIcon field="roleName"></p-sortIcon>Role
+              </th>
+              <th>Active</th>
+              <th pSortableColumn="groupName">
+                <p-sortIcon field="groupName"></p-sortIcon>Groups
+              </th>
+              <th pSortableColumn="lastLoginTime">
+                <p-sortIcon field="lastLoginTime"></p-sortIcon>Last Login
+              </th>
+              <th>Options</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-item>
+            <tr>
+              <td>{{ item?.englishName }}</td>
+              <td>{{ item?.mobileNumber }}</td>
+              <td>{{ item?.email }}</td>
+              <td>{{ item?.roleName }}</td>
+              <td>
+                <p-inputSwitch
+                  [(ngModel)]="item.isActive"
+                  (onChange)="delete(item)"
+                ></p-inputSwitch>
+              </td>
+              <td>{{ item.groupName }}</td>
+              <td>{{ item.lastLoginTime }}</td>
+              <td style="text-align: center">
+                <button
+                  pButton
+                  pRipple
+                  type="button"
+                  icon="pi pi-pencil"
+                  class="p-button-rounded p-button-text"
+                  (click)="newUser = item; modalCustomer.show()"
+                ></button>
+              </td>
+            </tr>
+          </ng-template>
+
+          <ng-template pTemplate="summary">
+            <div class="p-d-flex p-ai-center p-jc-between">
+              In total there are
+              {{ userList ? userList.length : 0 }}
+              Users.
+            </div>
+          </ng-template>
+        </p-table>
+      </div>
+    </app-card>
+  </div>
+</div>

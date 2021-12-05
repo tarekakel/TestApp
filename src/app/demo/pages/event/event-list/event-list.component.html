@@ -1,0 +1,455 @@
+<div class="row btn-page">
+  <div class="col-sm-12">
+    <app-card cardTitle="Violation Summary" [options]="false">
+      <div class="row">
+        <div class="col-md-2 col-xs-6 border-right">
+          <h3>{{ totalViolation }}</h3>
+          <span class="">Total Violations</span>
+        </div>
+        <div class="col-md-2 col-xs-6 border-right">
+          <h3>{{ stopArmViolation }}</h3>
+          <span class="text-danger">Stop Arm</span>
+        </div>
+        <div class="col-md-2 col-xs-6 border-right">
+          <h3>{{ safeZoneAlarm }}</h3>
+          <span class="text-danger">Safe zone alarm</span>
+        </div>
+        <div class="col-md-2 col-xs-6 border-right">
+          <h3>{{ processedStatus }}</h3>
+          <span class="text-success">Total Processed</span>
+        </div>
+        <div class="col-md-2 col-xs-6 border-right">
+          <h3>{{ validationStatus }}</h3>
+          <span class="text-success">Total Validated</span>
+        </div>
+      </div>
+    </app-card>
+  </div>
+  <div class="col-sm-12 btn-page">
+    <app-card [hidHeader]="false" cardClass="card-datatable">
+      <div class="row align-items-center m-l-0">
+        <div class="col-sm-2">
+          <div class="form-group fill">
+            <input
+              type="datetime-local"
+              id="completionDate"
+              [(ngModel)]="searchCriteria.filters.startDate"
+              placeholder="yyyy-MM-ddTHH:mm:ss"
+              class="form-control"
+              required
+            />
+          </div>
+        </div>
+        <div class="col-sm-2">
+          <div class="form-group fill">
+            <input
+              type="datetime-local"
+              id="completionDate"
+              [(ngModel)]="searchCriteria.filters.endDate"
+              placeholder="yyyy-MM-ddTHH:mm:ss"
+              class="form-control"
+              required
+            />
+          </div>
+        </div>
+
+        <div class="col-sm-2">
+          <ng-multiselect-dropdown
+            [placeholder]="'Group'"
+            [data]="groupList"
+            [(ngModel)]="groupSeletedItems"
+            [settings]="dropdownGroupSettings"
+            (onSelect)="onGroupSelect($event)"
+            (onSelectAll)="onGroupSelectAll($event)"
+            (onDeSelect)="onGroupDeSelect($event)"
+            (onDeSelectAll)="onGroupDeSelectAll($event)"
+          >
+          </ng-multiselect-dropdown>
+        </div>
+
+        <div class="col-sm-2">
+          <ng-multiselect-dropdown
+            [placeholder]="'Assets'"
+            [data]="vehiclesInfo"
+            [(ngModel)]="selectedItems"
+            [settings]="dropdownSettings"
+            (onSelect)="onItemSelect($event)"
+            (onSelectAll)="onSelectAll($event)"
+            (onDeSelect)="onDeSelect($event)"
+            (onDeSelectAll)="onDeSelectAll($event)"
+          >
+          </ng-multiselect-dropdown>
+        </div>
+        <div class="col-md-3">
+          <ng-multiselect-dropdown
+            [placeholder]="'Violation Type'"
+            [data]="debugTypes"
+            [(ngModel)]="eventSeletedItems"
+            [settings]="dropdownEventTypeSettings"
+            (onSelect)="onEventSelect($event)"
+            (onSelectAll)="onEventSelectAll($event)"
+            (onDeSelect)="onEventDeSelect($event)"
+            (onDeSelectAll)="onEventDeSelectAll($event)"
+          >
+          </ng-multiselect-dropdown>
+        </div>
+
+        <div class="col-sm-1">
+          <button
+            type="button"
+            class="btn btn-primary btn-msg-send"
+            (click)="searchEvents()"
+          >
+            <i class="fas fa-search"></i>
+          </button>
+        </div>
+        <div class="col-sm-6 text-right"></div>
+      </div>
+      <div class="card">
+        <p-toolbar styleClass="p-mb-4">
+          <ng-template pTemplate="left"> </ng-template>
+          <ng-template pTemplate="right">
+            &nbsp;&nbsp;
+            <p-splitButton
+              (onClick)="save()"
+              label="Export"
+              [model]="items"
+              styleClass="p-button-help p-mb-2"
+            ></p-splitButton>
+          </ng-template>
+        </p-toolbar>
+        <p-table
+          [lazy]="true"
+          (onLazyLoad)="loadEvent($event)"
+          responsiveLayout="scroll"
+          #dt
+          [value]="eventList"
+          [rows]="10"
+          [paginator]="true"
+          [globalFilterFields]="['deviceId', 'state', 'alarmContent']"
+          responsiveLayout="scroll"
+          [(selection)]="selectedItems"
+          [rowHover]="true"
+          dataKey="id"
+          currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+          [showCurrentPageReport]="true"
+          [loading]="loading"
+          [totalRecords]="totalRecords"
+          responsiveLayout="scroll"
+        >
+          <ng-template pTemplate="header">
+            <tr>
+              <th pSortableColumn="vehicleNumber">
+                Car License <p-sortIcon field="vehicleNumber"></p-sortIcon>
+              </th>
+              <th pSortableColumn="deviceId">
+                License Plate <p-sortIcon field="deviceId"></p-sortIcon>
+              </th>
+              <th pSortableColumn="alarmType">
+                <p-sortIcon field="alarmType"></p-sortIcon>Alarm Id
+              </th>
+              <th pSortableColumn="state">
+                <p-sortIcon field="state"></p-sortIcon>Alarm Type
+              </th>
+              <th pSortableColumn="alarmContent">
+                <p-sortIcon field="alarmContent"></p-sortIcon>Date
+              </th>
+              <th pSortableColumn="speed">
+                <p-sortIcon field="speed"></p-sortIcon>Bus Id
+              </th>
+
+              <th pSortableColumn="speed">
+                <p-sortIcon field="speed"></p-sortIcon>Status
+              </th>
+              <th pSortableColumn="speed">
+                <p-sortIcon field="speed"></p-sortIcon>Location
+              </th>
+              <th pSortableColumn="speed">
+                <p-sortIcon field="speed"></p-sortIcon>Download
+              </th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-event>
+            <tr>
+              <td>
+                {{ event?.vehicleNumber }}
+
+                <small class="d-block">
+                  <a href="javascript:" (click)="modalCustomer.show()"
+                    >View more</a
+                  >
+                </small>
+                <app-ui-modal #modalCustomer [dialogClass]="'modal-xl'">
+                  <div class="app-modal-header">
+                    <h5 class="modal-title">{{ event.evidenceID }}</h5>
+                    <button
+                      type="button"
+                      class="close basic-close btn-danger"
+                      style="color: red"
+                      data-dismiss="modal"
+                      aria-label="Close"
+                      (click)="modalCustomer.hide()"
+                    >
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="app-modal-body">
+                    <div class="row">
+                      <div class="form-group col-md-3">
+                        <b l10nTranslate>Plate Number </b>
+                        <div *ngIf="event.vehicleNumber">
+                          {{ event.vehicleNumber }}
+                        </div>
+                        <div *ngIf="!event.vehicleNumber">N/A</div>
+                      </div>
+                      <div class="form-group col-md-3">
+                        <b l10nTranslate>Violation Type </b>
+                        <div *ngIf="event.evidenceType">
+                          {{ event.evidenceType }}
+                        </div>
+                        <div *ngIf="!event.evidenceType">N/A</div>
+                      </div>
+                      <div class="form-group col-md-3">
+                        <b l10nTranslate>Alarm Time </b>
+                        <div *ngIf="event.alarmTime">{{ event.alarmTime }}</div>
+                        <div *ngIf="!event.alarmTime">N/A</div>
+                      </div>
+                      <div class="form-group col-md-3">
+                        <b l10nTranslate>Bus ID </b>
+                        <div *ngIf="event.busId">{{ event.busId }}</div>
+                        <div *ngIf="!event.busId">N/A</div>
+                      </div>
+                      <div class="form-group col-md-3">
+                        <b l10nTranslate>Evidence ID/File Name </b>
+                        <div *ngIf="event.evidenceID">
+                          {{ event.evidenceID }}
+                        </div>
+                        <div *ngIf="!event.evidenceID">N/A</div>
+                      </div>
+
+                      <div class="form-group col-md-3">
+                        <b l10nTranslate>Evidence Type </b>
+                        <div *ngIf="event.evidenceType">
+                          {{ event.evidenceType }}
+                        </div>
+                        <div *ngIf="!event.evidenceType">N/A</div>
+                      </div>
+
+                      <div class="form-group col-md-3">
+                        <b l10nTranslate>Legal Code </b>
+                        <div *ngIf="event.legalCode">{{ event.legalCode }}</div>
+                        <div *ngIf="!event.legalCode">N/A</div>
+                      </div>
+
+                      <div class="form-group col-md-3">
+                        <b l10nTranslate>Road ID </b>
+                        <div *ngIf="event.roadID">{{ event.roadId }}</div>
+                        <div *ngIf="!event.roadID">N/A</div>
+                      </div>
+                      <div class="form-group col-md-3">
+                        <b l10nTranslate>Road Region </b>
+                        <div *ngIf="event.roadRegion">
+                          {{ event.roadRegion }}
+                        </div>
+                        <div *ngIf="!event.roadRegion">N/A</div>
+                      </div>
+                      <div class="form-group col-md-3">
+                        <b l10nTranslate>Violation Direction </b>
+                        <div *ngIf="event.violationDirection">
+                          {{ event.violationDirection }}
+                        </div>
+                        <div *ngIf="!event.violationDirection">N/A</div>
+                      </div>
+                      <div class="form-group col-md-3">
+                        <b l10nTranslate>Violation Lane </b>
+                        <div *ngIf="event.violationLane">
+                          {{ event.violationLane }}
+                        </div>
+                        <div *ngIf="!event.violationLane">N/A</div>
+                      </div>
+
+                      <div class="form-group col-md-3">
+                        <b l10nTranslate>Tailgating Distance </b>
+                        <div *ngIf="event.tG_Distance">
+                          {{ event.tG_Distance }} meters
+                        </div>
+                        <div *ngIf="!event.tG_Distance">N/A</div>
+                      </div>
+                      <div class="form-group col-md-3">
+                        <b l10nTranslate>Tailgating Duration </b>
+                        <div *ngIf="event.tG_Duration">
+                          {{ event.tG_Duration }} seconds
+                        </div>
+                        <div *ngIf="!event.tG_Duration">N/A</div>
+                      </div>
+
+                      <div class="form-group col-md-3">
+                        <b l10nTranslate>Tailgating Speed</b>
+                        <div *ngIf="event.tG_Speed">
+                          {{ event.tG_Speed }} km/hr
+                        </div>
+                        <div *ngIf="!event.tG_Speed">N/A</div>
+                      </div>
+                      <div class="form-group col-md-12">
+                        <b l10nTranslate>Location Name</b>
+                        <div *ngIf="event.city">
+                          {{ event.street }},{{ event.city }},
+                          {{ event.district }}
+                        </div>
+                        <div *ngIf="!event.city">N/A</div>
+                      </div>
+                    </div>
+                    <hr />
+                    <div class="clearfix"></div>
+                    <h5 class="modal-title">Evidences</h5>
+                    <hr />
+                    <div class="row">
+                      <div
+                        style="padding: 50px"
+                        *ngIf="event.c27Spic"
+                        class="col-md-4"
+                      >
+                        <img
+                          title="Click for Fullscreen"
+                          (click)="openModal(event.c27Spic)"
+                          [src]="transform(event.c27Spic)"
+                          (click)="openModal(event.c27Spic)"
+                          style="height: 140px; width: 200px"
+                          class="absolute-img hover-shadow cursor"
+                        />
+                      </div>
+                      <div
+                        style="padding: 50px"
+                        *ngIf="event.c27Wpic"
+                        class="col-md-4"
+                      >
+                        <img
+                          title="Click for Fullscreen"
+                          (click)="openModal(event.c27Wpic)"
+                          [src]="transform(event.c27Wpic)"
+                          (click)="openModal(event.c27Wpic)"
+                          style="height: 140px; width: 200px"
+                          class="absolute-img hover-shadow cursor"
+                        />
+                      </div>
+                      <div
+                        style="padding: 50px"
+                        *ngIf="event.c28OverviewPic"
+                        class="col-md-4"
+                      >
+                        <img
+                          title="Click for Fullscreen"
+                          (click)="openModal(event.c28OverviewPic)"
+                          [src]="transform(event.c28OverviewPic)"
+                          (click)="openModal(event.c27Spic)"
+                          style="height: 140px; width: 200px"
+                          class="absolute-img hover-shadow cursor"
+                        />
+                      </div>
+                      <div
+                        style="padding: 50px"
+                        *ngIf="event.c28Back"
+                        class="col-md-4"
+                      >
+                        <video
+                          controls
+                          controlsList="nodownload"
+                          height="100"
+                          width="250"
+                          autoplay
+                          loop
+                          style="height: 150px; width: 320px"
+                        >
+                          <source
+                            type="video/mp4"
+                            [src]="transform(event.c28Back)"
+                          />
+                        </video>
+                      </div>
+                      <div
+                        style="padding: 50px"
+                        *ngIf="event.c28Overview"
+                        class="col-md-4"
+                      >
+                        <video
+                          controls
+                          controlsList="{{ downloadOptions }}"
+                          height="100"
+                          width="250"
+                          autoplay
+                          loop
+                          style="height: 150px; width: 320px"
+                        >
+                          <source
+                            type="video/mp4"
+                            [src]="transform(event.c28Overview)"
+                          />
+                        </video>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="app-modal-footer">
+                    <button
+                      type="button"
+                      class="btn btn-danger"
+                      data-dismiss="modal"
+                      (click)="modalCustomer.hide()"
+                    >
+                      Clear
+                    </button>
+                  </div>
+                </app-ui-modal>
+              </td>
+
+              <td>
+                <img
+                  title="Click for Fullscreen"
+                  [src]="transform(event?.c27Spic)"
+                  (click)="openModal(event?.c27Spic)"
+                  style="height: 100px; width: 150px; cursor: pointer"
+                  class="absolute-img hover-shadow cursor"
+                />
+              </td>
+
+              <td>{{ event.evidenceID }}</td>
+              <td>{{ event.evidenceType }}</td>
+              <td>{{ event.alarmTime }}</td>
+              <td>{{ event.busId }}</td>
+              <td>{{ event.comments }}</td>
+              <td>
+                {{ event.street }}, {{ event.city }}, {{ event.district }}
+              </td>
+              <td>
+                <button
+                  type="button"
+                  [disabled]="disabled"
+                  [ngClass]="{ disabled: disabled }"
+                  class="btn btn-danger"
+                  data-dismiss="modal"
+                  (click)="download(event)"
+                >
+                  <i class="fa fa-download" aria-hidden="true"></i>
+                </button>
+              </td>
+            </tr>
+          </ng-template>
+
+          <ng-template pTemplate="summary">
+            <div class="p-d-flex p-ai-center p-jc-between">
+              In total there are
+              {{ eventList ? eventList?.length : 0 }} Events.
+            </div>
+          </ng-template>
+        </p-table>
+      </div>
+    </app-card>
+  </div>
+  <div id="imgModal" class="slide-modal">
+    <span class="close cursor" (click)="closeModal()">&times;</span>
+    <div class="slide-modal-content">
+      <div class="img-slides">
+        <img [src]="transform(imageUrl)" />
+      </div>
+    </div>
+  </div>
+</div>

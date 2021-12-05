@@ -1,0 +1,352 @@
+<div class="row btn-page">
+  <div class="col-sm-12">
+    <app-card cardTitle="Vehicle Summary" [options]="false">
+      <div class="row">
+        <div class="col-md-2 col-xs-6 border-right">
+          <h3>{{ tableVehiclesInfo?.totalVehicles }}</h3>
+          <span class="">Total Vehicles</span>
+        </div>
+        <div class="col-md-2 col-xs-6 border-right">
+          <h3>{{ tableVehiclesInfo?.moving }}</h3>
+          <span class="text-success">Moving</span>
+        </div>
+        <div class="col-md-2 col-xs-6 border-right">
+          <h3>{{ tableVehiclesInfo?.idle }}</h3>
+          <span class="text-danger">Idle</span>
+        </div>
+        <div class="col-md-2 col-xs-6 border-right">
+          <h3>{{ tableVehiclesInfo?.stopped }}</h3>
+          <span class="text-info">Stopped</span>
+        </div>
+        <div class="col-md-2 col-xs-6 border-right">
+          <h3 class="text-danger">{{ tableVehiclesInfo?.notReporting }}</h3>
+          <span class="text-info">Stopped</span>
+        </div>
+      </div>
+    </app-card>
+  </div>
+  <div class="col-sm-12 btn-page">
+    <app-card [hidHeader]="true" cardClass="card-datatable">
+      <div class="row align-items-center m-l-0">
+        <app-ui-modal #modalCustomer [dialogClass]="'modal-xl'"> </app-ui-modal>
+      </div>
+      <div class="card">
+        <p-toolbar styleClass="p-mb-4">
+          <ng-template pTemplate="left"> </ng-template>
+          <ng-template pTemplate="right">
+            <button
+              pButton
+              pRipple
+              label="Download Excel Sheet Template"
+              icon="pi pi-download"
+              class="p-button-info"
+              (click)="downlaodExcelTemplate()"
+            ></button>
+            &nbsp;&nbsp;
+            <p-fileUpload
+              #form
+              mode="basic"
+              accept=".xlsx,.xls"
+              [maxFileSize]="1000000"
+              label="Import"
+              chooseLabel="Import"
+              class="p-mr-2 p-d-inline-block"
+              customUpload="true"
+              (uploadHandler)="uploadExcel($event, form)"
+            ></p-fileUpload>
+            &nbsp;&nbsp;
+            <p-splitButton
+              (onClick)="save()"
+              label="Export"
+              [model]="items"
+              styleClass="p-button-help p-mb-2"
+            ></p-splitButton>
+          </ng-template>
+        </p-toolbar>
+        <p-table
+          [lazy]="true"
+          (onLazyLoad)="loadVehicles($event)"
+          responsiveLayout="scroll"
+          #dt
+          [value]="vehiclesInfo"
+          [rows]="10"
+          [paginator]="true"
+          [globalFilterFields]="['registration', 'deviceId', 'plateCode']"
+          responsiveLayout="scroll"
+          [(selection)]="selectedItems"
+          [rowHover]="true"
+          dataKey="id"
+          currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+          [showCurrentPageReport]="true"
+          [loading]="loading"
+          [totalRecords]="totalRecords"
+          responsiveLayout="scroll"
+        >
+          <ng-template pTemplate="caption">
+            <div class="p-d-flex p-ai-center p-jc-between">
+              <span class="p-input-icon-left">
+                <i class="pi pi-search"></i>
+                <input
+                  pInputText
+                  type="text"
+                  (input)="dt.filterGlobal($event.target.value, 'contains')"
+                  placeholder="Search..."
+                />
+              </span>
+            </div>
+          </ng-template>
+          <ng-template pTemplate="header">
+            <tr>
+              <th pSortableColumn="registration">
+                Car License <p-sortIcon field="registration"></p-sortIcon>
+              </th>
+              <th pSortableColumn="deviceId">
+                Device <p-sortIcon field="deviceId"></p-sortIcon>
+              </th>
+              <th pSortableColumn="updateDate">
+                <p-sortIcon field="updateDate"></p-sortIcon>Last Command
+              </th>
+              <th pSortableColumn="plateCode">
+                <p-sortIcon field="plateCode"></p-sortIcon>Plate Code
+              </th>
+              <th pSortableColumn="plateNumber">
+                <p-sortIcon field="plateNumber"></p-sortIcon>Plate Number
+              </th>
+              <th pSortableColumn="groupName">
+                <p-sortIcon field="groupName"></p-sortIcon>Group
+              </th>
+
+              <th pSortableColumn="speed">
+                <p-sortIcon field="speed"></p-sortIcon>Speed
+              </th>
+              <th pSortableColumn="installationDate">
+                <p-sortIcon field="installationDate"></p-sortIcon>Installation
+                Date
+              </th>
+              <th>Options</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-vehicle>
+            <tr>
+              <td>
+                {{ vehicle?.registration }}
+
+                <span
+                  class="circle"
+                  [style.background-color]="vehicle.online ? 'green' : 'red'"
+                >
+                </span>
+
+                <small class="d-block">
+                  <a href="javascript:" (click)="modalCustomer.show()">View</a>
+                </small>
+                <app-ui-modal #modalCustomer [dialogClass]="'modal-xl'">
+                  <div class="app-modal-header">
+                    <h5 class="modal-title">{{ vehicle?.evidenceID }}</h5>
+                    <button
+                      type="button"
+                      class="close basic-close btn-danger"
+                      style="color: red"
+                      data-dismiss="modal"
+                      aria-label="Close"
+                      (click)="modalCustomer.hide()"
+                    >
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="app-modal-body">
+                    <div class="row">
+                      <div class="form-group col-md-3">
+                        <b l10nTranslate>Plate Number </b>
+                        <div>
+                          {{ vehicle?.plateNumber }}
+                        </div>
+                      </div>
+                      <div class="form-group col-md-3">
+                        <b l10nTranslate>Device ID</b>
+                        <div *ngIf="vehicle.deviceId">
+                          {{ vehicle.deviceId }}
+                        </div>
+                        <div *ngIf="!vehicle.deviceId">N/A</div>
+                      </div>
+                      <div class="form-group col-md-3">
+                        <b l10nTranslate>Master Name </b>
+                        <div *ngIf="vehicle.busMasterName">
+                          {{ vehicle.busMasterName }}
+                        </div>
+                        <div *ngIf="!vehicle.busMasterName">N/A</div>
+                      </div>
+                      <div class="form-group col-md-3">
+                        <b l10nTranslate>Brand Master Name </b>
+                        <div *ngIf="vehicle.brandName">
+                          {{ vehicle.brandName }}
+                        </div>
+                        <div *ngIf="!vehicle.brandName">N/A</div>
+                      </div>
+                      <div class="form-group col-md-3">
+                        <b l10nTranslate>Callibration </b>
+                        <div *ngIf="vehicle.callibration">
+                          {{ vehicle.callibration }}
+                        </div>
+                        <div *ngIf="!vehicle.callibration">N/A</div>
+                      </div>
+
+                      <div class="form-group col-md-3">
+                        <b l10nTranslate>Code </b>
+                        <div *ngIf="vehicle.code">
+                          {{ vehicle.code }}
+                        </div>
+                        <div *ngIf="!vehicle.code">N/A</div>
+                      </div>
+
+                      <div class="form-group col-md-3">
+                        <b l10nTranslate>Status</b>
+                        <div
+                          class="circle"
+                          [style.background-color]="
+                            vehicle?.online ? 'green' : 'red'
+                          "
+                        ></div>
+                      </div>
+                      <!--
+                      <div class="form-group col-md-3">
+                        <b l10nTranslate>Road ID </b>
+                        <div *ngIf="vehicle.roadID">{{ vehicle.roadId }}</div>
+                        <div *ngIf="!vehicle.roadID">N/A</div>
+                      </div>
+                      <div class="form-group col-md-3">
+                        <b l10nTranslate>Road Region </b>
+                        <div *ngIf="vehicle.roadRegion">
+                          {{ vehicle.roadRegion }}
+                        </div>
+                        <div *ngIf="!vehicle.roadRegion">N/A</div>
+                      </div>
+                      <div class="form-group col-md-3">
+                        <b l10nTranslate>Violation Direction </b>
+                        <div *ngIf="vehicle.violationDirection">
+                          {{ vehicle.violationDirection }}
+                        </div>
+                        <div *ngIf="!vehicle.violationDirection">N/A</div>
+                      </div>
+                      <div class="form-group col-md-3">
+                        <b l10nTranslate>Violation Lane </b>
+                        <div *ngIf="vehicle.violationLane">
+                          {{ vehicle.violationLane }}
+                        </div>
+                        <div *ngIf="!vehicle.violationLane">N/A</div>
+                      </div>
+
+                      <div class="form-group col-md-3">
+                        <b l10nTranslate>Tailgating Distance </b>
+                        <div *ngIf="vehicle.tG_Distance">
+                          {{ vehicle.tG_Distance }} meters
+                        </div>
+                        <div *ngIf="!vehicle.tG_Distance">N/A</div>
+                      </div>
+                      <div class="form-group col-md-3">
+                        <b l10nTranslate>Tailgating Duration </b>
+                        <div *ngIf="vehicle.tG_Duration">
+                          {{ vehicle.tG_Duration }} seconds
+                        </div>
+                        <div *ngIf="!vehicle.tG_Duration">N/A</div>
+                      </div>
+
+                      <div class="form-group col-md-3">
+                        <b l10nTranslate>Tailgating Speed</b>
+                        <div *ngIf="vehicle.tG_Speed">
+                          {{ vehicle.tG_Speed }} km/hr
+                        </div>
+                        <div *ngIf="!vehicle.tG_Speed">N/A</div>
+                      </div>
+                      <div class="form-group col-md-12">
+                        <b l10nTranslate>Location Name</b>
+                        <div *ngIf="vehicle.city">
+                          {{ vehicle.street }},{{ vehicle.city }},
+                          {{ vehicle.district }}
+                        </div>
+                        <div *ngIf="!vehicle.city">N/A</div>
+                      </div>
+                    </div>
+                    <hr />
+                    <div class="clearfix"></div>
+                    <h5 class="modal-title">Evidences</h5>
+                    <hr />
+                    <div class="row">
+                      <div
+                        style="padding: 50px"
+                        *ngIf="vehicle.c27Spic"
+                        class="col-md-4"
+                      ></div>
+                      <div
+                        style="padding: 50px"
+                        *ngIf="vehicle.c27Wpic"
+                        class="col-md-4"
+                      ></div>
+                      <div
+                        style="padding: 50px"
+                        *ngIf="vehicle.c28OverviewPic"
+                        class="col-md-4"
+                      ></div>
+
+                      <div
+                        style="padding: 50px"
+                        *ngIf="vehicle.c28Overview"
+                        class="col-md-4"
+                      ></div>-->
+                    </div>
+                  </div>
+                  <div class="app-modal-footer">
+                    <button
+                      type="button"
+                      class="btn btn-danger"
+                      data-dismiss="modal"
+                      (click)="modalCustomer.hide()"
+                    >
+                      Clear
+                    </button>
+                  </div>
+                </app-ui-modal>
+              </td>
+
+              <td>{{ vehicle?.deviceId }}</td>
+              <td>{{ vehicle?.updateDate }}</td>
+              <td>{{ vehicle?.plateCode }}</td>
+              <td>{{ vehicle?.plateNumber }}</td>
+              <td>{{ vehicle?.groupName }}</td>
+              <td>{{ vehicle?.speed }}</td>
+              <td>{{ vehicle?.installationDate }}</td>
+              <td>
+                <!-- <a
+                  href="javascript:"
+                  (click)="modalCustomer.show()"
+                  class="btn btn-info btn-sm"
+                  ><i class="feather icon-edit"></i>&nbsp;Edit
+                </a> -->
+                <!-- <a
+                  href="javascript:"
+                  (click)="modalCustomer.show()"
+                  class="btn btn-warning btn-sm"
+                  ><i class="fas fa-video"></i>&nbsp;Camera
+                </a> -->
+                <button
+                  pButton
+                  pRipple
+                  icon="pi pi-pencil"
+                  class="p-button-rounded p-button-success p-mr-2"
+                  (click)="modalCustomer.show()"
+                ></button>
+              </td>
+            </tr>
+          </ng-template>
+
+          <ng-template pTemplate="summary">
+            <div class="p-d-flex p-ai-center p-jc-between">
+              In total there are
+              {{ totalRecords }} Vehicles.
+            </div>
+          </ng-template>
+        </p-table>
+      </div>
+    </app-card>
+  </div>
+</div>
