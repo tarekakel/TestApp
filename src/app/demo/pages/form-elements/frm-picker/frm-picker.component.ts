@@ -1,30 +1,55 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {NgbCalendar, NgbDateParserFormatter, NgbDateStruct} from '@ng-bootstrap/ng-bootstrap';
-import {ColorPickerService, Rgba} from 'ngx-color-picker';
+import { Component, Input, OnInit } from '@angular/core';
+import {
+  NgbCalendar,
+  NgbDateParserFormatter,
+  NgbDateStruct,
+} from '@ng-bootstrap/ng-bootstrap';
+import { ColorPickerService, Rgba } from 'ngx-color-picker';
 
 const equals = (one: NgbDateStruct, two: NgbDateStruct) =>
-  one && two && two.year === one.year && two.month === one.month && two.day === one.day;
+  one &&
+  two &&
+  two.year === one.year &&
+  two.month === one.month &&
+  two.day === one.day;
 
 const before = (one: NgbDateStruct, two: NgbDateStruct) =>
-  !one || !two ? false : one.year === two.year ? one.month === two.month ? one.day === two.day
-    ? false : one.day < two.day : one.month < two.month : one.year < two.year;
+  !one || !two
+    ? false
+    : one.year === two.year
+    ? one.month === two.month
+      ? one.day === two.day
+        ? false
+        : one.day < two.day
+      : one.month < two.month
+    : one.year < two.year;
 
 const after = (one: NgbDateStruct, two: NgbDateStruct) =>
-  !one || !two ? false : one.year === two.year ? one.month === two.month ? one.day === two.day
-    ? false : one.day > two.day : one.month > two.month : one.year > two.year;
-
-
+  !one || !two
+    ? false
+    : one.year === two.year
+    ? one.month === two.month
+      ? one.day === two.day
+        ? false
+        : one.day > two.day
+      : one.month > two.month
+    : one.year > two.year;
 
 const now = new Date();
 
 export class Cmyk {
-  constructor(public c: number, public m: number, public y: number, public k: number) { }
+  constructor(
+    public c: number,
+    public m: number,
+    public y: number,
+    public k: number
+  ) {}
 }
 
 @Component({
   selector: 'app-frm-picker',
   templateUrl: './frm-picker.component.html',
-  styleUrls: ['./frm-picker.component.scss']
+  styleUrls: ['./frm-picker.component.scss'],
 })
 export class FrmPickerComponent implements OnInit {
   public model: any;
@@ -34,17 +59,17 @@ export class FrmPickerComponent implements OnInit {
   navigation = 'select';
   showWeekNumbers = false;
 
-  hoveredDate: NgbDateStruct;
+  hoveredDate: NgbDateStruct | undefined;
   fromDate: NgbDateStruct;
   toDate: NgbDateStruct;
 
   disabled = true;
 
-  @Input() testRangeDate: Date;
+  @Input() testRangeDate: Date | undefined;
 
   toggle = false;
-  public lastColor: string;
-  public rgbaText: string;
+  public lastColor: string | undefined;
+  public rgbaText: string | undefined;
 
   public color = '#2889e9';
   public color2 = 'hsla(300,82%,52%)';
@@ -65,11 +90,13 @@ export class FrmPickerComponent implements OnInit {
   public arrayColors: any = {};
   public selectedColor = 'color';
 
-  modelPopup: NgbDateStruct;
-  public date: {year: number, month: number};
+  modelPopup: NgbDateStruct | undefined;
+  public date: { year: number; month: number } | undefined;
 
   modelDisabled: NgbDateStruct = {
-    year: now.getFullYear(), month: now.getMonth() + 1, day: now.getDate()
+    year: now.getFullYear(),
+    month: now.getMonth() + 1,
+    day: now.getDate(),
   };
 
   public cmyk: Cmyk = new Cmyk(0, 0, 0, 0);
@@ -79,11 +106,15 @@ export class FrmPickerComponent implements OnInit {
     return d.getDay() === 0 || d.getDay() === 6;
   }
 
-  isDisabled(date: NgbDateStruct, current: {month: number}) {
+  isDisabled(date: NgbDateStruct, current: { month: number }) {
     return date.month !== current.month;
   }
 
-  constructor(public parserFormatter: NgbDateParserFormatter, public calendar: NgbCalendar, public cpService: ColorPickerService) {
+  constructor(
+    public parserFormatter: NgbDateParserFormatter,
+    public calendar: NgbCalendar,
+    public cpService: ColorPickerService
+  ) {
     this.fromDate = calendar.getToday();
     this.toDate = calendar.getNext(calendar.getToday(), 'd', 10);
 
@@ -106,11 +137,14 @@ export class FrmPickerComponent implements OnInit {
     }
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   selectToday() {
-    this.modelPopup = {year: now.getFullYear(), month: now.getMonth() + 1, day: now.getDate()};
+    this.modelPopup = {
+      year: now.getFullYear(),
+      month: now.getMonth() + 1,
+      day: now.getDate(),
+    };
   }
 
   onDateChange(date: NgbDateStruct) {
@@ -119,18 +153,26 @@ export class FrmPickerComponent implements OnInit {
     } else if (this.fromDate && !this.toDate && after(date, this.fromDate)) {
       this.toDate = date;
     } else {
-      this.toDate = null;
+      // this.toDate = undefined;
       this.fromDate = date;
     }
   }
 
-  isHovered = date => this.fromDate && !this.toDate && this.hoveredDate && after(date, this.fromDate) && before(date, this.hoveredDate);
-  isInside = date => after(date, this.fromDate) && before(date, this.toDate);
-  isFrom = date => equals(date, this.fromDate);
-  isTo = date => equals(date, this.toDate);
+  isHovered = (date: NgbDateStruct) =>
+    this.fromDate &&
+    !this.toDate &&
+    this.hoveredDate &&
+    after(date, this.fromDate) &&
+    before(date, this.hoveredDate);
+  isInside = (date: NgbDateStruct) =>
+    after(date, this.fromDate) && before(date, this.toDate);
+  isFrom = (date: NgbDateStruct) => equals(date, this.fromDate);
+  isTo = (date: NgbDateStruct) => equals(date, this.toDate);
 
   onChangeColor(color: string): Cmyk {
-    return this.rgbaToCmyk(this.cpService.hsvaToRgba(this.cpService.stringToHsva(color)));
+    return this.rgbaToCmyk(
+      this.cpService.hsvaToRgba(this.cpService.stringToHsva(color)!)
+    );
   }
 
   rgbaToCmyk(rgba: Rgba): Cmyk {
@@ -148,7 +190,10 @@ export class FrmPickerComponent implements OnInit {
   }
 
   onChangeColorHex8(color: string): string {
-    return this.cpService.outputFormat(this.cpService.stringToHsva(color, true), 'rgba', null);
+    return this.cpService.outputFormat(
+      this.cpService.stringToHsva(color, true)!,
+      'rgba',
+      null
+    );
   }
-
 }
