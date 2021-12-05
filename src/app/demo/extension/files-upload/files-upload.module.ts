@@ -3,8 +3,8 @@ import { CommonModule } from '@angular/common';
 
 import { FilesUploadRoutingModule } from './files-upload-routing.module';
 import { FilesUploadComponent } from './files-upload.component';
-import {SharedModule} from '../../../theme/shared/shared.module';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { SharedModule } from '../../../theme/shared/shared.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FileUploadModule } from '@iplab/ngx-file-upload';
 
 @NgModule({
@@ -14,8 +14,8 @@ import { FileUploadModule } from '@iplab/ngx-file-upload';
     SharedModule,
     ReactiveFormsModule,
     FormsModule,
-    FileUploadModule
+    FileUploadModule,
   ],
-  declarations: [FilesUploadComponent]
+  declarations: [FilesUploadComponent],
 })
-export class FilesUploadModule { }
+export class FilesUploadModule {}

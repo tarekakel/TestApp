@@ -1,5 +1,5 @@
-import {Component, OnInit, ViewEncapsulation} from '@angular/core';
-import {FormControl, FormGroup} from '@angular/forms';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 
 import { FileUploadValidators } from '@iplab/ngx-file-upload';
 
@@ -7,22 +7,25 @@ import { FileUploadValidators } from '@iplab/ngx-file-upload';
   selector: 'app-files-upload',
   templateUrl: './files-upload.component.html',
   styleUrls: ['./files-upload.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
 })
 export class FilesUploadComponent implements OnInit {
-  private filesControl = new FormControl(null, FileUploadValidators.filesLimit(2));
+  private filesControl = new FormControl(
+    null,
+    FileUploadValidators.filesLimit(2)
+  );
 
   public demoForm = new FormGroup({
-    files: this.filesControl
+    files: this.filesControl,
   });
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   public toggleStatus() {
-    this.filesControl.disabled ? this.filesControl.enable() : this.filesControl.disable();
+    this.filesControl.disabled
+      ? this.filesControl.enable()
+      : this.filesControl.disable();
   }
-
 }
