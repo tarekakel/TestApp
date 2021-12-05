@@ -1,7 +1,7 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {IOption} from 'ng-select';
-import {DualListComponent} from 'angular-dual-listbox';
-import {SelectOptionService} from '../../../../theme/shared/components/select/select-option.service';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { IOption } from 'ng-select';
+import { DualListComponent } from 'angular-dual-listbox';
+import { SelectOptionService } from '../../../../theme/shared/components/select/select-option.service';
 
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/debounceTime';
@@ -11,39 +11,39 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/first';
-import {Subscription} from 'rxjs';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-frm-select',
   templateUrl: './frm-select.component.html',
-  styleUrls: ['./frm-select.component.scss']
+  styleUrls: ['./frm-select.component.scss'],
 })
 export class FrmSelectComponent implements OnInit, OnDestroy {
   tab = 1;
   keepSorted = true;
-  key: string;
-  display: any;
+  key: string | undefined;
+  display: any | undefined;
   filter = false;
-  source: Array<any>;
-  confirmed: Array<any>;
+  source: Array<any> | undefined;
+  confirmed: Array<any> | undefined;
   userAdd = '';
   disabled = false;
 
   sourceLeft = true;
   format: any = DualListComponent.DEFAULT_FORMAT;
 
-  private sourceTube: Array<string>;
-  private sourceStations: Array<any>;
-  private sourceChessmen: Array<any>;
+  private sourceTube: Array<string> = [];
+  private sourceStations: Array<any> = [];
+  private sourceChessmen: Array<any> = [];
 
-  private confirmedTube: Array<string>;
-  private confirmedStations: Array<any>;
-  private confirmedChessmen: Array<any>;
+  private confirmedTube: Array<string> = [];
+  private confirmedStations: Array<any> = [];
+  private confirmedChessmen: Array<any> = [];
 
   arrayType = [
     { name: 'Rio Grande', detail: '(object array)', value: 'station' },
     { name: 'Chessmen', detail: '(object array)', value: 'chess' },
-    { name: 'Underground', detail: '(string array)', value: 'tube' }
+    { name: 'Underground', detail: '(string array)', value: 'tube' },
   ];
 
   type = this.arrayType[0].value;
@@ -54,7 +54,7 @@ export class FrmSelectComponent implements OnInit, OnDestroy {
     { key: 3, station: 'Sublette', state: 'NM' },
     { key: 4, station: 'Toltec', state: 'NM' },
     { key: 5, station: 'Osier', state: 'CO' },
-    { key: 6, station: 'Chama', state: 'NM'},
+    { key: 6, station: 'Chama', state: 'NM' },
     { key: 7, station: 'Monero', state: 'NM' },
     { key: 8, station: 'Lumberton', state: 'NM' },
     { key: 9, station: 'Duice', state: 'NM' },
@@ -80,7 +80,7 @@ export class FrmSelectComponent implements OnInit, OnDestroy {
     { key: 29, station: 'Needleton', state: 'CO' },
     { key: 30, station: 'Elk Park', state: 'CO' },
     { key: 31, station: 'Silverton', state: 'CO' },
-    { key: 32, station: 'Eureka', state: 'CO' }
+    { key: 32, station: 'Eureka', state: 'CO' },
   ];
 
   private chessmen: Array<any> = [
@@ -89,7 +89,7 @@ export class FrmSelectComponent implements OnInit, OnDestroy {
     { _id: 3, name: 'Knight' },
     { _id: 4, name: 'Bishop' },
     { _id: 5, name: 'Queen' },
-    { _id: 6, name: 'King' }
+    { _id: 6, name: 'King' },
   ];
 
   private tube: Array<string> = [
@@ -117,14 +117,13 @@ export class FrmSelectComponent implements OnInit, OnDestroy {
     'Embankment',
     'Waterloo',
     'Lambeth North',
-    'Elephant & Castle'
+    'Elephant & Castle',
   ];
-
 
   simpleOption: Array<IOption> = this.selectOptionService.getCharacters();
   selectedOption = '3';
   isDisabled = true;
-  characters: Array<IOption>;
+  characters: Array<IOption> = [];
   selectedCharacter = '3';
   timeLeft = 5;
 
@@ -132,60 +131,64 @@ export class FrmSelectComponent implements OnInit, OnDestroy {
   selectedCountry = 'IN';
   selectedCountries: Array<string> = ['IN', 'BE', 'LU', 'NL'];
 
-  private dataSub: Subscription = null;
+  private dataSub: Subscription | undefined;
 
   autocompleteItems = ['Alabama', 'Wyoming', 'Henry Die', 'John Doe'];
   autocompleteItemsAsObjects = [
-    {value: 'Alabama', id: 0},
-    {value: 'Wyoming', id: 1},
-    {value: 'Coming', id: 2},
-    {value: 'Josephin Doe', id: 3},
-    {value: 'Henry Die', id: 4},
-    {value: 'Lary Doe', id: 5},
-    {value: 'Alice', id: 6},
-    {value: 'Alia', id: 7},
-    {value: 'Suzen', id: 8},
-    {value: 'Michael Scofield', id: 9},
-    {value: 'Irina Shayk', id: 10},
-    {value: 'Sara Tancredi', id: 11},
-    {value: 'Daizy Mendize', id: 12},
-    {value: 'Loren Scofield', id: 13},
-    {value: 'Shayk', id: 14},
-    {value: 'Sara', id: 15},
-    {value: 'Doe', id: 16},
-    {value: 'Lary', id: 17},
-    {value: 'Roni Sommerfield', id: 18},
-    {value: 'Mickey Amavisca', id: 19},
-    {value: 'Dorethea Hennigan', id: 20},
-    {value: 'Marisha Haughey', id: 21},
-    {value: 'Justin Czajkowski', id: 22},
-    {value: 'Reyes Hodges', id: 23},
-    {value: 'Vicky Hadley', id: 24},
-    {value: 'Lezlie Baumert', id: 25},
-    {value: 'Otha Vanorden', id: 26},
-    {value: 'Glayds Inabinet', id: 27},
-    {value: 'Hang Owsley', id: 28},
-    {value: 'Carlotta Buttner', id: 29},
-    {value: 'Randa Vanloan', id: 30},
-    {value: 'Elana Fulk', id: 31},
-    {value: 'Amos Spearman', id: 32},
-    {value: 'Samon', id: 33},
-    {value: 'John Doe', id:  34}
+    { value: 'Alabama', id: 0 },
+    { value: 'Wyoming', id: 1 },
+    { value: 'Coming', id: 2 },
+    { value: 'Josephin Doe', id: 3 },
+    { value: 'Henry Die', id: 4 },
+    { value: 'Lary Doe', id: 5 },
+    { value: 'Alice', id: 6 },
+    { value: 'Alia', id: 7 },
+    { value: 'Suzen', id: 8 },
+    { value: 'Michael Scofield', id: 9 },
+    { value: 'Irina Shayk', id: 10 },
+    { value: 'Sara Tancredi', id: 11 },
+    { value: 'Daizy Mendize', id: 12 },
+    { value: 'Loren Scofield', id: 13 },
+    { value: 'Shayk', id: 14 },
+    { value: 'Sara', id: 15 },
+    { value: 'Doe', id: 16 },
+    { value: 'Lary', id: 17 },
+    { value: 'Roni Sommerfield', id: 18 },
+    { value: 'Mickey Amavisca', id: 19 },
+    { value: 'Dorethea Hennigan', id: 20 },
+    { value: 'Marisha Haughey', id: 21 },
+    { value: 'Justin Czajkowski', id: 22 },
+    { value: 'Reyes Hodges', id: 23 },
+    { value: 'Vicky Hadley', id: 24 },
+    { value: 'Lezlie Baumert', id: 25 },
+    { value: 'Otha Vanorden', id: 26 },
+    { value: 'Glayds Inabinet', id: 27 },
+    { value: 'Hang Owsley', id: 28 },
+    { value: 'Carlotta Buttner', id: 29 },
+    { value: 'Randa Vanloan', id: 30 },
+    { value: 'Elana Fulk', id: 31 },
+    { value: 'Amos Spearman', id: 32 },
+    { value: 'Samon', id: 33 },
+    { value: 'John Doe', id: 34 },
   ];
 
-  constructor(public selectOptionService: SelectOptionService) { }
+  constructor(public selectOptionService: SelectOptionService) {}
 
   ngOnInit() {
     this.doReset();
 
     this.runTimer();
-    this.dataSub = this.selectOptionService.loadCharacters().subscribe((options) => {
-      this.characters = options;
-    });
+    this.dataSub = this.selectOptionService
+      .loadCharacters()
+      .subscribe((options) => {
+        this.characters = options;
+      });
   }
 
   ngOnDestroy() {
-    if (this.dataSub !== null) { this.dataSub.unsubscribe(); }
+    if (this.dataSub !== null) {
+      this.dataSub!.unsubscribe();
+    }
   }
 
   runTimer() {
@@ -248,9 +251,9 @@ export class FrmSelectComponent implements OnInit, OnDestroy {
     this.confirmedTube = new Array<string>();
 
     // Preconfirm some items.
-    this.confirmedStations.push( this.stations[31] );
-    this.confirmedTube.push( this.tube[13] );
-    this.confirmedTube.push( this.tube[23] );
+    this.confirmedStations.push(this.stations[31]);
+    this.confirmedTube.push(this.tube[13]);
+    this.confirmedTube.push(this.tube[23]);
 
     switch (this.type) {
       case this.arrayType[0].value:
@@ -266,37 +269,37 @@ export class FrmSelectComponent implements OnInit, OnDestroy {
   }
 
   doDelete() {
-    if (this.source.length > 0) {
-      this.source.splice(0, 1);
+    if (this.source!.length > 0) {
+      this.source!.splice(0, 1);
     }
   }
 
   doCreate() {
-    if (typeof this.source[0] === 'object') {
+    if (typeof this.source![0] === 'object') {
       const o = {};
-      o[this.key] = this.source.length + 1;
-      o[this.display] = this.userAdd;
-      this.source.push( o );
+      // o[this.key] = this.source!.length + 1;
+      // o[this.display] = this.userAdd;
+      this.source!.push(o);
     } else {
-      this.source.push(this.userAdd);
+      this.source!.push(this.userAdd);
     }
     this.userAdd = '';
   }
 
   doAdd() {
-    for (let i = 0, len = this.source.length; i < len; i += 1) {
-      const o = this.source[i];
-      const found = this.confirmed.find( (e: any) => e === o );
+    for (let i = 0, len = this.source!.length; i < len; i += 1) {
+      const o = this.source![i];
+      const found = this.confirmed!.find((e: any) => e === o);
       if (!found) {
-        this.confirmed.push(o);
+        this.confirmed!.push(o);
         break;
       }
     }
   }
 
   doRemove() {
-    if (this.confirmed.length > 0) {
-      this.confirmed.splice(0, 1);
+    if (this.confirmed!.length > 0) {
+      this.confirmed!.splice(0, 1);
     }
   }
 
@@ -305,7 +308,7 @@ export class FrmSelectComponent implements OnInit, OnDestroy {
   }
 
   filterBtn() {
-    return (this.filter ? 'Hide Filter' : 'Show Filter');
+    return this.filter ? 'Hide Filter' : 'Show Filter';
   }
 
   doDisable() {
@@ -313,12 +316,13 @@ export class FrmSelectComponent implements OnInit, OnDestroy {
   }
 
   disableBtn() {
-    return (this.disabled ? 'Enable' : 'Disabled');
+    return this.disabled ? 'Enable' : 'Disabled';
   }
 
   swapDirection() {
     this.sourceLeft = !this.sourceLeft;
-    this.format.direction = this.sourceLeft ? DualListComponent.LTR : DualListComponent.RTL;
+    this.format.direction = this.sourceLeft
+      ? DualListComponent.LTR
+      : DualListComponent.RTL;
   }
-
 }

@@ -45,6 +45,7 @@
     "ngx-bootstrap-modal": "^2.0.1",
     "ngx-chips": "^3.0.0",
     "ngx-color-picker": "^11.0.0",
+    "ngx-custom-validators": "^11.0.1",
     "ngx-lightbox": "^2.5.2",
     "ngx-owl-carousel-o": "^7.0.1",
     "ngx-perfect-scrollbar": "^10.1.1",

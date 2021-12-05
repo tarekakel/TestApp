@@ -6,12 +6,13 @@ describe('FrmValidationComponent', () => {
   let component: FrmValidationComponent;
   let fixture: ComponentFixture<FrmValidationComponent>;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      declarations: [ FrmValidationComponent ]
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [FrmValidationComponent],
+      }).compileComponents();
     })
-    .compileComponents();
-  }));
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(FrmValidationComponent);

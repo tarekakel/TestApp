@@ -6,12 +6,13 @@ describe('FrmSelectComponent', () => {
   let component: FrmSelectComponent;
   let fixture: ComponentFixture<FrmSelectComponent>;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      declarations: [ FrmSelectComponent ]
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [FrmSelectComponent],
+      }).compileComponents();
     })
-    .compileComponents();
-  }));
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(FrmSelectComponent);

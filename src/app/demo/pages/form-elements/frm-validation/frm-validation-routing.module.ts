@@ -1,16 +1,16 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import {FrmValidationComponent} from './frm-validation.component';
+import { FrmValidationComponent } from './frm-validation.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: FrmValidationComponent
-  }
+    component: FrmValidationComponent,
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class FrmValidationRoutingModule { }
+export class FrmValidationRoutingModule {}

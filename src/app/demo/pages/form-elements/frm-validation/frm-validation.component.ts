@@ -14,10 +14,10 @@ export class FormInput {
 @Component({
   selector: 'app-frm-validation',
   templateUrl: './frm-validation.component.html',
-  styleUrls: ['./frm-validation.component.scss']
+  styleUrls: ['./frm-validation.component.scss'],
 })
 export class FrmValidationComponent implements OnInit {
-  formInput: FormInput;
+  formInput: FormInput | undefined;
   form: any;
   public isSubmit: boolean;
   constructor() {
@@ -33,7 +33,7 @@ export class FrmValidationComponent implements OnInit {
       cmbGear: '',
       address: '',
       file: '',
-      switcher: ''
+      switcher: '',
     };
   }
 
@@ -46,5 +46,4 @@ export class FrmValidationComponent implements OnInit {
       return;
     }
   }
-
 }
