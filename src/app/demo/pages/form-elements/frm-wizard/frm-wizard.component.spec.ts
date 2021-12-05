@@ -6,12 +6,13 @@ describe('FrmWizardComponent', () => {
   let component: FrmWizardComponent;
   let fixture: ComponentFixture<FrmWizardComponent>;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      declarations: [ FrmWizardComponent ]
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [FrmWizardComponent],
+      }).compileComponents();
     })
-    .compileComponents();
-  }));
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(FrmWizardComponent);

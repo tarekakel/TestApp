@@ -6,12 +6,13 @@ describe('WizardNavbarLgIconComponent', () => {
   let component: WizardNavbarLgIconComponent;
   let fixture: ComponentFixture<WizardNavbarLgIconComponent>;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      declarations: [ WizardNavbarLgIconComponent ]
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [WizardNavbarLgIconComponent],
+      }).compileComponents();
     })
-    .compileComponents();
-  }));
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(WizardNavbarLgIconComponent);

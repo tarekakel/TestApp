@@ -6,12 +6,13 @@ describe('WizardNavbarLeftComponent', () => {
   let component: WizardNavbarLeftComponent;
   let fixture: ComponentFixture<WizardNavbarLeftComponent>;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      declarations: [ WizardNavbarLeftComponent ]
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [WizardNavbarLeftComponent],
+      }).compileComponents();
     })
-    .compileComponents();
-  }));
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(WizardNavbarLeftComponent);

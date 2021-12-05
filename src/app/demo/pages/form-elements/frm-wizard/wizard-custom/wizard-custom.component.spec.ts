@@ -6,12 +6,13 @@ describe('WizardCustomComponent', () => {
   let component: WizardCustomComponent;
   let fixture: ComponentFixture<WizardCustomComponent>;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      declarations: [ WizardCustomComponent ]
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [WizardCustomComponent],
+      }).compileComponents();
     })
-    .compileComponents();
-  }));
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(WizardCustomComponent);

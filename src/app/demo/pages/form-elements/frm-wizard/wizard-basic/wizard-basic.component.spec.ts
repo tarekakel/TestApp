@@ -6,12 +6,13 @@ describe('WizardBasicComponent', () => {
   let component: WizardBasicComponent;
   let fixture: ComponentFixture<WizardBasicComponent>;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      declarations: [ WizardBasicComponent ]
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [WizardBasicComponent],
+      }).compileComponents();
     })
-    .compileComponents();
-  }));
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(WizardBasicComponent);

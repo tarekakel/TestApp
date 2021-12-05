@@ -1,16 +1,16 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import {FrmWizardComponent} from './frm-wizard.component';
+import { FrmWizardComponent } from './frm-wizard.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: FrmWizardComponent
-  }
+    component: FrmWizardComponent,
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class FrmWizardRoutingModule { }
+export class FrmWizardRoutingModule {}
