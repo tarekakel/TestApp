@@ -1,13 +1,12 @@
 import { Directive, ElementRef, HostListener, Input } from '@angular/core';
 
 @Directive({
-  selector: '[OnlyArabic]'
+  selector: '[OnlyArabic]',
 })
 export class OnlyArabicDirective {
+  @Input() OnlyArabic: boolean | undefined;
 
-  @Input() OnlyArabic: boolean;
-
-  constructor(private el: ElementRef) { }
+  constructor(private el: ElementRef) {}
 
   @HostListener('paste', ['$event']) blockPaste(e: KeyboardEvent) {
     e.preventDefault();
@@ -21,7 +20,9 @@ export class OnlyArabicDirective {
     e.preventDefault();
   }
 
-  @HostListener('keydown', ['$event']) onKeyDown(event) {
+  @HostListener('keydown', ['$event']) onKeyDown(
+    event: KeyboardEvent
+  ): false | undefined {
     let e = <KeyboardEvent>event;
     if (e.ctrlKey && (e.keyCode == 88 || e.keyCode == 67 || e.keyCode == 86)) {
       return false;
@@ -29,7 +30,7 @@ export class OnlyArabicDirective {
     if (this.OnlyArabic) {
       if (e.keyCode == 59 || e.keyCode == 186) {
         e.preventDefault();
-        this.el.nativeElement.value = this.el.nativeElement.value + 'ك';  // 59 for firefox, 186 for Chrome and IE   
+        this.el.nativeElement.value = this.el.nativeElement.value + 'ك'; // 59 for firefox, 186 for Chrome and IE
       }
       if (e.shiftKey && e.keyCode == 65) {
         e.preventDefault();
@@ -227,7 +228,6 @@ export class OnlyArabicDirective {
         e.preventDefault();
         this.el.nativeElement.value = this.el.nativeElement.value + 'ط';
       }
-
     }
   }
 }

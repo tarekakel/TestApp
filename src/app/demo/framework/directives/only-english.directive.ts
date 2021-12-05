@@ -1,13 +1,12 @@
 import { Directive, ElementRef, HostListener, Input } from '@angular/core';
 
 @Directive({
-  selector: '[OnlyEnglish]'
+  selector: '[OnlyEnglish]',
 })
 export class OnlyEnglishDirective {
+  @Input() OnlyEnglish: boolean | undefined;
 
-  @Input() OnlyEnglish: boolean;
-
-  constructor(private el: ElementRef) { }
+  constructor(private el: ElementRef) {}
 
   @HostListener('paste', ['$event']) blockPaste(e: KeyboardEvent) {
     e.preventDefault();
@@ -21,7 +20,9 @@ export class OnlyEnglishDirective {
     e.preventDefault();
   }
 
-  @HostListener('keydown', ['$event']) onKeyDown(event) {
+  @HostListener('keydown', ['$event']) onKeyDown(
+    event: KeyboardEvent
+  ): false | undefined {
     let e = <KeyboardEvent>event;
 
     if (e.ctrlKey && (e.keyCode == 88 || e.keyCode == 67 || e.keyCode == 86)) {
@@ -284,9 +285,8 @@ export class OnlyEnglishDirective {
       }
       if (e.keyCode == 222) {
         e.preventDefault();
-        this.el.nativeElement.value = this.el.nativeElement.value + '\'';
+        this.el.nativeElement.value = this.el.nativeElement.value + "'";
       }
     }
-
   }
 }
