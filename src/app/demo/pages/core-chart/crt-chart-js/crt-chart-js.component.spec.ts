@@ -6,12 +6,13 @@ describe('CrtChartJsComponent', () => {
   let component: CrtChartJsComponent;
   let fixture: ComponentFixture<CrtChartJsComponent>;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      declarations: [ CrtChartJsComponent ]
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [CrtChartJsComponent],
+      }).compileComponents();
     })
-    .compileComponents();
-  }));
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(CrtChartJsComponent);

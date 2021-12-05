@@ -1,16 +1,16 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import {CrtChartJsComponent} from './crt-chart-js.component';
+import { CrtChartJsComponent } from './crt-chart-js.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: CrtChartJsComponent
-  }
+    component: CrtChartJsComponent,
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class CrtChartJsRoutingModule { }
+export class CrtChartJsRoutingModule {}

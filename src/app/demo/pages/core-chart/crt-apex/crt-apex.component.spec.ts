@@ -6,12 +6,13 @@ describe('CrtApexComponent', () => {
   let component: CrtApexComponent;
   let fixture: ComponentFixture<CrtApexComponent>;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      declarations: [ CrtApexComponent ]
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [CrtApexComponent],
+      }).compileComponents();
     })
-    .compileComponents();
-  }));
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(CrtApexComponent);

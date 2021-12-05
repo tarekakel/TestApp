@@ -1,11 +1,11 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {ApexChartService} from '../../../../theme/shared/components/chart/apex-chart/apex-chart.service';
-import {ChartDB} from './chart/chart-data';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ApexChartService } from '../../../../theme/shared/components/chart/apex-chart/apex-chart.service';
+import { ChartDB } from './chart/chart-data';
 
 @Component({
   selector: 'app-crt-apex',
   templateUrl: './crt-apex.component.html',
-  styleUrls: ['./crt-apex.component.scss']
+  styleUrls: ['./crt-apex.component.scss'],
 })
 export class CrtApexComponent implements OnInit, OnDestroy {
   public chartDB: any;
@@ -26,7 +26,10 @@ export class CrtApexComponent implements OnInit, OnDestroy {
     this.lastDate = 0;
     this.data = [];
 
-    this.getDayWiseTimeSeries(new Date('11 Feb 2017 GMT').getTime(), 10, {min: 10, max: 90});
+    this.getDayWiseTimeSeries(new Date('11 Feb 2017 GMT').getTime(), 10, {
+      min: 10,
+      max: 90,
+    });
     this.line2CAC = {
       chart: {
         height: 300,
@@ -35,43 +38,45 @@ export class CrtApexComponent implements OnInit, OnDestroy {
           enabled: true,
           easing: 'linear',
           dynamicAnimation: {
-            speed: 2000
-          }
+            speed: 2000,
+          },
         },
         toolbar: {
-          show: false
+          show: false,
         },
         zoom: {
-          enabled: false
-        }
+          enabled: false,
+        },
       },
       dataLabels: {
-        enabled: false
+        enabled: false,
       },
       stroke: {
-        curve: 'smooth'
+        curve: 'smooth',
       },
-      series: [{
-        data: this.data
-      }],
+      series: [
+        {
+          data: this.data,
+        },
+      ],
       colors: ['#4680ff'],
       title: {
         text: 'Dynamic Updating Chart',
-        align: 'left'
+        align: 'left',
       },
       markers: {
-        size: 0
+        size: 0,
       },
       xaxis: {
         type: 'datetime',
         range: 777600000,
       },
       yaxis: {
-        max: 100
+        max: 100,
       },
       legend: {
-        show: false
-      }
+        show: false,
+      },
     };
 
     this.dailyVisitorStatus = '1y';
@@ -79,7 +84,7 @@ export class CrtApexComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.intervalSub = setInterval(() => {
-      this.getNewSeries(this.lastDate, {min: 10, max: 90});
+      this.getNewSeries(this.lastDate, { min: 10, max: 90 });
       this.apexEvent.eventChangeSeriesData();
     }, 2000);
 
@@ -89,7 +94,7 @@ export class CrtApexComponent implements OnInit, OnDestroy {
     }, 60000);
   }
 
-  dailyVisitorEvent(status) {
+  dailyVisitorEvent(status: string) {
     this.dailyVisitorStatus = status;
     switch (status) {
       case '1m':
@@ -101,25 +106,25 @@ export class CrtApexComponent implements OnInit, OnDestroy {
       case '6m':
         this.dailyVisitorAxis = {
           min: new Date('27 Sep 2012').getTime(),
-          max: new Date('27 Feb 2013').getTime()
+          max: new Date('27 Feb 2013').getTime(),
         };
         break;
       case '1y':
         this.dailyVisitorAxis = {
           min: new Date('27 Feb 2012').getTime(),
-          max: new Date('27 Feb 2013').getTime()
+          max: new Date('27 Feb 2013').getTime(),
         };
         break;
       case 'ytd':
         this.dailyVisitorAxis = {
           min: new Date('01 Jan 2013').getTime(),
-          max: new Date('27 Feb 2013').getTime()
+          max: new Date('27 Feb 2013').getTime(),
         };
         break;
       case 'all':
         this.dailyVisitorAxis = {
           min: undefined,
-          max: undefined
+          max: undefined,
         };
         break;
     }
@@ -138,13 +143,18 @@ export class CrtApexComponent implements OnInit, OnDestroy {
     }
   }
 
-  getDayWiseTimeSeries(baseval, count, yrange) {
+  getDayWiseTimeSeries(
+    baseval: number,
+    count: number,
+    yrange: { min: any; max: any }
+  ) {
     let i = 0;
     while (i < count) {
       const x = baseval;
-      const y = Math.floor(Math.random() * (yrange.max - yrange.min + 1)) + yrange.min;
+      const y =
+        Math.floor(Math.random() * (yrange.max - yrange.min + 1)) + yrange.min;
 
-      this.data.push({x, y});
+      this.data.push({ x, y });
       this.lastDate = baseval;
       baseval += 86400000;
       i++;
@@ -155,13 +165,12 @@ export class CrtApexComponent implements OnInit, OnDestroy {
     this.data = this.data.slice(this.data.length - 10, this.data.length);
   }
 
-  getNewSeries(baseval, yrange) {
+  getNewSeries(baseval: number, yrange: { min: any; max: any }) {
     const newDate = baseval + 86400000;
     this.lastDate = newDate;
     this.data.push({
       x: newDate,
-      y: Math.floor(Math.random() * (yrange.max - yrange.min + 1)) + yrange.min
+      y: Math.floor(Math.random() * (yrange.max - yrange.min + 1)) + yrange.min,
     });
   }
-
 }
