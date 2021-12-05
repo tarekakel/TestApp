@@ -1,13 +1,12 @@
 ﻿import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BaseService } from '../core/base-service.service';
-import { User } from '../../shared/view-models/User';
 import { Urls } from '../../shared/common/Api-Urls';
 import { environment } from '../../../../../src/environments/environment';
 
 @Injectable()
 export class AuthService extends BaseService {
-  token: string;
+  token: string | undefined;
 
   constructor(private router: Router) {
     super();
@@ -32,27 +31,29 @@ export class AuthService extends BaseService {
   }
 
   getFullName() {
-    return JSON.parse(localStorage.getItem('currentUser')).user['EnglishName'];
+    return JSON.parse(localStorage.getItem('currentUser')!).user['EnglishName'];
   }
 
   getMobileNumber() {
-    return JSON.parse(localStorage.getItem('currentUser')).user['MoblieNumber'];
+    return JSON.parse(localStorage.getItem('currentUser')!).user[
+      'MoblieNumber'
+    ];
   }
 
   getUsername() {
-    return JSON.parse(localStorage.getItem('currentUser')).user['UserName'];
+    return JSON.parse(localStorage.getItem('currentUser')!).user['UserName'];
   }
 
   getLastActiveTime() {
-    return JSON.parse(localStorage.getItem('lastActiveTime'));
+    return JSON.parse(localStorage.getItem('lastActiveTime')!);
   }
 
   getEmail() {
-    return JSON.parse(localStorage.getItem('currentUser')).user['Email'];
+    return JSON.parse(localStorage.getItem('currentUser')!).user['Email'];
   }
 
   istokenExpired(): boolean {
-    let tokenExpireInDate = JSON.parse(localStorage.getItem('tokenExpireIn'));
+    let tokenExpireInDate = JSON.parse(localStorage.getItem('tokenExpireIn')!);
     let tokenExpireIn = +Date.parse(tokenExpireInDate);
     let dateNow = +Date.now();
     return dateNow > tokenExpireIn;
@@ -64,7 +65,7 @@ export class AuthService extends BaseService {
     this.router.navigate(['/login']);
   }
   getRoles() {
-    return JSON.parse(localStorage.getItem('currentUser')).user['Roles'];
+    return JSON.parse(localStorage.getItem('currentUser')!).user['Roles'];
   }
 
   isAuthunticated(): boolean {
@@ -72,11 +73,11 @@ export class AuthService extends BaseService {
   }
 
   isAdminAuthunticated(): boolean {
-    return this.getRoles().some((x) => x === 'Admin');
+    return this.getRoles().some((x: string) => x === 'Admin');
   }
 
   isSuperAdminAuthenticated(): boolean {
-    return this.getRoles().some((x) => x === 'SuperUser');
+    return this.getRoles().some((x: string) => x === 'SuperUser');
   }
 
   isUserAuthenticated(): boolean {
@@ -90,7 +91,7 @@ export class AuthService extends BaseService {
     return this.getRoles() == 'Developer';
   }
 
-  setToken(user, username, token) {
+  setToken(user: string, username: string, token: string) {
     localStorage.setItem(
       'currentUser',
       JSON.stringify({ user: user, username: username, token: token })
@@ -99,7 +100,7 @@ export class AuthService extends BaseService {
 
   getToken() {
     if (localStorage.getItem('currentUser')) {
-      return JSON.parse(localStorage.getItem('currentUser')).token;
+      return JSON.parse(localStorage.getItem('currentUser')!).token;
     }
     return null;
   }

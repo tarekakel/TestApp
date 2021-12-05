@@ -1,9 +1,9 @@
 ﻿export class SearchCriteria<T> {
-  pageIndex: number;
-  pageSize = 10;
-  orderBy: string;
-  desc: boolean;
+  pageIndex: number | undefined;
+  pageSize: number | undefined;
+  orderBy: string | undefined;
+  desc: boolean | undefined;
   take = 10;
   skip = 0;
-  filters: T;
+  filters: T | undefined;
 }
