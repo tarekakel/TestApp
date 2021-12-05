@@ -6,12 +6,13 @@ describe('TblStylingComponent', () => {
   let component: TblStylingComponent;
   let fixture: ComponentFixture<TblStylingComponent>;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      declarations: [ TblStylingComponent ]
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [TblStylingComponent],
+      }).compileComponents();
     })
-    .compileComponents();
-  }));
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(TblStylingComponent);

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TreeDataService } from './TreeDataService';
 import { TreeNode } from './TreeNode';
-import { ScrollingModule } from '@angular/cdk/scrolling';
 import { VehicleService } from '../../_services/VehicleService';
 import flvjs from 'flv.js';
 import { TreeNodeSearchPipe } from './TreeNodeSearchPipe';
@@ -19,19 +18,19 @@ export class TreeComponent implements OnInit {
   root: any;
   query: string = '';
   isChecked: Boolean = false;
-  height: number;
-  url: string;
-  uiClassPrefix: string;
+  height!: number;
+  url!: string;
+  uiClassPrefix!: string;
   store: any;
   player: any;
 
-  files3: TreeNode[];
-  selectedFile: TreeNode;
-  selectedFiles1: TreeNode;
-  selectedFiles2: TreeNode;
+  files3!: TreeNode[];
+  selectedFile!: TreeNode;
+  selectedFiles1!: TreeNode;
+  selectedFiles2!: TreeNode;
   selectCount: number = 0;
-  selectedBus: StreamingBucket[];
-  bucket: StreamingBucket;
+  selectedBus: StreamingBucket[] = [];
+  bucket!: StreamingBucket;
   videoElement: boolean = false;
   videoElement2: boolean = false;
   videoElement3: boolean = false;
@@ -41,7 +40,7 @@ export class TreeComponent implements OnInit {
   videoElement7: boolean = false;
   videoElement8: boolean = false;
   videoElement9: boolean = false;
-  frames: string;
+  frames!: string;
   loading: boolean = false;
 
   constructor(
@@ -59,10 +58,12 @@ export class TreeComponent implements OnInit {
   ngOnInit() {
     console.log('init');
     debugger;
-    this.vehicleService.getTreeVehicles().subscribe((res) => {
-      //this.root.nodes.push(res.children);
-      this.files3 = res.data;
-    });
+    this.vehicleService
+      .getTreeVehicles()
+      .subscribe((res: { data: TreeNode[] }) => {
+        //this.root.nodes.push(res.children);
+        this.files3 = res.data;
+      });
 
     // this.player = document.getElementById('videoElement');
     // if (flvjs.isSupported()) {
@@ -78,7 +79,7 @@ export class TreeComponent implements OnInit {
     // }
   }
 
-  play(cameraUrl, frame) {
+  play(cameraUrl: string, frame: string) {
     this.player = document.getElementById(frame);
     if (flvjs.isSupported()) {
       var flvPlayer = flvjs.createPlayer({
@@ -203,15 +204,15 @@ export class TreeComponent implements OnInit {
     debugger;
   }
 
-  nodeUnselect(event) {
+  nodeUnselect(event: { target: Element; node: { label: string } }) {
     let eventTarget = <Element>event.target;
     this.selectCount -= 1;
     var index = this.selectedBus.findIndex(
       (x) => x.Car_License == event.node.label
     );
-    var frame = this.selectedBus.find(
-      (c) => c.Car_License == event.node.label
-    ).FrameNumber;
+    var frame = this!.selectedBus!.find(
+      (c) => c!.Car_License! == event!.node!.label!
+    )!.FrameNumber;
     this.selectedBus.splice(index, 1);
     switch (frame) {
       case 'videoElement':
@@ -259,25 +260,25 @@ export class TreeComponent implements OnInit {
     debugger;
     var front_url = this.selectedBus.find(
       (x) => x.FrameNumber == frame
-    ).ForntUrl;
+    )!.ForntUrl;
     this.play(front_url, frame);
   }
   playBack(frame: string) {
     var front_url = this.selectedBus.find(
       (x) => x.FrameNumber == frame
-    ).BackUrl;
+    )!.BackUrl;
     this.play(front_url, frame);
   }
   playRear(frame: string) {
     var front_url = this.selectedBus.find(
       (x) => x.FrameNumber == frame
-    ).RearUrl;
+    )!.RearUrl;
     this.play(front_url, frame);
   }
   playSide(frame: string) {
     var front_url = this.selectedBus.find(
       (x) => x.FrameNumber == frame
-    ).SideUrl;
+    )!.SideUrl;
     this.play(front_url, frame);
   }
 }

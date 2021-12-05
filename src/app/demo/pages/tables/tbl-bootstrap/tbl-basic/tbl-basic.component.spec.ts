@@ -6,12 +6,13 @@ describe('TblBasicComponent', () => {
   let component: TblBasicComponent;
   let fixture: ComponentFixture<TblBasicComponent>;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      declarations: [ TblBasicComponent ]
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [TblBasicComponent],
+      }).compileComponents();
     })
-    .compileComponents();
-  }));
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(TblBasicComponent);

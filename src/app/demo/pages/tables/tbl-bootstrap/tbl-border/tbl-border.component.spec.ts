@@ -6,12 +6,13 @@ describe('TblBorderComponent', () => {
   let component: TblBorderComponent;
   let fixture: ComponentFixture<TblBorderComponent>;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      declarations: [ TblBorderComponent ]
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [TblBorderComponent],
+      }).compileComponents();
     })
-    .compileComponents();
-  }));
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(TblBorderComponent);

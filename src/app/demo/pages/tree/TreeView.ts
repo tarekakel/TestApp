@@ -1,9 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { AbstractControl } from '@angular/forms';
-import * as core from '@angular/core';
 import { TreeNode } from './TreeNode';
-import { TreeNodeSearchPipe } from './TreeNodeSearchPipe';
-import { TreeNodeCheckedPipe } from './TreeNodeCheckedPipe';
 
 @Component({
   selector: 'treeview',
@@ -38,8 +35,8 @@ import { TreeNodeCheckedPipe } from './TreeNodeCheckedPipe';
   `,
 })
 export class TreeView {
-  @Input() queryEl: AbstractControl;
-  @Input() isChecked: Boolean;
-  @Input() store: Array<TreeNode>;
-  @Input() uiClassPrefix: string;
+  @Input() queryEl: AbstractControl | undefined;
+  @Input() isChecked: Boolean | undefined;
+  @Input() store: Array<TreeNode> | undefined;
+  @Input() uiClassPrefix: string | undefined;
 }

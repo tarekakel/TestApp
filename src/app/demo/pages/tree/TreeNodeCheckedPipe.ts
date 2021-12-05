@@ -5,8 +5,8 @@ import { Pipe } from '@angular/core';
   pure: false,
 })
 export class TreeNodeCheckedPipe {
-  store = [];
-  transform(node) {
+  store: any[] = [];
+  transform(node: any[]) {
     this.store.length = 0;
     this.store.push(...node.filter((node) => node.checked));
     return this.store;

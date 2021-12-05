@@ -5,8 +5,8 @@ import { Pipe } from '@angular/core';
   pure: false,
 })
 export class TreeNodeSearchPipe {
-  store = [];
-  transform(value, [queryString]) {
+  store: any[] = [];
+  transform(value: any[], [queryString]: any) {
     this.store.length = 0;
     this.store.push(
       ...value.filter(

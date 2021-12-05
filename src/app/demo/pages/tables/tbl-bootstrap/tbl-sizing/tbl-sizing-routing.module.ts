@@ -1,16 +1,16 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import {TblSizingComponent} from './tbl-sizing.component';
+import { TblSizingComponent } from './tbl-sizing.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: TblSizingComponent
-  }
+    component: TblSizingComponent,
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class TblSizingRoutingModule { }
+export class TblSizingRoutingModule {}

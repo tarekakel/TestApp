@@ -18,10 +18,10 @@ export class TreeNode {
         return node.checked;
       });
     }
-    return checkedNodes.length > 0;
+    return checkedNodes!.length > 0;
   }
 
-  containsName(name) {
+  containsName(name: any) {
     var query = name;
     let matchingNodes: TreeNode[];
     if (this.nodes && this.nodes.length) {
@@ -29,7 +29,7 @@ export class TreeNode {
         return node.name.includes(query);
       });
     }
-    return matchingNodes.length > 0;
+    return matchingNodes!.length > 0;
   }
 
   get icon() {

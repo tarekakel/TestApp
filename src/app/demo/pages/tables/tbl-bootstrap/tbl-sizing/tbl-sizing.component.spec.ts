@@ -6,12 +6,13 @@ describe('TblSizingComponent', () => {
   let component: TblSizingComponent;
   let fixture: ComponentFixture<TblSizingComponent>;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      declarations: [ TblSizingComponent ]
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [TblSizingComponent],
+      }).compileComponents();
     })
-    .compileComponents();
-  }));
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(TblSizingComponent);
