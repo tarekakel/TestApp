@@ -1,17 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import {SeoAnalyticChart1} from './chart/seo-analytic-chart-1';
-import {SeoAnalyticChart2} from './chart/seo-analytic-chart-2';
-import {SeoAnalyticChart3} from './chart/seo-analytic-chart-3';
-import {SeoAnalyticChart4} from './chart/seo-analytic-chart-4';
-import {SecEcommerceChartLine} from './chart/sec-ecommerce-chart-line';
-import {SecEcommerceChartBar} from './chart/sec-ecommerce-chart-bar';
-import {MonthlyProfit1} from './chart/monthly-profit-1';
-import {MonthlyProfit2} from './chart/monthly-profit-2';
+import { SeoAnalyticChart1 } from './chart/seo-analytic-chart-1';
+import { SeoAnalyticChart2 } from './chart/seo-analytic-chart-2';
+import { SeoAnalyticChart3 } from './chart/seo-analytic-chart-3';
+import { SeoAnalyticChart4 } from './chart/seo-analytic-chart-4';
+import { SecEcommerceChartLine } from './chart/sec-ecommerce-chart-line';
+import { SecEcommerceChartBar } from './chart/sec-ecommerce-chart-bar';
+import { MonthlyProfit1 } from './chart/monthly-profit-1';
+import { MonthlyProfit2 } from './chart/monthly-profit-2';
 
 @Component({
   selector: 'app-dash-sale',
   templateUrl: './dash-sale.component.html',
-  styleUrls: ['./dash-sale.component.scss']
+  styleUrls: ['./dash-sale.component.scss'],
 })
 export class DashSaleComponent implements OnInit {
   public seoChartData1: any;
@@ -34,7 +34,5 @@ export class DashSaleComponent implements OnInit {
     this.monthlyProfitChartData2 = MonthlyProfit2.saleChartData;
   }
 
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }

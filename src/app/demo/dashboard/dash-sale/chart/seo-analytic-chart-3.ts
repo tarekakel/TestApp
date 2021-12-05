@@ -4,11 +4,11 @@ export class SeoAnalyticChart3 {
       type: 'area',
       height: 50,
       sparkline: {
-        enabled: true
-      }
+        enabled: true,
+      },
     },
     dataLabels: {
-      enabled: false
+      enabled: false,
     },
     colors: ['#ff5252'],
     fill: {
@@ -18,8 +18,8 @@ export class SeoAnalyticChart3 {
     grid: {
       padding: {
         left: 5,
-        right: 5
-      }
+        right: 5,
+      },
     },
     markers: {
       size: 3,
@@ -29,31 +29,33 @@ export class SeoAnalyticChart3 {
       strokeWidth: 1,
       hover: {
         size: 4,
-      }
+      },
     },
     stroke: {
       curve: 'straight',
       width: 2,
     },
-    series: [{
-      name: 'series1',
-      data: [25, 66, 41, 89, 63, 25, 44, 12, 36, 9, 54, 25, 66, 41, 89]
-    }],
+    series: [
+      {
+        name: 'series1',
+        data: [25, 66, 41, 89, 63, 25, 44, 12, 36, 9, 54, 25, 66, 41, 89],
+      },
+    ],
     tooltip: {
       fixed: {
-        enabled: false
+        enabled: false,
       },
       x: {
-        show: false
+        show: false,
       },
       y: {
         title: {
-          formatter: (seriesName) => 'Total Visits :'
-        }
+          formatter: () => 'Total Visits :',
+        },
       },
       marker: {
-        show: false
-      }
-    }
+        show: false,
+      },
+    },
   };
 }

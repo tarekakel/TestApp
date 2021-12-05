@@ -7,35 +7,48 @@ const routes: Routes = [
     children: [
       {
         path: 'default',
-        loadChildren: () => import('./dash-default/dash-default.module').then(module => module.DashDefaultModule),
+        loadChildren: () =>
+          import('./dash-default/dash-default.module').then(
+            (module) => module.DashDefaultModule
+          ),
         data: {
-          roles: [
-            'Admin',
-          ]
+          roles: ['Admin'],
         },
       },
       {
         path: 'sale',
-        loadChildren: () => import('./dash-sale/dash-sale.module').then(module => module.DashSaleModule)
+        loadChildren: () =>
+          import('./dash-sale/dash-sale.module').then(
+            (module) => module.DashSaleModule
+          ),
       },
       {
         path: 'crm',
-        loadChildren: () => import('./dash-crm/dash-crm.module').then(module => module.DashCrmModule)
+        loadChildren: () =>
+          import('./dash-crm/dash-crm.module').then(
+            (module) => module.DashCrmModule
+          ),
       },
       {
         path: 'analytics',
-        loadChildren: () => import('./dash-analytics/dash-analytics.module').then(module => module.DashAnalyticsModule)
+        loadChildren: () =>
+          import('./dash-analytics/dash-analytics.module').then(
+            (module) => module.DashAnalyticsModule
+          ),
       },
       {
         path: 'project',
-        loadChildren: () => import('./dash-project/dash-project.module').then(module => module.DashProjectModule)
-      }
-    ]
-  }
+        loadChildren: () =>
+          import('./dash-project/dash-project.module').then(
+            (module) => module.DashProjectModule
+          ),
+      },
+    ],
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class DashboardRoutingModule { }
+export class DashboardRoutingModule {}
