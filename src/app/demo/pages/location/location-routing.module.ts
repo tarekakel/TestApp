@@ -5,21 +5,23 @@ const routes: Routes = [
   {
     path: '',
     children: [
-
       //   {
       //     path: 'card',
       //     loadChildren: () => import('./users-card/users-card.module').then(module => module.VehicleCardModule)
       //   },
       {
         path: 'list',
-        loadChildren: () => import('./location-list/location-list.module').then(module => module.LocationListModule)
-      }
-    ]
-  }
+        loadChildren: () =>
+          import('./location-list/location-list.module').then(
+            (module) => module.LocationListModule
+          ),
+      },
+    ],
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class LocationRoutingModule { }
+export class LocationRoutingModule {}

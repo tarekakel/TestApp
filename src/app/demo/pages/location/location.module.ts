@@ -5,9 +5,6 @@ import { LocationRoutingModule } from './location-routing.module';
 
 @NgModule({
   declarations: [],
-  imports: [
-    CommonModule,
-    LocationRoutingModule
-  ]
+  imports: [CommonModule, LocationRoutingModule],
 })
-export class LocationModule { }
+export class LocationModule {}

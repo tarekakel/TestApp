@@ -18,10 +18,10 @@ import esri = __esri;
   styleUrls: ['./location-list.component.scss'],
 })
 export class LocationListComponent implements OnInit {
-  tableVehiclesInfo: VehicleSummary;
-  vehiclesInfo: VehicleDto[];
+  tableVehiclesInfo: VehicleSummary = new VehicleSummary();
+  vehiclesInfo: VehicleDto[] = [];
   @Output() mapLoaded = new EventEmitter<boolean>();
-  @ViewChild('mapViewNode') private mapViewEl: ElementRef;
+  @ViewChild('mapViewNode') private mapViewEl: ElementRef | undefined;
 
   /**
    * @private _zoom sets map zoom
@@ -113,7 +113,7 @@ export class LocationListComponent implements OnInit {
 
       // Set type of map view
       const mapViewProperties: esri.MapViewProperties = {
-        container: this.mapViewEl.nativeElement,
+        container: this.mapViewEl!.nativeElement,
         center: this._center,
         zoom: this._zoom,
         map: map,
@@ -471,7 +471,10 @@ export class LocationListComponent implements OnInit {
       const locate = new Locate({
         view: mapView,
         useHeadingEnabled: false,
-        goToOverride: function (view, options) {
+        goToOverride: function (
+          view: { goTo: (arg0: any) => any },
+          options: { target: { scale: number } }
+        ) {
           options.target.scale = 1500;
           return view.goTo(options.target);
         },
@@ -607,7 +610,7 @@ export class LocationListComponent implements OnInit {
     });
   }
 
-  ConvertToCSV(objArray, headerList) {
+  ConvertToCSV(objArray: string | VehicleDto[], headerList: string[]) {
     let array = typeof objArray != 'object' ? JSON.parse(objArray) : objArray;
     let str = '';
     let row = 'S.No,';

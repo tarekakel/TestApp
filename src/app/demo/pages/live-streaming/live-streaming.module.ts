@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {SharedModule} from '../../../theme/shared/shared.module';
+import { SharedModule } from '../../../theme/shared/shared.module';
 import { LiveStreamingComponent } from './live-streaming.component';
 import { LiveStreamRoutingModule } from './live-streaming-routing.module';
 import { TreeModule } from 'primeng/tree';
@@ -15,7 +15,7 @@ import { ToastModule } from 'primeng/toast';
     SharedModule,
     TreeModule,
     ButtonModule,
-    ToastModule
-  ]
+    ToastModule,
+  ],
 })
-export class LiveStreamModule { }
+export class LiveStreamModule {}

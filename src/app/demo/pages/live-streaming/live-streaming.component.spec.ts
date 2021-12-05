@@ -8,9 +8,8 @@ describe('LiveStreamingComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ LiveStreamingComponent ]
-    })
-    .compileComponents();
+      declarations: [LiveStreamingComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {
