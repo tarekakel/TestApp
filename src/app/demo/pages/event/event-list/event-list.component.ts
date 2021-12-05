@@ -1,7 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
-import { Subject } from 'rxjs-compat';
 import { BaseComponent } from 'src/app/demo/framework/core/base-component';
 import { AuthService } from 'src/app/demo/framework/helpers/auth.service';
 import { SearchCriteria } from 'src/app/demo/framework/view-models/grid/search-criteria';
@@ -33,32 +32,31 @@ declare var require: any;
 export class EventListComponent extends BaseComponent implements OnInit {
   display = false;
   searchCriteria: SearchCriteria<any>;
-  eventTypes: any[];
+  eventTypes: any[] = [];
   eventDto: EventDto;
   eventReclassification: EventReclassification;
   summary: ViolationSummary;
   math = Math;
   image: any;
-  allEvents: any[];
-  debugTypes: any[];
-  eventList: EventDto[];
-  tableDriversInfo: Driver[];
-  assets: VehicleDto[];
+  allEvents: any[] = [];
+  debugTypes: any[] = [];
+  eventList: EventDto[] = [];
+  tableDriversInfo: Driver[] = [];
+  assets: VehicleDto[] = [];
   oneAtATime = true;
   eventLogData: EventLog;
-  selectedItems: VehicleDto[];
-  groupSeletedItems: GroupMaster[];
-  eventSeletedItems: any[];
+  selectedItems: VehicleDto[] = [];
+  groupSeletedItems: GroupMaster[] = [];
+  eventSeletedItems: any[] = [];
   vehicleCode: string[];
   groupCode: number[];
   eventTypeCode: number[];
-  currentYear: number;
-  currentMonth: number;
-  imageUrl: string;
+  currentYear!: number;
+  currentMonth!: number;
+  imageUrl!: string;
   downloadOptions = '';
   dtOptions: any = {};
-  button: ['copy', 'excel', 'csv', 'pdf', 'print'];
-  dtTrigger: Subject<any> = new Subject<any>();
+  button = ['copy', 'excel', 'csv', 'pdf', 'print'];
   totalViolation = 0;
   stopArmViolation = 0;
   safeZoneAlarm = 0;
@@ -67,18 +65,20 @@ export class EventListComponent extends BaseComponent implements OnInit {
   mapCenter = [-122.4194, 37.7749];
   basemapType = 'satellite';
   mapZoomLevel = 12;
-  tableVehiclesInfo: VehicleSummary;
-  vehiclesInfo: VehicleDto[];
-  groupList: any[];
-  loading;
+  tableVehiclesInfo: VehicleSummary = new VehicleSummary();
+  vehiclesInfo: VehicleDto[] = [];
+  groupList: any[] = [];
+  loading: boolean | undefined;
   dropdownSettings: IDropdownSettings = {};
   dropdownGroupSettings: IDropdownSettings = {};
   dropdownEventTypeSettings: IDropdownSettings = {};
   @Output() public downloadStatus: EventEmitter<ProgressStatus>;
-  @Input() public disabled: boolean;
-  @Input() public fileName: string;
+  @Input()
+  public disabled: boolean = false;
+  @Input()
+  public fileName!: string;
   totalRecords = 0;
-  items: MenuItem[];
+  items: MenuItem[] = [];
   constructor(
     private eventService: EventService,
     private sanitized: DomSanitizer,
@@ -103,7 +103,7 @@ export class EventListComponent extends BaseComponent implements OnInit {
     this.downloadStatus = new EventEmitter<ProgressStatus>();
   }
 
-  ngOnInit(): void {
+  override ngOnInit(): void {
     this.loading = true;
     const role = this.authService.getRoles();
     if (role[0] === 'Admin') {
@@ -182,20 +182,19 @@ export class EventListComponent extends BaseComponent implements OnInit {
   // tslint:disable-next-line: use-lifecycle-interface
   ngOnDestroy(): void {
     // Do not forget to unsubscribe the event
-    this.dtTrigger.unsubscribe();
   }
   mapLoadedEvent(status: boolean): void {
     console.log('The map loaded: ' + status);
   }
 
-  openModal(pic): void {
-    document.getElementById('imgModal').style.display = 'block';
+  openModal(pic: string): void {
+    document!.getElementById('imgModal')!.style.display = 'block';
     this.imageUrl = pic;
   }
 
   // tslint:disable-next-line: typedef
   closeModal() {
-    document.getElementById('imgModal').style.display = 'none';
+    document.getElementById('imgModal')!.style.display = 'none';
   }
 
   cleanURL(oldURL: string): SafeResourceUrl {
@@ -204,7 +203,7 @@ export class EventListComponent extends BaseComponent implements OnInit {
   cleanImageURL(url: string): SafeResourceUrl {
     return this.sanitized.bypassSecurityTrustResourceUrl(url);
   }
-  transform(image): SafeResourceUrl {
+  transform(image: string): SafeResourceUrl {
     return this.sanitized.bypassSecurityTrustResourceUrl(image);
   }
 
@@ -219,11 +218,11 @@ export class EventListComponent extends BaseComponent implements OnInit {
       this.vehicleCode.push(c.registration);
     });
   }
-  onDeSelect(items): void {
+  onDeSelect(items: { registration: string }): void {
     const index = this.vehicleCode.indexOf(items.registration);
     this.vehicleCode.splice(index, 1);
   }
-  onDeSelectAll(items): void {
+  onDeSelectAll(): void {
     this.vehicleCode.splice(0);
   }
   // adding multiple busses end
@@ -237,11 +236,11 @@ export class EventListComponent extends BaseComponent implements OnInit {
       this.eventTypeCode.push(c.code);
     });
   }
-  onEventDeSelect(items): void {
+  onEventDeSelect(items: { code: number }): void {
     const index = this.eventTypeCode.indexOf(items.code);
     this.eventTypeCode.splice(index, 1);
   }
-  onEventDeSelectAll(items): void {
+  onEventDeSelectAll(): void {
     this.eventTypeCode.splice(0);
   }
 
@@ -262,12 +261,12 @@ export class EventListComponent extends BaseComponent implements OnInit {
       this.groupCode.push(c.groupId);
     });
   }
-  onGroupDeSelect(items): void {
+  onGroupDeSelect(items: { groupId: number }): void {
     this.vehiclesInfo = this.tableVehiclesInfo.vehicles;
     const index = this.groupCode.indexOf(items.groupId);
     this.groupCode.splice(index, 1);
   }
-  onGroupDeSelectAll(items): void {
+  onGroupDeSelectAll(): void {
     this.vehiclesInfo = this.tableVehiclesInfo.vehicles;
     this.groupCode.splice(0);
   }
@@ -279,13 +278,15 @@ export class EventListComponent extends BaseComponent implements OnInit {
     this.loading = true;
     this.eventService
       .searchEventsForPage(this.searchCriteria)
-      .subscribe((res) => {
-        this.eventList = res.violationList;
-        this.loading = false;
-        this.totalViolation = res.totalViolation;
-        this.totalRecords = res.totalViolation;
-        console.log(this.eventList);
-      });
+      .subscribe(
+        (res: { violationList: EventDto[]; totalViolation: number }) => {
+          this.eventList = res.violationList;
+          this.loading = false;
+          this.totalViolation = res.totalViolation;
+          this.totalRecords = res.totalViolation;
+          console.log(this.eventList);
+        }
+      );
   }
   download(item: EventDto): void {
     this.eventService.downloadViolation(item.evidenceID).subscribe(
@@ -299,7 +300,7 @@ export class EventListComponent extends BaseComponent implements OnInit {
       }
     );
   }
-  nodeSelect(event): void {
+  nodeSelect(event: { node: { label: any } }): void {
     this.messageService.add({
       severity: 'info',
       summary: 'Node Selected',
@@ -307,7 +308,7 @@ export class EventListComponent extends BaseComponent implements OnInit {
     });
   }
 
-  nodeUnselect(event): void {
+  nodeUnselect(event: { node: { label: any } }): void {
     this.messageService.add({
       severity: 'info',
       summary: 'Node Unselected',
@@ -317,13 +318,17 @@ export class EventListComponent extends BaseComponent implements OnInit {
   loadEvent(event: LazyLoadEvent): void {
     this.loading = true;
     event.filters = this.searchCriteria.filters;
-    this.eventService.searchEventsForPage(event).subscribe((res) => {
-      this.eventList = res.violationList;
-      this.loading = false;
-      this.totalViolation = res.totalViolation;
-      this.totalRecords = res.totalViolation;
-      console.log(this.totalViolation);
-    });
+    this.eventService
+      .searchEventsForPage(event)
+      .subscribe(
+        (res: { violationList: EventDto[]; totalViolation: number }) => {
+          this.eventList = res.violationList;
+          this.loading = false;
+          this.totalViolation = res.totalViolation;
+          this.totalRecords = res.totalViolation;
+          console.log(this.totalViolation);
+        }
+      );
   }
 
   exportExcel(): void {
@@ -332,9 +337,9 @@ export class EventListComponent extends BaseComponent implements OnInit {
     });
   }
   exportPdf(): void {
-    const exportData = [];
+    const exportData: any[][] = [];
     this.eventService.export(this.searchCriteria).subscribe((data) => {
-      data.forEach((element) => {
+      data.forEach((element: { [s: string]: any } | ArrayLike<any>) => {
         exportData.push(Object.values(element));
       });
       this.exportService.exportPdf(Object.keys(data[0]), exportData);
