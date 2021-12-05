@@ -6,12 +6,13 @@ describe('GalleryMasonryComponent', () => {
   let component: GalleryMasonryComponent;
   let fixture: ComponentFixture<GalleryMasonryComponent>;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      declarations: [ GalleryMasonryComponent ]
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [GalleryMasonryComponent],
+      }).compileComponents();
     })
-    .compileComponents();
-  }));
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(GalleryMasonryComponent);

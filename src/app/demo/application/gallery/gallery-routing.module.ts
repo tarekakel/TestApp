@@ -7,19 +7,24 @@ const routes: Routes = [
     children: [
       {
         path: 'grid',
-        loadChildren: () => import('./gallery-grid/gallery-grid.module').then(module => module.GalleryGridModule)
+        loadChildren: () =>
+          import('./gallery-grid/gallery-grid.module').then(
+            (module) => module.GalleryGridModule
+          ),
       },
       {
         path: 'masonry',
-        loadChildren: () => import('./gallery-masonry/gallery-masonry.module').then(module => module.GalleryMasonryModule)
-      }
-    ]
-  }
+        loadChildren: () =>
+          import('./gallery-masonry/gallery-masonry.module').then(
+            (module) => module.GalleryMasonryModule
+          ),
+      },
+    ],
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class GalleryRoutingModule { }
-
+export class GalleryRoutingModule {}

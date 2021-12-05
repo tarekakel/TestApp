@@ -6,12 +6,13 @@ describe('GalleryGridComponent', () => {
   let component: GalleryGridComponent;
   let fixture: ComponentFixture<GalleryGridComponent>;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      declarations: [ GalleryGridComponent ]
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [GalleryGridComponent],
+      }).compileComponents();
     })
-    .compileComponents();
-  }));
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(GalleryGridComponent);
