@@ -3,15 +3,16 @@ import { CommonModule } from '@angular/common';
 
 import { FullEventCalendarRoutingModule } from './full-event-calendar-routing.module';
 import { FullEventCalendarComponent } from './full-event-calendar.component';
-import {SharedModule} from '../../../theme/shared/shared.module';
-import {FormsModule} from '@angular/forms';
+import { SharedModule } from '../../../theme/shared/shared.module';
+import { FormsModule } from '@angular/forms';
 import { FullCalendarModule } from '@fullcalendar/angular';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
 
-FullCalendarModule.registerPlugins([ // register FullCalendar plugins
+FullCalendarModule.registerPlugins([
+  // register FullCalendar plugins
   dayGridPlugin,
-  interactionPlugin
+  interactionPlugin,
 ]);
 
 @NgModule({
@@ -20,9 +21,9 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     FullEventCalendarRoutingModule,
     SharedModule,
     FullCalendarModule,
-    FormsModule
+    FormsModule,
   ],
   declarations: [FullEventCalendarComponent],
-  providers: []
+  providers: [],
 })
-export class FullEventCalendarModule { }
+export class FullEventCalendarModule {}

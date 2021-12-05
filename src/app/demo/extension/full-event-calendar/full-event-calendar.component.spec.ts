@@ -6,12 +6,13 @@ describe('FullEventCalendarComponent', () => {
   let component: FullEventCalendarComponent;
   let fixture: ComponentFixture<FullEventCalendarComponent>;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      declarations: [ FullEventCalendarComponent ]
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [FullEventCalendarComponent],
+      }).compileComponents();
     })
-    .compileComponents();
-  }));
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(FullEventCalendarComponent);
