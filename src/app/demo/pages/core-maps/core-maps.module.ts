@@ -4,10 +4,7 @@ import { CommonModule } from '@angular/common';
 import { CoreMapsRoutingModule } from './core-maps-routing.module';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    CoreMapsRoutingModule
-  ],
-  declarations: []
+  imports: [CommonModule, CoreMapsRoutingModule],
+  declarations: [],
 })
-export class CoreMapsModule { }
+export class CoreMapsModule {}

@@ -6,12 +6,13 @@ describe('GoogleMapsComponent', () => {
   let component: GoogleMapsComponent;
   let fixture: ComponentFixture<GoogleMapsComponent>;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      declarations: [ GoogleMapsComponent ]
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [GoogleMapsComponent],
+      }).compileComponents();
     })
-    .compileComponents();
-  }));
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(GoogleMapsComponent);

@@ -7,14 +7,17 @@ const routes: Routes = [
     children: [
       {
         path: 'google',
-        loadChildren: () => import('./google-maps/google-maps.module').then(module => module.GoogleMapsModule)
-      }
-    ]
-  }
+        loadChildren: () =>
+          import('./google-maps/google-maps.module').then(
+            (module) => module.GoogleMapsModule
+          ),
+      },
+    ],
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class CoreMapsRoutingModule { }
+export class CoreMapsRoutingModule {}

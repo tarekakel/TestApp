@@ -10,6 +10,8 @@
   },
   "private": true,
   "dependencies": {
+    "@agm/core": "^3.0.0-beta.0",
+    "@agm/js-marker-clusterer": "^1.1.0",
     "@angular/animations": "~13.0.0",
     "@angular/common": "~13.0.0",
     "@angular/compiler": "~13.0.0",
@@ -24,6 +26,7 @@
     "@iplab/ngx-file-upload": "^3.3.3",
     "@ng-bootstrap/ng-bootstrap": "^10.0.0",
     "@swimlane/ngx-charts": "^19.1.0",
+    "agm-direction": "^0.8.9",
     "angular-highcharts": "^12.0.0",
     "angular-l10n": "^13.0.0",
     "angular-pell": "^0.1.0",
