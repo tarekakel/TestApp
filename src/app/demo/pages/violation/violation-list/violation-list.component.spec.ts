@@ -8,9 +8,8 @@ describe('ViolationListComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ViolationListComponent ]
-    })
-    .compileComponents();
+      declarations: [ViolationListComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

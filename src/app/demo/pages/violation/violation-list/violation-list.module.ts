@@ -3,10 +3,13 @@ import { CommonModule } from '@angular/common';
 
 import { ViolationListRoutingModule } from './violation-list-routing.module';
 import { ViolationListComponent } from './violation-list.component';
-import {SharedModule} from '../../../../theme/shared/shared.module';
-import {NgbCarouselModule, NgbDropdownModule, NgbTooltipModule} from '@ng-bootstrap/ng-bootstrap';
-import {LightboxModule} from 'ngx-lightbox';
-import { DataTablesModule } from 'angular-datatables';
+import { SharedModule } from '../../../../theme/shared/shared.module';
+import {
+  NgbCarouselModule,
+  NgbDropdownModule,
+  NgbTooltipModule,
+} from '@ng-bootstrap/ng-bootstrap';
+import { LightboxModule } from 'ngx-lightbox';
 
 @NgModule({
   declarations: [ViolationListComponent],
@@ -18,7 +21,6 @@ import { DataTablesModule } from 'angular-datatables';
     NgbTooltipModule,
     NgbCarouselModule,
     LightboxModule,
-    DataTablesModule
-  ]
+  ],
 })
-export class ViolationListModule { }
+export class ViolationListModule {}

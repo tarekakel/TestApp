@@ -5,9 +5,6 @@ import { ViolationRoutingModule } from './violation-routing.module';
 
 @NgModule({
   declarations: [],
-  imports: [
-    CommonModule,
-    ViolationRoutingModule
-  ]
+  imports: [CommonModule, ViolationRoutingModule],
 })
-export class ViolationModule { }
+export class ViolationModule {}
