@@ -7,14 +7,17 @@ const routes: Routes = [
     children: [
       {
         path: 'basic',
-        loadChildren: () => import('./todo-list/todo-list.module').then(module => module.TodoListModule)
-      }
-    ]
-  }
+        loadChildren: () =>
+          import('./todo-list/todo-list.module').then(
+            (module) => module.TodoListModule
+          ),
+      },
+    ],
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class TodoRoutingModule { }
+export class TodoRoutingModule {}
